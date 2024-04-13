@@ -4,7 +4,12 @@ extends CharacterBody3D
 @onready var camera_pivot = $CameraPivot
 @onready var camera_3d = $CameraPivot/Camera3D
 
+@onready var animation_tree = $dwarf/AnimationTree
 
+@onready var animation_player = $dwarf/AnimationPlayer
+@onready var dwarf_model = $dwarf
+
+var state_machine
 
 var camera_sensitivity = 0.001
 var gravity = 9.8
@@ -14,6 +19,7 @@ const SPEED = 5.0
 func _ready():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	state_machine = animation_tree["parameters/playback"]
 	
 func _input(event):
 	
@@ -32,7 +38,12 @@ func _input(event):
 
 func _physics_process(delta):
 	
-		# Add the gravity.
+	
+	
+
+	
+	
+	
 	if not is_on_floor():
 		if velocity.y >= 0:
 			velocity.y -= gravity * delta
@@ -46,11 +57,21 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if velocity:
+		#animation_player.play("runanimation")
+
+		dwarf_model.look_at(transform.origin + Vector3(velocity.x, 0, velocity.z),Vector3.UP)
+		state_machine.travel("runanimation")
+	else:
+		#animation_player.play("idleanimation")
+		
+		state_machine.travel("idleanimation")
 
 	move_and_slide()
