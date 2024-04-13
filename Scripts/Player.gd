@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+class_name Player
 
 @onready var camera_pivot = $CameraPivot
 @onready var camera_3d = $CameraPivot/Camera3D
@@ -14,13 +15,12 @@ const SPEED = 5.0
 func _ready():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Globals.currentPlayer = self
+	
 	
 func _input(event):
 	
-	if event.is_action_pressed("menu"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
-	elif event.is_action_pressed("action"):
+	if event.is_action_pressed("action"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
 	elif event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:

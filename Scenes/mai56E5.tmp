@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://yg5j5j3ftk42"]
+[gd_scene load_steps=12 format=3 uid="uid://yg5j5j3ftk42"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_hpm5i"]
-[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_kc5k5"]
 [ext_resource type="PackedScene" uid="uid://njfod8xarnho" path="res://Scenes/anvil.tscn" id="2_ywpje"]
 [ext_resource type="PackedScene" uid="uid://clicowrhc21ve" path="res://Scenes/enemy.tscn" id="3_8gaw8"]
 
@@ -32,7 +31,6 @@ albedo_color = Color(0.129412, 0.129412, 0.117647, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_syfcc"]
 
 [node name="Main" type="Node3D"]
-script = ExtResource("1_kc5k5")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b3enl")
