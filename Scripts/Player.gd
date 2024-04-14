@@ -9,7 +9,7 @@ extends CharacterBody3D
 @onready var animation_player = $dwarf/AnimationPlayer
 @onready var dwarf_model = $dwarf
 
-var state_machine
+var runBlendParameter
 
 var camera_sensitivity = 0.001
 var gravity = 9.8
@@ -19,7 +19,7 @@ const SPEED = 5.0
 func _ready():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	state_machine = animation_tree["parameters/playback"]
+	runBlendParameter = animation_tree["parameters/runblend/blend_amount"]
 	
 func _input(event):
 	
@@ -65,13 +65,9 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	if velocity:
-		#animation_player.play("runanimation")
-
 		dwarf_model.look_at(transform.origin + Vector3(velocity.x, 0, velocity.z),Vector3.UP)
-		state_machine.travel("runanimation")
+		animation_tree["parameters/runblend/blend_amount"] = lerp(animation_tree["parameters/runblend/blend_amount"], 1.0, 0.3)
 	else:
-		#animation_player.play("idleanimation")
-		
-		state_machine.travel("idleanimation")
+		animation_tree["parameters/runblend/blend_amount"] = lerp(animation_tree["parameters/runblend/blend_amount"], 0.0, 0.3)
 
 	move_and_slide()
