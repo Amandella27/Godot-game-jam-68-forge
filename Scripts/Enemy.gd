@@ -13,10 +13,8 @@ func _ready():
 
 func _physics_process(_delta):
 
-	
 	direction = global_position.direction_to(Vector3(player_to_attack.global_position.x,0,player_to_attack.global_position.z))
 	
 	velocity = SPEED * direction
 
 	move_and_slide()
- 
