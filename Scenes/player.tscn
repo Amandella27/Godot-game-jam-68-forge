@@ -754,7 +754,7 @@ nodes/runblend/position = Vector2(180, 120)
 node_connections = [&"output", 0, &"runblend", &"runblend", 0, &"idleanimation", &"runblend", 1, &"runanimation"]
 
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_3bkjk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

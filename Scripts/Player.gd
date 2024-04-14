@@ -62,7 +62,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	if velocity:
+	if velocity.x or velocity.z:
 		dwarf_model.look_at(transform.origin + Vector3(velocity.x, 0, velocity.z),Vector3.UP)
 		animation_tree["parameters/runblend/blend_amount"] = lerp(animation_tree["parameters/runblend/blend_amount"], 1.0, 0.3)
 	else:
