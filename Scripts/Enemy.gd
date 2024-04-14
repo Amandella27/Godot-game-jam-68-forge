@@ -13,7 +13,11 @@ func _ready():
 
 func _physics_process(_delta):
 
-	direction = global_position.direction_to(Vector3(player_to_attack.global_position.x,0,player_to_attack.global_position.z))
+	if !player_to_attack == null:
+		direction = global_position.direction_to(Vector3(player_to_attack.global_position.x,0,player_to_attack.global_position.z))
+	elif player_to_attack == null:
+		if Globals.currentPlayer != null:
+			player_to_attack = Globals.currentPlayer
 	
 	velocity = SPEED * direction
 
