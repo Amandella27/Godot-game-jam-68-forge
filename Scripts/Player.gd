@@ -9,6 +9,7 @@ class_name Player
 
 @onready var animation_player = $dwarf/AnimationPlayer
 @onready var dwarf_model = $dwarf
+@onready var interact_popup = %InteractPopup
 
 var runBlendParameter
 
@@ -40,8 +41,6 @@ func _input(event):
 
 func _physics_process(delta):
 	
-	
-
 	if not is_on_floor():
 		if velocity.y >= 0:
 			velocity.y -= gravity * delta

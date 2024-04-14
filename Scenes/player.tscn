@@ -1,6 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://brmrk0ke8mxrc"]
+[gd_scene load_steps=19 format=3 uid="uid://brmrk0ke8mxrc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_3bkjk"]
+[ext_resource type="PackedScene" uid="uid://cc4tk5fipkhrq" path="res://Scenes/weapon.tscn" id="2_lslkj"]
+[ext_resource type="Texture2D" uid="uid://bc70vyb6s67oq" path="res://Assets/ekey.svg" id="3_u3cyn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mes1y"]
 height = 1.41588
@@ -606,7 +608,7 @@ tracks/8/enabled = true
 tracks/8/path = NodePath("Armature/Skeleton3D:LowerArm.r")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, 0.59914, -0.00601199, -0.0590717, 0.798439, 0.0333333, 1, 0.608186, -0.00595981, -0.0599636, 0.791504, 0.0666667, 1, 0.632521, -0.00581301, -0.0623628, 0.772006, 0.1, 1, 0.669851, -0.00556847, -0.0660433, 0.739532, 0.133333, 1, 0.715146, -0.00523605, -0.0705092, 0.69539, 0.166667, 1, 0.76155, -0.00484702, -0.0750843, 0.643724, 0.2, 1, 0.78662, -0.00461213, -0.0775561, 0.61253, 0.233333, 1, 0.777467, -0.00470015, -0.0766537, 0.624217, 0.266667, 1, 0.74169, -0.00502025, -0.0731262, 0.666726, 0.3, 1, 0.693733, -0.00539847, -0.068398, 0.716957, 0.366667, 1, 0.693733, -0.00539848, -0.068398, 0.716957, 0.4, 1, 0.74169, -0.00502025, -0.0731262, 0.666726, 0.433333, 1, 0.777467, -0.00470017, -0.0766537, 0.624217, 0.466667, 1, 0.78662, -0.00461216, -0.0775561, 0.61253, 0.5, 1, 0.76155, -0.00484703, -0.0750843, 0.643724, 0.533333, 1, 0.715146, -0.00523605, -0.0705092, 0.69539, 0.566667, 1, 0.669851, -0.00556846, -0.0660433, 0.739532, 0.6, 1, 0.632521, -0.005813, -0.0623628, 0.772007, 0.633333, 1, 0.608186, -0.0059598, -0.0599635, 0.791504, 0.666667, 1, 0.59914, -0.00601199, -0.0590717, 0.798439)
+tracks/8/keys = PackedFloat32Array(0, 1, 0.59914, -0.00601199, -0.0590717, 0.798439, 0.0333333, 1, 0.608186, -0.00595981, -0.0599636, 0.791504, 0.0666667, 1, 0.632521, -0.00581301, -0.0623628, 0.772006, 0.1, 1, 0.669851, -0.00556847, -0.0660433, 0.739532, 0.133333, 1, 0.715146, -0.00523605, -0.0705092, 0.69539, 0.166667, 1, 0.76155, -0.00484702, -0.0750843, 0.643724, 0.2, 1, 0.78662, -0.00461213, -0.0775561, 0.61253, 0.233333, 1, 0.777467, -0.00470015, -0.0766537, 0.624217, 0.266667, 1, 0.74169, -0.00502025, -0.0731262, 0.666726, 0.3, 1, 0.693733, -0.00539847, -0.068398, 0.716957, 0.4, 1, 0.693733, -0.00539848, -0.068398, 0.716957, 0.433333, 1, 0.777467, -0.00470017, -0.0766537, 0.624217, 0.466667, 1, 0.78662, -0.00461216, -0.0775561, 0.61253, 0.5, 1, 0.76155, -0.00484703, -0.0750843, 0.643724, 0.533333, 1, 0.715146, -0.00523605, -0.0705092, 0.69539, 0.566667, 1, 0.669851, -0.00556846, -0.0660433, 0.739532, 0.6, 1, 0.632521, -0.005813, -0.0623628, 0.772007, 0.633333, 1, 0.608186, -0.0059598, -0.0599635, 0.791504, 0.666667, 1, 0.59914, -0.00601199, -0.0590717, 0.798439)
 tracks/9/type = "position_3d"
 tracks/9/imported = true
 tracks/9/enabled = true
@@ -743,7 +745,6 @@ animation = &"runanimation"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_71a1s"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qxgrm"]
-graph_offset = Vector2(-686.894, 4.01599)
 nodes/idleanimation/node = SubResource("AnimationNodeAnimation_xcigi")
 nodes/idleanimation/position = Vector2(-260, 60)
 nodes/output/position = Vector2(380, 180)
@@ -940,6 +941,14 @@ bones/22/scale = Vector3(1, 1, 1)
 mesh = SubResource("ArrayMesh_gyo6u")
 skin = SubResource("Skin_m7422")
 
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="dwarf/Armature/Skeleton3D"]
+transform = Transform3D(-0.992948, -0.0658549, 0.0985734, 0.112119, -0.791791, 0.600414, 0.0385094, 0.607231, 0.793591, -0.793629, 0.0540588, -0.132739)
+bone_name = "Hand.r"
+bone_idx = 8
+
+[node name="Weapon" parent="dwarf/Armature/Skeleton3D/BoneAttachment3D" instance=ExtResource("2_lslkj")]
+transform = Transform3D(1.98579, 0.136751, 0.194811, 0.134081, 0.709802, -1.865, -0.196659, 1.8648, 0.695589, -0.0788525, 0.15603, -0.0669969)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="dwarf"]
 libraries = {
 "": SubResource("AnimationLibrary_hl60p")
@@ -953,3 +962,9 @@ libraries = {
 tree_root = SubResource("AnimationNodeBlendTree_qxgrm")
 anim_player = NodePath("../AnimationPlayer")
 parameters/runblend/blend_amount = 0.0
+
+[node name="InteractPopup" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.5, 1.5, -0.25)
+visible = false
+texture = ExtResource("3_u3cyn")
