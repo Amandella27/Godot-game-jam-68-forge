@@ -1,4 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
+<<<<<<< HEAD
 ::res://::1713098515
 icon.svg::CompressedTexture2D::1746306750383214133::1713011239::1713011247::1::::<><>::
 ::res://Assets/::1713047055
@@ -11,3 +12,14 @@ main.tscn::PackedScene::1698757686648650821::1713049365::0::1::::<><>::uid://brm
 player.tscn::PackedScene::3605454934162585104::1713049385::0::1::::<><>::res://Scripts/Player.gd<>uid://b1jjljcd8ot7f::::res://Assets/dwarf.glb
 ::res://Scripts/::1713049385
 Player.gd::GDScript::-1::1713049385::0::1::::<>CharacterBody3D<>::
+=======
+::res://::1713031492
+icon.svg::CompressedTexture2D::1746306750383214133::1713031457::1713031457::1::::<><>::
+::res://Assets/::1713031457
+anvil.glb::PackedScene::1317008110776250662::1713031457::1713031493::1::::<><>::
+::res://Scenes/::1713031457
+anvil.tscn::PackedScene::931363162753754200::1713031457::0::1::::<><>::uid://s076wouif4pm::::res://Assets/anvil.glb
+main.tscn::PackedScene::1698757686648650821::1713031457::0::1::::<><>::res://Scripts/Player.gd<>uid://njfod8xarnho::::res://Scenes/anvil.tscn
+::res://Scripts/::1713031457
+Player.gd::GDScript::-1::1713031457::0::1::::<>CharacterBody3D<>::
+>>>>>>> pr/1

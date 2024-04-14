@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://clicowrhc21ve"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_10lj7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfwit"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dqbj2"]
+
+[node name="Enemy" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_10lj7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_yfwit")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_dqbj2")
