@@ -10,6 +10,7 @@ class_name Player
 @onready var animation_player = $dwarf/AnimationPlayer
 @onready var dwarf_model = $dwarf
 @onready var interact_popup = %InteractPopup
+@onready var weapon = $dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon
 
 var runBlendParameter
 
@@ -19,18 +20,17 @@ const JUMP_VELOCITY = 4.5
 const SPEED = 5.0
 
 func _ready():
-	
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	runBlendParameter = animation_tree["parameters/runblend/blend_amount"]
 
 	Globals.currentPlayer = self
+	Globals.currentWeapon = weapon
 	
 	
 func _input(event):
 	
 	if event.is_action_pressed("action"):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		pass
 			
 	elif event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera_pivot.rotate_x(-event.relative.y * camera_sensitivity)

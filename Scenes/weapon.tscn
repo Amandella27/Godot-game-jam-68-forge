@@ -2,16 +2,32 @@
 
 [ext_resource type="PackedScene" uid="uid://bd7jm6x7f0sgp" path="res://Assets/sword.glb" id="1_j2s1o"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tlj43"]
-radius = 0.025
-height = 0.75
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5pwki"]
+height = 0.76466
+radius = 0.030217
 
 [node name="Weapon" type="Area3D"]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_tlj43")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.620629, 0)
+shape = SubResource("CylinderShape3D_5pwki")
 
 [node name="sword" parent="." instance=ExtResource("1_j2s1o")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="AttachTip" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.984403, 0)
+
+[node name="AttachBodyLeft" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.675, 0)
+
+[node name="AttachBodyRight" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.675, 0)
+
+[node name="AttachBodyTop" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0.025)
+
+[node name="AttachBodyBottom" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, -0.025)

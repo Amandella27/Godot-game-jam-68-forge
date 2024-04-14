@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://s612eeqa8q6t"
-path="res://.godot/imported/The Blacksmith.ttf-eae8fda55382a26885b3e6c59aa1f0b7.fontdata"
+path="res://.godot/imported/The Blacksmith.ttf-fea4f499217557fc1db2464f636e92f4.fontdata"
 
 [deps]
 
-source_file="res://Assets/The Blacksmith.ttf"
-dest_files=["res://.godot/imported/The Blacksmith.ttf-eae8fda55382a26885b3e6c59aa1f0b7.fontdata"]
+source_file="res://Assets/Fonts/The Blacksmith.ttf"
+dest_files=["res://.godot/imported/The Blacksmith.ttf-fea4f499217557fc1db2464f636e92f4.fontdata"]
 
 [params]
 
