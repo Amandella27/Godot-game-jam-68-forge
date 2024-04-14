@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_kc5k5"]
 [ext_resource type="PackedScene" uid="uid://njfod8xarnho" path="res://Scenes/anvil.tscn" id="2_ywpje"]
-[ext_resource type="PackedScene" uid="uid://clicowrhc21ve" path="res://Scenes/enemy.tscn" id="3_8gaw8"]
+[ext_resource type="PackedScene" uid="uid://2nqrxwumdvik" path="res://Scenes/enemyspawner.tscn" id="3_8sp4a"]
 [ext_resource type="PackedScene" uid="uid://brmrk0ke8mxrc" path="res://Scenes/player.tscn" id="4_plmif"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ywx2g"]
@@ -66,8 +66,8 @@ material = SubResource("StandardMaterial3D_4sisg")
 [node name="anvil" parent="World" instance=ExtResource("2_ywpje")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.16787, 0.0781487)
 
-[node name="Enemy" parent="." instance=ExtResource("3_8gaw8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24218, 0.478562, -3.07373)
+[node name="EnemySpawner" parent="." instance=ExtResource("3_8sp4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00443745, 0, -0.01438)
 
 [node name="Player" parent="." instance=ExtResource("4_plmif")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92849, -0.0486794, 8.49181)
