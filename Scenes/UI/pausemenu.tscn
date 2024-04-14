@@ -11,30 +11,32 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
-[node name="PauseMenu" type="Control"]
+[node name="PauseMenu" type="PanelContainer"]
 process_mode = 3
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_gbqgn")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/margin_left = 300
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 300
 theme_override_constants/margin_bottom = 200
 
 [node name="Panel" type="Panel" parent="MarginContainer"]
+custom_minimum_size = Vector2(500, 225)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_jpchl")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
