@@ -2,6 +2,11 @@ extends CharacterBody3D
 
 class_name Player
 
+signal player_health_changed(new_health)
+signal player_armor_changed(new_armor)
+signal player_armor_broken()
+signal attacking
+
 @onready var camera_pivot = $CameraPivot
 @onready var camera_3d = $CameraPivot/Camera3D
 
@@ -11,6 +16,10 @@ class_name Player
 @onready var dwarf_model = $dwarf
 @onready var interact_popup = %InteractPopup
 @onready var weapon = $dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon
+
+@onready var health_component:HealthComponent = $HealthComponent
+@onready var armor_component:ArmorComponent = $ArmorComponent
+
 
 var runBlendParameter
 
@@ -26,6 +35,8 @@ func _ready():
 	Globals.currentPlayer = self
 	Globals.currentWeapon = weapon
 	
+	player_health_changed.emit(health_component.get_health())
+	player_armor_changed.emit(armor_component.get_armor())
 	
 func _input(event):
 	
@@ -51,7 +62,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	elif Input.is_action_just_pressed("action"):
 		animation_tree["parameters/OneShot/request"] = 1
-
+		weapon.monitoring = true
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
@@ -70,3 +81,15 @@ func _physics_process(delta):
 		animation_tree["parameters/runblend/blend_amount"] = lerp(animation_tree["parameters/runblend/blend_amount"], 0.0, 0.3)
 
 	move_and_slide()
+
+func _on_health_component_health_changed(new_health):
+	player_health_changed.emit(new_health)
+	
+func _on_armor_component_armor_changed(new_armor):
+	player_armor_changed.emit(new_armor)
+	
+func end_attack():
+	weapon.monitoring = false
+
+func _on_armor_component_armor_broken():
+	player_armor_broken.emit()

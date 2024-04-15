@@ -12,16 +12,18 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
-[node name="UpgradeMenu" type="Control"]
+[node name="UpgradeMenu" type="CanvasLayer"]
+script = ExtResource("1_2b1ss")
+
+[node name="UpgradeMenu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2b1ss")
 
-[node name="MainContainer" type="MarginContainer" parent="."]
+[node name="MainContainer" type="MarginContainer" parent="UpgradeMenu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -35,12 +37,12 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 350
 
-[node name="Panel" type="Panel" parent="MainContainer"]
+[node name="Panel" type="Panel" parent="UpgradeMenu/MainContainer"]
 custom_minimum_size = Vector2(740, 250)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yal7c")
 
-[node name="MarginContainer" type="MarginContainer" parent="MainContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="UpgradeMenu/MainContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,22 +51,23 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeMenu/MainContainer/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer"]
 texture_filter = 3
 layout_mode = 2
 theme = ExtResource("1_0nymn")
-text = "Available Upgrades"
+text = "Yes, Forgemaster?
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -73,7 +76,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Upgrade1Button" type="Button" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="Upgrade1Button" type="Button" parent="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(225, 150)
 layout_mode = 2
@@ -82,7 +85,7 @@ size_flags_vertical = 4
 theme = ExtResource("2_7qp8v")
 text = "Forge Attachment"
 
-[node name="MarginContainer2" type="MarginContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -91,17 +94,16 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Upgrade2Button" type="Button" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+[node name="Upgrade2Button" type="Button" parent="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(225, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("2_7qp8v")
-text = "Upgrade 2
-"
+text = "Repair Armor"
 
-[node name="MarginContainer3" type="MarginContainer" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -110,7 +112,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Upgrade3Button" type="Button" parent="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer3"]
+[node name="Upgrade3Button" type="Button" parent="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer3"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(225, 150)
 layout_mode = 2
@@ -120,4 +122,6 @@ theme = ExtResource("2_7qp8v")
 text = "Upgrade 3
 "
 
-[connection signal="pressed" from="MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button" to="." method="_on_upgrade_1_button_pressed"]
+[connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button" to="UpgradeMenu" method="_on_upgrade_1_button_pressed"]
+[connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button" to="." method="_on_upgrade_1_button_pressed"]
+[connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/Upgrade2Button" to="." method="_on_upgrade_2_button_pressed"]

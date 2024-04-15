@@ -2,9 +2,14 @@ extends CharacterBody3D
 
 class_name Enemy
 
-@export var SPEED: int = 2
+@onready var hurtbox_component = $HurtboxComponent
 
-@onready var animation_player = $lavaslug/AnimationPlayer
+@export var SPEED: int = 2
+@export var damage: int
+@export var heatvalue: int
+
+
+@export var animation_player: Node
 
 var direction: Vector3
 var player_to_attack:CharacterBody3D = null
@@ -13,6 +18,7 @@ var gravity = 9.8
 func _ready():
 	
 	player_to_attack = Globals.currentPlayer
+	hurtbox_component.set_damage(damage)
 
 func _physics_process(delta):
 
@@ -37,3 +43,7 @@ func _physics_process(delta):
 		animation_player.play("ArmatureAction")
 
 	move_and_slide()
+
+func _on_health_component_defeated():
+	Globals.current_heat += heatvalue
+	Globals.hud.update_heat(Globals.current_heat)

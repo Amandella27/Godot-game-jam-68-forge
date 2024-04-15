@@ -1,6 +1,6 @@
 extends Node3D
 
-const ENEMY = preload("res://Scenes/enemy.tscn")
+const LAVASLUG = preload("res://Scenes/lavaslug.tscn")
 
 @onready var spawn_timer = $SpawnTimer
 @onready var positions = $Positions
@@ -29,7 +29,7 @@ func spawn_enemies():
 func randomizePositions():
 	var randomSpawns = randi_range(1,10)
 	if randomSpawns >= 7:
-		enemy = ENEMY.instantiate()
+		enemy = LAVASLUG.instantiate()
 	else:
 		skipSpawn = true
 
