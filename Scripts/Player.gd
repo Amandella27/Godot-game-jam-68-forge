@@ -10,7 +10,8 @@ signal attacking
 @onready var camera_pivot = $CameraPivot
 @onready var camera_3d = $CameraPivot/Camera3D
 
-@onready var animation_tree = $dwarf/AnimationTree
+@onready var animation_tree = $AnimationTree
+
 
 @onready var animation_player = $dwarf/AnimationPlayer
 @onready var dwarf_model = $dwarf
@@ -21,7 +22,6 @@ signal attacking
 @onready var armor_component:ArmorComponent = $ArmorComponent
 
 
-var runBlendParameter
 
 var camera_sensitivity = 0.001
 var gravity = 9.8
@@ -30,7 +30,6 @@ const SPEED = 5.0
 
 func _ready():
 
-	runBlendParameter = animation_tree["parameters/runblend/blend_amount"]
 
 	Globals.currentPlayer = self
 	Globals.currentWeapon = weapon
@@ -75,7 +74,9 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	if velocity.x or velocity.z:
-		dwarf_model.look_at(transform.origin + Vector3(velocity.x, 0, velocity.z),Vector3.UP)
+		#dwarf_model.look_at(transform.origin + Vector3(velocity.x, 0, velocity.z),Vector3.UP)
+		
+		animation_tree["parameters/BlendSpace2D/blend_position"] = -input_dir
 		animation_tree["parameters/runblend/blend_amount"] = lerp(animation_tree["parameters/runblend/blend_amount"], 1.0, 0.3)
 	else:
 		animation_tree["parameters/runblend/blend_amount"] = lerp(animation_tree["parameters/runblend/blend_amount"], 0.0, 0.3)
