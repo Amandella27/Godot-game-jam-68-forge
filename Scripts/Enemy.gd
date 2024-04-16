@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 class_name Enemy
 
+signal enemy_defeated(heatvalue)
+
 @onready var hurtbox_component = $HurtboxComponent
 
 @export var SPEED: int = 2
@@ -45,5 +47,4 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_health_component_defeated():
-	Globals.current_heat += heatvalue
-	Globals.hud.update_heat(Globals.current_heat)
+	enemy_defeated.emit(heatvalue)

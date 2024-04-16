@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal used_heat(amount)
+
 const ATTACHVIEW = preload("res://Scenes/UI/attachview.tscn")
 
 @onready var upgrade_1_button = %Upgrade1Button
@@ -26,9 +28,8 @@ func checkUpgradeType(upgradeButton):
 		var forge_menu = ATTACHVIEW.instantiate()
 		add_child(forge_menu)
 		current_menu = forge_menu
-	if upgradeButton.text == "Repair Armor":
-		Globals.current_heat -= 50
-		Globals.hud.update_heat(Globals.current_heat)
+	if upgradeButton.text == "Repair Armor" and Globals.current_heat >= 50:
+		used_heat.emit(-50)
 		Globals.currentPlayer.armor_component.adjust_armor(100)
 
 func _input(event):

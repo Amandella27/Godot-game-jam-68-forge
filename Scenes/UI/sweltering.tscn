@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw81c6k5rwqqf"]
+
+[ext_resource type="Texture2D" uid="uid://4mabw46k0icj" path="res://Assets/sweltering.svg" id="1_nnb2r"]
+
+[sub_resource type="Curve" id="Curve_el3k6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.8), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_f2ijc"]
+width = 512
+curve = SubResource("Curve_el3k6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1uwes"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_f2ijc")
+
+[node name="CenterContainer" type="CenterContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sweltering" type="GPUParticles2D" parent="."]
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_1uwes")
+texture = ExtResource("1_nnb2r")
+lifetime = 0.9

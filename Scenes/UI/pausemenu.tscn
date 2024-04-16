@@ -95,7 +95,7 @@ theme = ExtResource("2_f51ow")
 text = "Quit
 "
 
-[connection signal="pressed" from="PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Resume" to="PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/Quit" to="PauseMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Resume" to="PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/Quit" to="PauseMenu" method="_on_quit_pressed"]
