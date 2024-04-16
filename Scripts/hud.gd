@@ -32,8 +32,8 @@ func update_heat(new_value):
 	var heat_tween = create_tween()
 	heat_tween.set_parallel()
 	heat_tween.tween_property(heat_bar, "value", new_value, 1).set_ease(Tween.EASE_IN_OUT)
-	heat_tween.tween_property(heat_bar, "theme_override_styles/fill:bg_color", Color.ORANGE, 0.3).set_ease(Tween.EASE_IN_OUT)
-	heat_tween.tween_property(heat_bar, "theme_override_styles/fill:bg_color", heat_color, 0.3).set_ease(Tween.EASE_IN_OUT).set_delay(0.3)
+	#heat_tween.tween_property(heat_bar, "theme_override_styles/fill:bg_color", Color.ORANGE, 0.3).set_ease(Tween.EASE_IN_OUT)
+	#heat_tween.tween_property(heat_bar, "theme_override_styles/fill:bg_color", heat_color, 0.3).set_ease(Tween.EASE_IN_OUT).set_delay(0.3)
 	
 func armor_warning():
 	var warning = ARMORBROKEN.instantiate()
