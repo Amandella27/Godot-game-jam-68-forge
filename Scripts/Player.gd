@@ -2,8 +2,6 @@ extends CharacterBody3D
 
 class_name Player
 
-const WEAPON = preload("res://Scenes/weapon.tscn")
-
 signal player_health_changed(new_health)
 signal player_armor_changed(new_armor)
 signal player_armor_broken()
@@ -51,12 +49,6 @@ func _input(event):
 		rotate_y(-event.relative.x * camera_sensitivity)
 
 		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-45), deg_to_rad(15))
-
-	if event.is_action_pressed("debugattach"):
-		var attach = WEAPON.instantiate()
-		add_child(attach)
-		attach.global_position = weapon.attach_tip.global_position
-
 
 func _physics_process(delta):
 	
