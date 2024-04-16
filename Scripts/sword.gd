@@ -1,6 +1,6 @@
 extends CollisionShape3D
 
-@onready var attach_tip = %AttachTip
+class_name Sword
 
-func _ready():
-	Globals.next_attach = attach_tip.global_position
+@onready var tipLocation = %AttachTip
+

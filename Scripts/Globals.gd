@@ -5,4 +5,4 @@ var currentWeapon
 var menusOpen: bool
 var hud
 var current_heat: int
-var next_attach
+
