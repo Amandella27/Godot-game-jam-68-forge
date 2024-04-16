@@ -122,6 +122,6 @@ theme = ExtResource("2_7qp8v")
 text = "Upgrade 3
 "
 
-[connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button" to="UpgradeMenu" method="_on_upgrade_1_button_pressed"]
 [connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button" to="." method="_on_upgrade_1_button_pressed"]
+[connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button" to="UpgradeMenu" method="_on_upgrade_1_button_pressed"]
 [connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/Upgrade2Button" to="." method="_on_upgrade_2_button_pressed"]

@@ -7,6 +7,7 @@ const UPGRADEMENU = preload("res://Scenes/UI/upgrademenu.tscn")
 @onready var ui_elements = $UIElements
 @onready var hud = $UIElements/HUD
 @onready var character_manager = $CharacterManager
+@onready var enemy_spawner = $EnemySpawner
 
 var paused = null
 var upgradeMenu
@@ -17,6 +18,8 @@ func _ready():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_player(playerSpawnLocation)
+	
+	enemy_spawner.spawn_enemy_defeated.connect(update_heat_bar)
 
 func spawn_player(location:Vector3):
 	var player = PLAYER.instantiate()
@@ -39,6 +42,7 @@ func _input(event):
 		upgradeMenu = UPGRADEMENU.instantiate()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		ui_elements.add_child(upgradeMenu)
+		upgradeMenu.used_heat.connect(update_heat_bar)
 	elif event.is_action_pressed("use") and playerNearAnvil == true and upgradeMenu != null:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		upgradeMenu.queue_free()
@@ -60,6 +64,10 @@ func update_health_bar(new_value):
 
 func update_armor_bar(new_value):
 	hud.update_armor(new_value)
+	
+func update_heat_bar(adjustment):
+	hud.update_heat(adjustment)
+	Globals.current_heat += adjustment
 	
 func armor_broken_warning():
 	hud.armor_warning()
