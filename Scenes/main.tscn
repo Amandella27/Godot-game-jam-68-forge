@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://yg5j5j3ftk42"]
+[gd_scene load_steps=12 format=3 uid="uid://yg5j5j3ftk42"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_kc5k5"]
 [ext_resource type="PackedScene" uid="uid://njfod8xarnho" path="res://Scenes/anvil.tscn" id="2_ywpje"]
 [ext_resource type="PackedScene" uid="uid://2nqrxwumdvik" path="res://Scenes/enemyspawner.tscn" id="3_8sp4a"]
+[ext_resource type="PackedScene" uid="uid://bpv254igwn1vd" path="res://Scenes/volcanopit.tscn" id="5_bqjfq"]
 [ext_resource type="PackedScene" uid="uid://docnyp7cxuxsc" path="res://Scenes/UI/hud.tscn" id="5_xun1b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ywx2g"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_top_color = Color(0.643137, 0.345098, 0.384314, 1)
+sky_horizon_color = Color(0.796078, 0.596078, 0.588235, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
 [sub_resource type="Sky" id="Sky_47s0t"]
@@ -76,6 +78,9 @@ spawnerOn = true
 process_mode = 3
 
 [node name="HUD" parent="UIElements" instance=ExtResource("5_xun1b")]
+
+[node name="volcanopit" parent="." instance=ExtResource("5_bqjfq")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -15.2761, 0)
 
 [connection signal="leftAnvil" from="World/anvil" to="." method="_on_anvil_left_anvil"]
 [connection signal="nearAnvil" from="World/anvil" to="." method="_on_anvil_near_anvil"]
