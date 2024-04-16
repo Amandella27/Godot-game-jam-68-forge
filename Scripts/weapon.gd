@@ -1,6 +1,7 @@
 extends Area3D
 
 @onready var collision_shape_3d = $CollisionShape3D
+@onready var attach_tip = $AttachTip
 
 @export var damage: int
 

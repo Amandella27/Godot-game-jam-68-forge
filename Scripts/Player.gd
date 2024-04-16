@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 class_name Player
 
+const WEAPON = preload("res://Scenes/weapon.tscn")
+
 signal player_health_changed(new_health)
 signal player_armor_changed(new_armor)
 signal player_armor_broken()
@@ -28,6 +30,8 @@ var gravity = 9.8
 const JUMP_VELOCITY = 4.5
 const SPEED = 5.0
 
+var attack_available:bool = true
+
 func _ready():
 
 
@@ -48,6 +52,11 @@ func _input(event):
 
 		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-45), deg_to_rad(15))
 
+	if event.is_action_pressed("debugattach"):
+		var attach = WEAPON.instantiate()
+		add_child(attach)
+		attach.global_position = weapon.attach_tip.global_position
+
 
 func _physics_process(delta):
 	
@@ -59,9 +68,10 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	elif Input.is_action_just_pressed("action"):
+	elif Input.is_action_just_pressed("action") and attack_available:
 		animation_tree["parameters/OneShot/request"] = 1
 		weapon.monitoring = true
+		attack_available = false
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
@@ -91,6 +101,7 @@ func _on_armor_component_armor_changed(new_armor):
 	
 func end_attack():
 	weapon.monitoring = false
+	attack_available = true
 
 func _on_armor_component_armor_broken():
 	player_armor_broken.emit()
