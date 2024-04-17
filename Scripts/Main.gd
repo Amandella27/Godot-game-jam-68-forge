@@ -8,12 +8,13 @@ const UPGRADEMENU = preload("res://Scenes/UI/upgrademenu.tscn")
 @onready var hud = $UIElements/HUD
 @onready var player_manager = $PlayerManager
 @onready var enemy_spawner = $EnemySpawner
-@onready var lava = $WorldEnvironment/Lava
+@onready var lava = $World/volcanopit/Lava
 
 var paused = null
 var upgradeMenu
 var playerNearAnvil:bool = false
 var playerSpawnLocation = Vector3(-3,0,-7)
+
 
 func _ready():
 	
