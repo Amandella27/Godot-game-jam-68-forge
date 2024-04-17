@@ -13,7 +13,6 @@ signal player_gameover()
 
 @onready var animation_tree = $AnimationTree
 
-
 @onready var animation_player = $dwarf/AnimationPlayer
 @onready var dwarf_model = $dwarf
 @onready var interact_popup = %InteractPopup
@@ -23,7 +22,7 @@ signal player_gameover()
 @onready var armor_component:ArmorComponent = $ArmorComponent
 @onready var hitbox_component = $HitboxComponent
 
-
+@export var jump_buffer_timer: float = .1
 
 var camera_sensitivity = 0.001
 var gravity = 9.8
@@ -31,6 +30,7 @@ const JUMP_VELOCITY = 4.5
 const SPEED = 5.0
 
 var attack_available:bool = true
+var jump_buffer: bool = false
 
 func _ready():
 
@@ -52,6 +52,12 @@ func _input(event):
 
 		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-45), deg_to_rad(15))
 
+func jump()->void:
+	velocity.y = JUMP_VELOCITY
+	
+func on_jump_buffer_timeout()->void:
+	jump_buffer = false
+
 func _physics_process(delta):
 	
 	if not is_on_floor():
@@ -59,9 +65,18 @@ func _physics_process(delta):
 			velocity.y -= gravity * delta
 		elif velocity.y < 0:
 			velocity.y -= gravity * delta * 2
+	else:
+		if jump_buffer:
+			jump()
+			jump_buffer = false
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			jump()
+		else:
+			jump_buffer = true
+			get_tree().create_timer(jump_buffer_timer).timeout.connect(on_jump_buffer_timeout)
+		
 	elif Input.is_action_just_pressed("action") and attack_available:
 		animation_tree["parameters/OneShot/request"] = 1
 		weapon.monitoring = true
