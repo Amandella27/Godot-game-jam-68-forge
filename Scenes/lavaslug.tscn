@@ -10,7 +10,7 @@
 size = Vector3(1, 0.843567, 1.87326)
 
 [node name="LavaSlug" type="CharacterBody3D" node_paths=PackedStringArray("animation_player") groups=["Enemy"]]
-collision_layer = 12
+collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_exf8q")
 damage = -20

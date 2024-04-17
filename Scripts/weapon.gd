@@ -21,12 +21,35 @@ func _on_area_entered(area):
 		
 func _input(event):
 	if event.is_action_pressed("debugattach"):
-		add_sword()
+		add_sword("up")
 
-func add_sword():
-	var new_sword = SWORD.instantiate()
-	add_child(new_sword)
-	new_sword.position = attachPoint + new_sword.tipLocation.position
-	attachPoint = attachPoint + new_sword.tipLocation.position
+func add_sword(direction):
+	if direction == "straight":
+		var new_sword = SWORD.instantiate()
+		add_child(new_sword)
+		new_sword.position = attachPoint + new_sword.tipLocation.position
+		attachPoint = new_sword.tipLocation.global_position - global_position
+	elif direction == "up":
+		var new_sword = SWORD.instantiate()
+		add_child(new_sword)
+		new_sword.position = attachPoint + new_sword.tipLocation.position
+		new_sword.rotate_x(deg_to_rad(90))
+		attachPoint = new_sword.tipLocation.global_position - global_position
+
+
+
+
+#func add_sword(direction):
+	#if direction == "straight":
+		#var new_sword = SWORD.instantiate()
+		#add_child(new_sword)
+		#new_sword.position = attachPoint + new_sword.tipLocation.position
+		#attachPoint = attachPoint + new_sword.tipLocation.position
+	#elif direction == "up":
+		#var new_sword = SWORD.instantiate()
+		#add_child(new_sword)
+		#new_sword.rotate_x(deg_to_rad(90))
+		#new_sword.position = attachPoint + new_sword.tipLocation.position
+		#attachPoint = attachPoint + new_sword.tipLocation.position
 
 

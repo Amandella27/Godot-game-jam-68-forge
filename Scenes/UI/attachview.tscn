@@ -1,11 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://voykrfoyct37"]
+[gd_scene load_steps=9 format=3 uid="uid://xjnmcecpr5sv"]
 
-[ext_resource type="Theme" uid="uid://b4knmhu40p3li" path="res://Themes/UITitleTheme.tres" id="1_6smeo"]
+[ext_resource type="Script" path="res://Scripts/attachview.gd" id="1_uil01"]
+[ext_resource type="Theme" uid="uid://dvnwmjqtsjco" path="res://Themes/UpgradeButtonTheme.tres" id="2_4xgv0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvfue"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y84ll"]
 bg_color = Color(0.596078, 0.0470588, 0, 1)
 border_width_left = 4
 border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgiux"]
+bg_color = Color(0.596078, 0.0470588, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofsls"]
+bg_color = Color(0.596078, 0.0470588, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6m3y"]
+bg_color = Color(0.596078, 0.0470588, 0, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5fyk"]
+bg_color = Color(0.596078, 0.0470588, 0, 1)
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6qyee"]
+bg_color = Color(0.596078, 0.0470588, 0, 1)
+border_width_left = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
@@ -17,48 +50,178 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_uil01")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -570.0
-offset_right = 570.0
-offset_bottom = 800.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 200
+grow_vertical = 2
+theme_override_constants/margin_top = 50
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
-custom_minimum_size = Vector2(740, 500)
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer/GridContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(175, 175)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_kvfue")
+theme_override_styles/panel = SubResource("StyleBoxFlat_y84ll")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+[node name="TopPanel" type="Panel" parent="MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vgiux")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/GridContainer/TopPanel"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -376.0
-offset_right = 376.0
-offset_bottom = 41.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+[node name="ForgeUp" type="Button" parent="MarginContainer/GridContainer/TopPanel/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_4xgv0")
+text = "Forge Up"
+
+[node name="Panel3" type="Panel" parent="MarginContainer/GridContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(175, 175)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y84ll")
 
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/HBoxContainer"]
+[node name="LeftPanel" type="Panel" parent="MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(175, 175)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("1_6smeo")
-text = "Forge an Attachment"
-horizontal_alignment = 1
-vertical_alignment = 1
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ofsls")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/GridContainer/LeftPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ForgeLeft" type="Button" parent="MarginContainer/GridContainer/LeftPanel/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_4xgv0")
+text = "Forge Left"
+
+[node name="MiddlePanel" type="Panel" parent="MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u6m3y")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/GridContainer/MiddlePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ForgeForward" type="Button" parent="MarginContainer/GridContainer/MiddlePanel/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_4xgv0")
+text = "Forge
+Forward"
+
+[node name="RightPanel" type="Panel" parent="MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5fyk")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/GridContainer/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ForgeRight" type="Button" parent="MarginContainer/GridContainer/RightPanel/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_4xgv0")
+text = "Forge Right"
+
+[node name="Panel7" type="Panel" parent="MarginContainer/GridContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y84ll")
+
+[node name="BottomPanel" type="Panel" parent="MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6qyee")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/GridContainer/BottomPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ForgeDown" type="Button" parent="MarginContainer/GridContainer/BottomPanel/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_4xgv0")
+text = "Forge Down"
+
+[node name="Panel9" type="Panel" parent="MarginContainer/GridContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y84ll")
+
+[connection signal="pressed" from="MarginContainer/GridContainer/TopPanel/MarginContainer/ForgeUp" to="." method="_on_forge_up_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/MiddlePanel/MarginContainer/ForgeForward" to="." method="_on_forge_forward_pressed"]

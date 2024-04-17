@@ -27,6 +27,7 @@ func checkUpgradeType(upgradeButton):
 	if upgradeButton.text == "Forge Attachment":
 		var forge_menu = ATTACHVIEW.instantiate()
 		add_child(forge_menu)
+		forge_menu.upgrade_selected.connect(new_sword)
 		current_menu = forge_menu
 	if upgradeButton.text == "Repair Armor" and Globals.current_heat >= 50:
 		used_heat.emit(-50)
@@ -40,3 +41,7 @@ func _input(event):
 		current_menu.queue_free()
 		main_container.visible = true
 		current_menu = self
+		
+func new_sword(direction):
+	used_heat.emit(-100)
+	Globals.currentWeapon.add_sword(direction)

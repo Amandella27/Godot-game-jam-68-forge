@@ -1,14 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://2nqrxwumdvik"]
+[gd_scene load_steps=4 format=3 uid="uid://2nqrxwumdvik"]
 
 [ext_resource type="Script" path="res://Scripts/enemyspawner.gd" id="1_24oef"]
+[ext_resource type="PackedScene" uid="uid://clicowrhc21ve" path="res://Scenes/lavaslug.tscn" id="2_wbhoj"]
+[ext_resource type="PackedScene" uid="uid://dnwlwe11nwdnu" path="res://Scenes/lava_bat.tscn" id="3_mq4jc"]
 
 [node name="EnemySpawner" type="Node3D"]
 script = ExtResource("1_24oef")
-spawnerOn = false
+spawnableEnemies = Array[PackedScene]([ExtResource("2_wbhoj"), ExtResource("3_mq4jc")])
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 8.0
-autostart = true
+wait_time = 5.0
+
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="RestTimer" type="Timer" parent="."]
+wait_time = 5.0
 
 [node name="Positions" type="Node3D" parent="."]
 
@@ -61,3 +68,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.75, 10)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0.75, 5)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]

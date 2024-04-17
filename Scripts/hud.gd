@@ -9,6 +9,9 @@ const TEMPRISING = preload("res://Scenes/UI/temprising.tscn")
 @onready var health_bar = %HealthBar
 @onready var heat_bar = %HeatBar
 @onready var ui_warnings = %UIWarnings
+@onready var enemy_spawner = $"../../EnemySpawner"
+@onready var timer_info = %TimerInfo
+@onready var timer_info_2 = %TimerInfo2
 
 var health_color: Color = Color(0.38, 0.031, 0)
 var armor_color: Color = Color(0.769, 0.745, 0)
@@ -20,6 +23,14 @@ var heat_warning:bool = false
 func _ready():
 	Globals.hud = self
 	
+	
+func _process(_delta):
+	if enemy_spawner.resting:
+		timer_info.text = str("Resting")
+		timer_info_2.text = str(snapped(enemy_spawner.rest_timer.time_left, 1))
+	else:
+		timer_info.text = str("Wave ",  enemy_spawner.waveNumber)
+		timer_info_2.text = str(snapped(enemy_spawner.wave_timer.time_left, 1))
 
 func update_health(new_value):
 	var health_tween = create_tween()

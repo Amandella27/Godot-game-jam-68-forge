@@ -9,6 +9,7 @@ signal enemy_defeated(heatvalue)
 @export var SPEED: int = 2
 @export var damage: int
 @export var heatvalue: int
+@export var affectedByGravity: bool = true
 
 
 @export var animation_player: Node
@@ -16,6 +17,8 @@ signal enemy_defeated(heatvalue)
 var direction: Vector3
 var player_to_attack:CharacterBody3D = null
 var gravity = 9.8
+
+
 
 func _ready():
 	
@@ -34,17 +37,20 @@ func _physics_process(delta):
 	
 	velocity.x = SPEED * direction.x
 	velocity.z = SPEED * direction.z
-
-	if not is_on_floor():
+	
+	if affectedByGravity and not is_on_floor():
 		if velocity.y >= 0:
 			velocity.y -= gravity * delta
 		elif velocity.y < 0:
 			velocity.y -= gravity * delta * 2
 
 	if velocity.x or velocity.z:
-		animation_player.play("ArmatureAction")
+		playAnimation(animation_player)
 
 	move_and_slide()
 
 func _on_health_component_defeated():
 	enemy_defeated.emit(heatvalue)
+
+func playAnimation(_animationPlayer: AnimationPlayer):
+	pass
