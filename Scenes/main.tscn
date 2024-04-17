@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://yg5j5j3ftk42"]
+[gd_scene load_steps=13 format=3 uid="uid://yg5j5j3ftk42"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_kc5k5"]
 [ext_resource type="PackedScene" uid="uid://njfod8xarnho" path="res://Scenes/anvil.tscn" id="2_ywpje"]
 [ext_resource type="PackedScene" uid="uid://2nqrxwumdvik" path="res://Scenes/enemyspawner.tscn" id="3_8sp4a"]
 [ext_resource type="PackedScene" uid="uid://bpv254igwn1vd" path="res://Scenes/volcanopit.tscn" id="5_bqjfq"]
 [ext_resource type="PackedScene" uid="uid://docnyp7cxuxsc" path="res://Scenes/UI/hud.tscn" id="5_xun1b"]
+[ext_resource type="PackedScene" uid="uid://dv1hbai1h0o1d" path="res://Scenes/lava_hand.tscn" id="6_ipa6w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ywx2g"]
 sky_top_color = Color(0.643137, 0.345098, 0.384314, 1)
@@ -21,10 +22,10 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rm8d5"]
-albedo_color = Color(0.282353, 0.239216, 0.0196078, 1)
+albedo_color = Color(0.196078, 0.164706, 0.0117647, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ka08m"]
-albedo_color = Color(0.513726, 0.129412, 0.192157, 1)
+albedo_color = Color(0.388235, 0.0862745, 0.137255, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4sisg"]
 albedo_color = Color(0.129412, 0.129412, 0.117647, 1)
@@ -69,7 +70,7 @@ material = SubResource("StandardMaterial3D_4sisg")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.694497, 0.0781487)
 
 [node name="volcanopit" parent="World" instance=ExtResource("5_bqjfq")]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -15.2761, 0)
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -8.28631, 0)
 
 [node name="PlayerManager" type="Node" parent="."]
 
@@ -80,6 +81,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00443745, 0, -0.01438)
 process_mode = 3
 
 [node name="HUD" parent="UIElements" instance=ExtResource("5_xun1b")]
+
+[node name="LavaHand" parent="." instance=ExtResource("6_ipa6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1244, 0.747308, -3.36956)
 
 [connection signal="leftAnvil" from="World/anvil" to="." method="_on_anvil_left_anvil"]
 [connection signal="nearAnvil" from="World/anvil" to="." method="_on_anvil_near_anvil"]

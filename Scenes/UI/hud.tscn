@@ -28,19 +28,20 @@ colors = PackedColorArray(0, 0, 0, 0.501961)
 gradient = SubResource("Gradient_ot33p")
 
 [sub_resource type="Gradient" id="Gradient_vwwlx"]
-offsets = PackedFloat32Array(0.324571, 0.332571, 0.34507, 0.648, 0.658286, 0.667429)
+offsets = PackedFloat32Array(0.33, 0.332571, 0.34, 0.663, 0.666, 0.669)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_81x2a"]
 gradient = SubResource("Gradient_vwwlx")
 fill_from = Vector2(1, 1)
 
-[sub_resource type="Gradient" id="Gradient_po3mj"]
-offsets = PackedFloat32Array(0.524272)
-colors = PackedColorArray(0.909804, 0.247059, 0, 1)
+[sub_resource type="Gradient" id="Gradient_gvqm1"]
+colors = PackedColorArray(0.894118, 0.537255, 0, 1, 1, 0.141176, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_85sei"]
-gradient = SubResource("Gradient_po3mj")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xf0yh"]
+gradient = SubResource("Gradient_gvqm1")
+fill_from = Vector2(1, 0.854701)
+fill_to = Vector2(1, 0.209402)
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
@@ -180,4 +181,4 @@ fill_mode = 3
 nine_patch_stretch = true
 texture_under = SubResource("GradientTexture1D_bv1xm")
 texture_over = SubResource("GradientTexture2D_81x2a")
-texture_progress = SubResource("GradientTexture1D_85sei")
+texture_progress = SubResource("GradientTexture2D_xf0yh")
