@@ -21,6 +21,7 @@ signal player_gameover()
 
 @onready var health_component:HealthComponent = $HealthComponent
 @onready var armor_component:ArmorComponent = $ArmorComponent
+@onready var hitbox_component = $HitboxComponent
 
 
 
