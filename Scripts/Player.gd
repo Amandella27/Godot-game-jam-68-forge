@@ -6,6 +6,7 @@ signal player_health_changed(new_health)
 signal player_armor_changed(new_armor)
 signal player_armor_broken()
 signal attacking
+signal player_gameover()
 
 @onready var camera_pivot = $CameraPivot
 @onready var camera_3d = $CameraPivot/Camera3D
@@ -97,3 +98,7 @@ func end_attack():
 
 func _on_armor_component_armor_broken():
 	player_armor_broken.emit()
+	
+func _on_health_component_gameover():
+	self.visible = false
+	player_gameover.emit()

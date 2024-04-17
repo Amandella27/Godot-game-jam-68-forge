@@ -6,7 +6,7 @@ const UPGRADEMENU = preload("res://Scenes/UI/upgrademenu.tscn")
 
 @onready var ui_elements = $UIElements
 @onready var hud = $UIElements/HUD
-@onready var character_manager = $CharacterManager
+@onready var player_manager = $PlayerManager
 @onready var enemy_spawner = $EnemySpawner
 
 var paused = null
@@ -26,8 +26,9 @@ func spawn_player(location:Vector3):
 	player.player_armor_changed.connect(update_armor_bar)
 	player.player_health_changed.connect(update_health_bar)
 	player.player_armor_broken.connect(armor_broken_warning)
+	player.player_gameover.connect(gameover)
 	Globals.currentPlayer = player
-	character_manager.add_child(player)
+	player_manager.add_child(player)
 	
 	player.global_position = location
 
@@ -46,6 +47,9 @@ func _input(event):
 	elif event.is_action_pressed("use") and playerNearAnvil == true and upgradeMenu != null:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		upgradeMenu.queue_free()
+
+	if event.is_action_pressed("remove_enemies") and paused == null:
+		enemy_spawner.remove_enemies()
 
 func _on_anvil_near_anvil():
 	playerNearAnvil = true
@@ -71,3 +75,13 @@ func update_heat_bar(adjustment):
 	
 func armor_broken_warning():
 	hud.armor_warning()
+
+func gameover():
+	hud.gameover()
+
+func _on_hud_reset_game():
+	Globals.reset_globals()
+	enemy_spawner.remove_enemies()
+	enemy_spawner.reset_spawner()
+	spawn_player(playerSpawnLocation)
+	update_heat_bar(-150)

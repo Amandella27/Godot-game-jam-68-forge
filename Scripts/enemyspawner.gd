@@ -10,10 +10,11 @@ const LAVA_BAT = preload("res://Scenes/lava_bat.tscn")
 @onready var wave_timer = $WaveTimer
 @onready var rest_timer = $RestTimer
 
-
 @export var spawnerOn: bool = true
 @export var waveNumber: int = 1
 @export var spawnableEnemies: Array[PackedScene]
+
+var currentEnemies: Array
 
 var spawnPositions: Array
 var enemy: Enemy
@@ -28,6 +29,7 @@ var spawnTimeDifficultyMod: float = 1
 
 func _ready():
 	spawnPositions = positions.get_children()
+	Globals.current_wave = waveNumber
 	startWave()
 		
 func spawn_enemies():
@@ -38,6 +40,7 @@ func spawn_enemies():
 				skipSpawn = false
 			else:
 				points.add_child(enemy)
+				currentEnemies.append(enemy)
 
 func randomizePositions():
 	if waveNumber >= 1:
@@ -69,6 +72,7 @@ func startWave():
 
 func _on_wave_timer_timeout():
 	waveNumber += 1
+	Globals.current_wave = waveNumber
 	if spawnTimeDifficultyMod > .05:
 		spawnTimeDifficultyMod -= .05
 	spawnTimeMin = 7 * spawnTimeDifficultyMod
@@ -88,3 +92,18 @@ func _on_rest_timer_timeout():
 	resting = false
 	rest_timer.stop()
 	startWave()
+
+func reset_spawner():
+	waveNumber = 1
+	resting = false
+	enemyRandomnessLevel = randi_range(0,0)
+	spawnRandomnessLevel = 5
+	spawnTimeMin = 7
+	spawnTimeMax = 7
+	spawnTimeDifficultyMod = 1
+	startWave()
+	
+func remove_enemies():
+	for spawn in currentEnemies:
+		if spawn != null:
+			spawn.queue_free()

@@ -4,10 +4,11 @@ signal used_heat(amount)
 
 const ATTACHVIEW = preload("res://Scenes/UI/attachview.tscn")
 
-@onready var upgrade_1_button = %Upgrade1Button
-@onready var upgrade_2_button = %Upgrade2Button
-@onready var upgrade_3_button = %Upgrade3Button
+
 @onready var main_container = $UpgradeMenu/MainContainer
+@onready var upgrade_1 = %Upgrade1
+@onready var upgrade_2 = %Upgrade2
+@onready var upgrade_3 = %Upgrade3
 
 
 var current_menu = self
@@ -16,20 +17,20 @@ func _ready():
 	Globals.menusOpen = true
 
 func _on_upgrade_1_button_pressed():
-	checkUpgradeType(upgrade_1_button)
+	checkUpgradeType(upgrade_1)
 	main_container.visible = false
 	
 func _on_upgrade_2_button_pressed():
-	checkUpgradeType(upgrade_2_button)
+	checkUpgradeType(upgrade_2)
 	main_container.visible = false
 	
-func checkUpgradeType(upgradeButton):
-	if upgradeButton.text == "Forge Attachment":
+func checkUpgradeType(upgradeText):
+	if upgradeText.text == "Forge Attachment":
 		var forge_menu = ATTACHVIEW.instantiate()
 		add_child(forge_menu)
 		forge_menu.upgrade_selected.connect(new_sword)
 		current_menu = forge_menu
-	if upgradeButton.text == "Repair Armor" and Globals.current_heat >= 50:
+	if upgradeText.text == "Repair Armor" and Globals.current_heat >= 50:
 		used_heat.emit(-50)
 		Globals.currentPlayer.armor_component.adjust_armor(100)
 
@@ -45,3 +46,5 @@ func _input(event):
 func new_sword(direction: String):
 	used_heat.emit(-100)
 	Globals.currentWeapon.add_sword(direction)
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	queue_free()
