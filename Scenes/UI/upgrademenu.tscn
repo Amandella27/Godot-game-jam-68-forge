@@ -134,8 +134,7 @@ offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Repair Armor
-"
+text = "Repair Armor"
 
 [node name="MarginContainer3" type="MarginContainer" parent="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

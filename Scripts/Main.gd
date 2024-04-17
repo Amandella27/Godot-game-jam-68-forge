@@ -8,6 +8,7 @@ const UPGRADEMENU = preload("res://Scenes/UI/upgrademenu.tscn")
 @onready var hud = $UIElements/HUD
 @onready var player_manager = $PlayerManager
 @onready var enemy_spawner = $EnemySpawner
+@onready var lava = $WorldEnvironment/Lava
 
 var paused = null
 var upgradeMenu
@@ -85,3 +86,9 @@ func _on_hud_reset_game():
 	enemy_spawner.reset_spawner()
 	spawn_player(playerSpawnLocation)
 	update_heat_bar(-150)
+	lava.get_overlapping_bodies()
+
+
+func _on_lava_body_entered(body):
+	if body == Globals.currentPlayer:
+		gameover()

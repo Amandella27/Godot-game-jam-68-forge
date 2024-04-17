@@ -53,7 +53,7 @@ func update_heat(adjustment):
 	var heat_tween = create_tween()
 	var new_heat_total = current_heat + adjustment
 	heat_warnings(current_heat, new_heat_total)
-	current_heat += adjustment
+	current_heat = clamp(current_heat+adjustment, 0, 150)
 	heat_tween.set_parallel()
 	heat_tween.tween_property(heat_bar, "value", new_heat_total, 1).set_ease(Tween.EASE_IN_OUT)
 	
