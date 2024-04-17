@@ -4,6 +4,7 @@ class_name HealthComponent
 
 signal health_changed(new_health)
 signal defeated()
+signal gameover()
 
 @export var max_health: int
 var current_health
@@ -33,7 +34,7 @@ func adjust_health(adjustment: int):
 			current_health += adjustment
 			emit_signal("health_changed", current_health)
 			if current_health <= 0:
-				actor.queue_free()
+				gameover.emit()
 				
 			
 			#Timer to prevent overlapping instances of damage

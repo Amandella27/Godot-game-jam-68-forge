@@ -94,6 +94,7 @@ theme_override_constants/separation = 1
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_qfon4")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
 text = "Armor"
 
@@ -114,6 +115,7 @@ layout_mode = 2
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_qfon4")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
 text = "Health
 "
@@ -155,6 +157,7 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_qfon4")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 75
 horizontal_alignment = 2
 
@@ -162,6 +165,7 @@ horizontal_alignment = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_qfon4")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 75
 horizontal_alignment = 2
 

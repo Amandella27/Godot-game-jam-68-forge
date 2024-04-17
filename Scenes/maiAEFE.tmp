@@ -76,6 +76,8 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -15.2761, 0)
 [node name="EnemySpawner" parent="." instance=ExtResource("3_8sp4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00443745, 0, -0.01438)
 
+[node name="EnemyManager" type="Node" parent="."]
+
 [node name="UIElements" type="Node" parent="."]
 process_mode = 3
 

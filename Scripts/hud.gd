@@ -1,9 +1,12 @@
 extends CanvasLayer
 
+signal reset_game()
+
 const ARMORBROKEN = preload("res://Scenes/UI/armorbroken.tscn")
 const HEATINGUP = preload("res://Scenes/UI/heatingup.tscn")
 const SWELTERING = preload("res://Scenes/UI/sweltering.tscn")
 const TEMPRISING = preload("res://Scenes/UI/temprising.tscn")
+const GAMEOVER = preload("res://Scenes/UI/gameover.tscn")
 
 @onready var armor_bar = %ArmorBar
 @onready var health_bar = %HealthBar
@@ -77,3 +80,11 @@ func heat_warnings(old_heat_total, new_heat_total):
 		ui_warnings.add_child((warning))
 		await get_tree().create_timer(3).timeout
 		warning.queue_free()
+
+func gameover():
+	var goscreen = GAMEOVER.instantiate()
+	goscreen.reset_game.connect(hud_reset_game)
+	add_child(goscreen)
+	
+func hud_reset_game():
+	reset_game.emit()
