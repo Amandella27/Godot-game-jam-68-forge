@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/sword.gd" id="2_e66gi"]
 
 [node name="Sword" type="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.383317, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.397562, 0)
 shape = ExtResource("2_4h0v7")
 script = ExtResource("2_e66gi")
 
@@ -14,4 +14,4 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.4, 0)
 
 [node name="AttachTip" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.244316, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.522054, 0)

@@ -224,4 +224,7 @@ size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_y84ll")
 
 [connection signal="pressed" from="MarginContainer/GridContainer/TopPanel/MarginContainer/ForgeUp" to="." method="_on_forge_up_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/LeftPanel/MarginContainer/ForgeLeft" to="." method="_on_forge_left_pressed"]
 [connection signal="pressed" from="MarginContainer/GridContainer/MiddlePanel/MarginContainer/ForgeForward" to="." method="_on_forge_forward_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/RightPanel/MarginContainer/ForgeRight" to="." method="_on_forge_right_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/BottomPanel/MarginContainer/ForgeDown" to="." method="_on_forge_down_pressed"]
