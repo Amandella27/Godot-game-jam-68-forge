@@ -30,6 +30,9 @@ albedo_color = Color(0.388235, 0.0862745, 0.137255, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4sisg"]
 albedo_color = Color(0.129412, 0.129412, 0.117647, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_r1t55"]
+size = Vector3(122.835, 1, 123.893)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_kc5k5")
 
@@ -72,6 +75,15 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.694497, 0.0781487)
 [node name="volcanopit" parent="World" instance=ExtResource("5_bqjfq")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -8.28631, 0)
 
+[node name="Lava" type="Area3D" parent="World/volcanopit"]
+transform = Transform3D(0.166667, 0, 0, 0, 0.166667, 0, 0, 0, 0.166667, 0, 2.54602, 0)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/volcanopit/Lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.826321, -19.563, -0.586971)
+shape = SubResource("BoxShape3D_r1t55")
+
 [node name="PlayerManager" type="Node" parent="."]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_8sp4a")]
@@ -82,9 +94,11 @@ process_mode = 3
 
 [node name="HUD" parent="UIElements" instance=ExtResource("5_xun1b")]
 
+
 [node name="LavaHand" parent="." instance=ExtResource("6_ipa6w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1244, 0.747308, -3.36956)
 
 [connection signal="leftAnvil" from="World/anvil" to="." method="_on_anvil_left_anvil"]
 [connection signal="nearAnvil" from="World/anvil" to="." method="_on_anvil_near_anvil"]
+[connection signal="body_entered" from="World/volcanopit/Lava" to="." method="_on_lava_body_entered"]
 [connection signal="reset_game" from="UIElements/HUD" to="." method="_on_hud_reset_game"]
