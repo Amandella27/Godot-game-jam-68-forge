@@ -5,15 +5,15 @@ const HAIR = preload("res://Assets/Hair.tres")
 const HELMET = preload("res://Assets/Helmet.tres")
 const SKIN = preload("res://Assets/Skin.tres")
 
-const originArmorColor = ARMOR.albedo_color
-const originHairColor = HAIR.albedo_color
-const originHelmColor = HELMET.albedo_color
-const originSkinColor = SKIN.albedo_color
+const originArmorColor = Color(0.188, 0.059, 0.047)
+const originHairColor = Color(0.906, 0.114, 0.102)
+const originHelmColor = Color(0.027, 0.027, 0.02)
+const originSkinColor = Color(0.761, 0.49, 0.357)
 
 @export var health_component: HealthComponent
 @export var armor_component: ArmorComponent
 
-var model_parts = [ARMOR,HAIR,HELMET,SKIN]
+var model_parts = {ARMOR:originArmorColor,HAIR:originHairColor,HELMET:originHelmColor,SKIN:originSkinColor}
 
 func take_damage(amount):
 	if armor_component != null and armor_component.current_armor > 0:
@@ -29,7 +29,7 @@ func damageIndicator():
 	var flashColor = Color(1,0,0, 0)
 	
 	for model in model_parts:
-		var originalColor = model.albedo_color
+		var originalColor = model_parts[model]
 		var tween = create_tween()
 		tween.tween_property(model, "albedo_color", flashColor, 0.1)
 		tween.tween_property(model, "albedo_color", originalColor, 0.1)
@@ -42,16 +42,18 @@ func damageIndicator():
 		tween.tween_property(model, "albedo_color", flashColor, 0.1)
 		tween.tween_property(model, "albedo_color", originalColor, 0.1)
 
+	#get_tree().create_timer(1.1).connect("timeout", reset_colors)
+	#print("Base")
+	#print(ARMOR.albedo_color)
+	#print(ARMOR.metallic)
+	#print(ARMOR.roughness)
+	#print("Model")
+	#print(model_parts[0].albedo_color)
+	#print(model_parts[0].metallic)
+	#print(model_parts[0].roughness)
+
+func reset_colors():
 	model_parts[0].albedo_color = originArmorColor
 	model_parts[1].albedo_color = originHairColor
 	model_parts[2].albedo_color = originHelmColor
 	model_parts[3].albedo_color = originSkinColor
-
-	print("Base")
-	print(ARMOR.albedo_color)
-	print(ARMOR.metallic)
-	print(ARMOR.roughness)
-	print("Model")
-	print(model_parts[0].albedo_color)
-	print(model_parts[0].metallic)
-	print(model_parts[0].roughness)
