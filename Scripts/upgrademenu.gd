@@ -43,7 +43,7 @@ func _input(event):
 		main_container.visible = true
 		current_menu = self
 		
-func new_sword(direction):
+func new_sword(direction: String):
 	used_heat.emit(-100)
 	Globals.currentWeapon.add_sword(direction)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
