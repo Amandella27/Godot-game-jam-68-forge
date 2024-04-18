@@ -44,7 +44,7 @@ func _input(event):
 		paused = PAUSEMENU.instantiate()
 		ui_elements.add_child(paused)
 		
-	if event.is_action_pressed("use") and playerNearAnvil == true and upgradeMenu == null:
+	elif event.is_action_pressed("use") and playerNearAnvil == true and upgradeMenu == null:
 		upgradeMenu = UPGRADEMENU.instantiate()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		ui_elements.add_child(upgradeMenu)
@@ -53,17 +53,24 @@ func _input(event):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		upgradeMenu.queue_free()
 
-	if event.is_action_pressed("remove_enemies") and paused == null:
+	elif event.is_action_pressed("remove_enemies") and paused == null:
 		enemy_spawner.remove_enemies()
 
 func _on_anvil_near_anvil():
 	playerNearAnvil = true
-	Globals.currentPlayer.interact_popup.visible = true
+	if Globals.input_mode == "Mouse":
+		Globals.currentPlayer.interact_popup_e.visible = true
+	elif Globals.input_mode == "Controller":
+		Globals.currentPlayer.interact_popup_y.visible = true
+	
 	
 func _on_anvil_left_anvil():
 	playerNearAnvil = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	Globals.currentPlayer.interact_popup.visible = false
+	if Globals.input_mode == "Mouse":
+		Globals.currentPlayer.interact_popup_e.visible = false
+	elif Globals.input_mode == "Controller":
+		Globals.currentPlayer.interact_popup_y.visible = false
 	
 	if upgradeMenu != null:
 		upgradeMenu.queue_free()

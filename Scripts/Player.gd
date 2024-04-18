@@ -15,7 +15,10 @@ signal player_gameover()
 
 @onready var animation_player = $dwarf/AnimationPlayer
 @onready var dwarf_model = $dwarf
-@onready var interact_popup = %InteractPopup
+
+@onready var interact_popup_e = %InteractPopupE
+@onready var interact_popup_y = %InteractPopupY
+
 @onready var weapon = $dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon
 
 @onready var health_component:HealthComponent = $HealthComponent
@@ -25,7 +28,8 @@ signal player_gameover()
 @export var jump_buffer_timer: float = .1
 @export var swordSounds:Array [AudioStreamPlayer3D]
 
-var camera_sensitivity = 0.001
+var mouse_sensitivity = 0.001
+var controller_sensitivity = 0.01
 var gravity = 9.8
 var JUMP_VELOCITY = 4.5
 var SPEED = 5.0
@@ -38,6 +42,7 @@ func _ready():
 
 	Globals.currentPlayer = self
 	Globals.currentWeapon = weapon
+	Globals.input_mode = "Mouse"
 	
 	player_health_changed.emit(health_component.get_health())
 	player_armor_changed.emit(armor_component.get_armor())
@@ -45,13 +50,14 @@ func _ready():
 func _input(event):
 	
 	if event.is_action_pressed("action"):
-		pass
+		Globals.input_mode = "Mouse"
 			
 	elif event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		camera_pivot.rotate_x(-event.relative.y * camera_sensitivity)
-		rotate_y(-event.relative.x * camera_sensitivity)
-
-		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-45), deg_to_rad(15))
+		if Globals.input_mode == "Mouse":
+			camera_pivot.rotate_x(-event.relative.y * mouse_sensitivity)
+			rotate_y(-event.relative.x * mouse_sensitivity)
+			camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-45), deg_to_rad(15))
+		
 
 func jump()->void:
 	velocity.y = JUMP_VELOCITY
@@ -59,6 +65,16 @@ func jump()->void:
 func on_jump_buffer_timeout()->void:
 	jump_buffer = false
 
+func _process(delta):
+	
+	var input_dir: Vector2 = Input.get_vector("cameraleft", "cameraright", "cameradown", "cameraup")
+	if input_dir != Vector2.ZERO:
+		Globals.input_mode = "Controller"
+		camera_pivot.rotate_x(input_dir.y * controller_sensitivity)
+		rotate_y(-input_dir.x * controller_sensitivity * 2)
+		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-45), deg_to_rad(15))
+		
+		
 func _physics_process(delta):
 	
 	if not is_on_floor():
