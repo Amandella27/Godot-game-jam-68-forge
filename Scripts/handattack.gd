@@ -17,7 +17,6 @@ func _ready():
 	player_to_attack = Globals.currentPlayer
 	direction = position.direction_to(player_to_attack.global_position)
 	hurtbox_component.set_damage(damage)
-	print(player_to_attack.global_position)
 	velocity.x = SPEED * direction.x
 	velocity.z = SPEED * direction.z
 
