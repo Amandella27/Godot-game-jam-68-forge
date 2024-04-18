@@ -5,7 +5,8 @@ signal hand_attack(location)
 @onready var lava_hand = $lavahand/Armature
 @onready var attack_timer = $AttackTimer
 @onready var animation_tree = $AnimationTree
-@onready var attack_location = $AttackLocation
+@onready var attack_location = $lavahand/Armature/Skeleton3D/BoneAttachment3D/AttackLocation
+
 
 func playAnimation(passed_animation_player: AnimationPlayer):
 	passed_animation_player.play("idle")

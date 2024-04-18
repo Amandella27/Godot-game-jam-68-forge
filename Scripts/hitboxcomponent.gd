@@ -42,16 +42,21 @@ func damageIndicator():
 		tween.tween_property(model, "albedo_color", flashColor, 0.1)
 		tween.tween_property(model, "albedo_color", originalColor, 0.1)
 
+	
+	get_tree().create_timer(1.1).connect("timeout", reset_colors)
+
+
+	#print("Base")
+	#print(ARMOR.albedo_color)
+	#print(ARMOR.metallic)
+	#print(ARMOR.roughness)
+	#print("Model")
+	#print(model_parts[0].albedo_color)
+	#print(model_parts[0].metallic)
+	#print(model_parts[0].roughness)
+
+func reset_colors():
 	model_parts[0].albedo_color = originArmorColor
 	model_parts[1].albedo_color = originHairColor
 	model_parts[2].albedo_color = originHelmColor
 	model_parts[3].albedo_color = originSkinColor
-
-	print("Base")
-	print(ARMOR.albedo_color)
-	print(ARMOR.metallic)
-	print(ARMOR.roughness)
-	print("Model")
-	print(model_parts[0].albedo_color)
-	print(model_parts[0].metallic)
-	print(model_parts[0].roughness)

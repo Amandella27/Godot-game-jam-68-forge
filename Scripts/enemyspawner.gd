@@ -121,3 +121,4 @@ func hand_attack(location):
 	var attack = HANDATTACK.instantiate()
 	add_child(attack)
 	attack.global_position = location
+	attack.initialize()
