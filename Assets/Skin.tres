@@ -3,5 +3,5 @@
 [resource]
 resource_name = "Skin"
 cull_mode = 2
-albedo_color = Color(0.761146, 0.491063, 0.356193, 1)
+albedo_color = Color(0.760784, 0.490196, 0.356863, 1)
 roughness = 0.5
