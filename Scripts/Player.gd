@@ -23,6 +23,7 @@ signal player_gameover()
 @onready var hitbox_component = $HitboxComponent
 
 @export var jump_buffer_timer: float = .1
+@export var swordSounds:Array [AudioStreamPlayer3D]
 
 var camera_sensitivity = 0.001
 var gravity = 9.8
@@ -81,6 +82,8 @@ func _physics_process(delta):
 		animation_tree["parameters/OneShot/request"] = 1
 		weapon.monitoring = true
 		attack_available = false
+		swordSounds[(randi_range(0,2))].play()
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "back")

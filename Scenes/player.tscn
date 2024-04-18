@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://brmrk0ke8mxrc"]
+[gd_scene load_steps=31 format=3 uid="uid://brmrk0ke8mxrc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_3bkjk"]
 [ext_resource type="Script" path="res://Scripts/armorcomponent.gd" id="1_rqhxq"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bdwbqsn65btfl" path="res://Assets/dwarf.glb" id="6_towm1"]
 [ext_resource type="PackedScene" uid="uid://ycvgs5jb8imr" path="res://Scenes/sword.tscn" id="8_bd7kl"]
 [ext_resource type="Animation" uid="uid://bbftk6vk7svpy" path="res://Animations/attackanimationdwarf.res" id="8_ygyyq"]
+[ext_resource type="AudioStream" uid="uid://co1mtyaqj4v5c" path="res://Assets/Sounds/swing-whoosh-weapon-3-189823.mp3" id="10_2ynws"]
+[ext_resource type="AudioStream" uid="uid://bloflu1blve71" path="res://Assets/Sounds/swing-whoosh-weapon-1-189819.mp3" id="11_jx4w5"]
+[ext_resource type="AudioStream" uid="uid://dtn2156tmq5u7" path="res://Assets/Sounds/swing-whoosh-4-198496.mp3" id="11_qau47"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0h75s"]
 radius = 0.290192
@@ -19,7 +22,7 @@ height = 1.37845
 radius = 0.420581
 height = 1.44748
 
-[sub_resource type="Animation" id="Animation_2761m"]
+[sub_resource type="Animation" id="Animation_31sc4"]
 resource_name = "idleanimation-loop"
 length = 1.04167
 loop_mode = 1
@@ -164,7 +167,7 @@ tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = PackedFloat32Array(0, 1, 0.731685, 0.00250492, -0.0255557, 0.681159)
 
-[sub_resource type="Animation" id="Animation_kofos"]
+[sub_resource type="Animation" id="Animation_x0jqg"]
 resource_name = "runbackanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -309,7 +312,7 @@ tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="Animation" id="Animation_qo2mr"]
+[sub_resource type="Animation" id="Animation_5wg7m"]
 resource_name = "runforwardanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -454,7 +457,7 @@ tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="Animation" id="Animation_byftd"]
+[sub_resource type="Animation" id="Animation_rkexr"]
 resource_name = "runleftanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -599,13 +602,13 @@ tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3qv1x"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bfndd"]
 _data = {
 "attackanimation": ExtResource("8_ygyyq"),
-"idleanimation": SubResource("Animation_2761m"),
-"runbackanimation": SubResource("Animation_kofos"),
-"runforwardanimation": SubResource("Animation_qo2mr"),
-"runleftanimation": SubResource("Animation_byftd")
+"idleanimation": SubResource("Animation_31sc4"),
+"runbackanimation": SubResource("Animation_x0jqg"),
+"runforwardanimation": SubResource("Animation_5wg7m"),
+"runleftanimation": SubResource("Animation_rkexr")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ifqut"]
@@ -643,6 +646,7 @@ animation = &"idleanimation"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_71a1s"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qxgrm"]
+graph_offset = Vector2(-428.305, 89.3242)
 nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_hx5f4")
 nodes/BlendSpace2D/position = Vector2(-400, 280)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_y7saw")
@@ -656,9 +660,10 @@ nodes/runblend/node = SubResource("AnimationNodeBlend2_71a1s")
 nodes/runblend/position = Vector2(40, 140)
 node_connections = [&"OneShot", 0, &"runblend", &"OneShot", 1, &"attackanimation", &"output", 0, &"OneShot", &"runblend", 0, &"idleanimation", &"runblend", 1, &"BlendSpace2D"]
 
-[node name="Player" type="CharacterBody3D" groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("swordSounds") groups=["Player"]]
 collision_mask = 6
 script = ExtResource("1_3bkjk")
+swordSounds = [NodePath("dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon/StartingSword/SwordWoosh1"), NodePath("dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon/StartingSword/SwordWoosh2"), NodePath("dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon/StartingSword/SwordWoosh3")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62652, 0)
@@ -693,16 +698,16 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 bones/0/rotation = Quaternion(-0.248614, 0.0140236, 0.0294315, 0.968054)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(0.0106571, 0.283656, -0.0397409)
+bones/1/position = Vector3(0.0132056, 0.328227, -0.0151702)
 bones/1/rotation = Quaternion(0.286625, -0.0153368, -0.0281841, 0.957505)
-bones/2/rotation = Quaternion(0.131679, -0.000127412, -0.00067871, 0.991292)
+bones/2/rotation = Quaternion(0.0890665, -9.82016e-05, -0.000683548, 0.996026)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.0884433, -0.184355, 0.955395, -0.2131)
+bones/3/rotation = Quaternion(-0.074153, -0.187107, 0.956268, -0.212236)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.336953, 0.00708509, 0.0332209, 0.940909)
-bones/6/rotation = Quaternion(0.10498, -0.093617, 0.9641, 0.225224)
+bones/4/rotation = Quaternion(0.348046, 0.00705432, 0.0343146, 0.936823)
+bones/6/rotation = Quaternion(0.0916545, -0.0972864, 0.965339, 0.224176)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.280559, -0.00722418, -0.0276614, 0.959411)
+bones/7/rotation = Quaternion(0.293988, -0.00719354, -0.0289855, 0.955342)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.0589997, -0.194581, 0.977326, -0.0590795)
 bones/10/rotation = Quaternion(-0.204241, 0.00415017, -0.0750367, 0.976032)
@@ -713,18 +718,18 @@ bones/13/rotation = Quaternion(-0.136175, -0.00420675, 0.0500295, 0.989412)
 bones/14/rotation = Quaternion(0.731685, 0.00250492, -0.0255557, 0.681159)
 bones/15/rotation = Quaternion(-0.0168485, 0.563089, 0.825436, -0.0360752)
 bones/15/scale = Vector3(1, 1, 0.999999)
-bones/16/position = Vector3(0.793629, 0.0053614, -0.148919)
+bones/16/position = Vector3(0.793629, 0.0603937, -0.148919)
 bones/17/rotation = Quaternion(-0.143178, 0.692459, -0.692459, 0.143178)
 bones/18/rotation = Quaternion(-0.0617429, 0.704406, 0.704406, -0.0617429)
 bones/19/rotation = Quaternion(0.0434195, 0.621766, 0.78089, 0.041633)
 bones/19/scale = Vector3(1, 1, 1.00001)
-bones/20/position = Vector3(-0.802886, -0.0110581, -0.0350145)
+bones/20/position = Vector3(-0.802886, 0.0439742, -0.0350145)
 bones/20/rotation = Quaternion(0.167142, 0.687069, -0.687069, -0.167142)
 bones/21/rotation = Quaternion(0.143178, 0.692459, -0.692459, -0.143178)
 bones/22/rotation = Quaternion(0.0617429, 0.704406, 0.704406, 0.0617429)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="dwarf/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.978197, -0.140943, -0.15253, 0.0493731, -0.87122, 0.488403, -0.201725, 0.470223, 0.859184, -0.802887, -0.011025, -0.0350145)
+transform = Transform3D(-0.974972, -0.146674, -0.167083, 0.0422397, -0.860027, 0.508498, -0.21828, 0.488713, 0.844697, -0.802884, 0.0439693, -0.0350143)
 bone_name = "Hand.r"
 bone_idx = 8
 
@@ -735,6 +740,22 @@ monitorable = false
 [node name="StartingSword" parent="dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon" instance=ExtResource("8_bd7kl")]
 transform = Transform3D(0.999963, -0.00811988, -0.00292623, 0.00815496, 0.999893, 0.0121474, 0.00282729, -0.0121708, 0.999922, -0.00183296, 0.379413, -0.0186052)
 
+[node name="SwordWoosh1" type="AudioStreamPlayer3D" parent="dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon/StartingSword"]
+unique_name_in_owner = true
+transform = Transform3D(0.997383, -0.0603495, -0.0397154, -0.03202, 0.123524, -0.991823, 0.0647619, 0.9905, 0.121266, 0.015856, 0.225343, 0.0625794)
+stream = ExtResource("11_jx4w5")
+volume_db = -10.0
+
+[node name="SwordWoosh2" type="AudioStreamPlayer3D" parent="dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon/StartingSword"]
+unique_name_in_owner = true
+stream = ExtResource("10_2ynws")
+volume_db = -10.0
+
+[node name="SwordWoosh3" type="AudioStreamPlayer3D" parent="dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon/StartingSword"]
+unique_name_in_owner = true
+stream = ExtResource("11_qau47")
+volume_db = -10.0
+
 [node name="AnimationPlayer" parent="dwarf" index="1"]
 autoplay = "idleanimation"
 
@@ -742,7 +763,7 @@ autoplay = "idleanimation"
 root_node = NodePath("../dwarf")
 root_motion_track = NodePath("Armature/Skeleton3D:MainBone")
 libraries = {
-"": SubResource("AnimationLibrary_3qv1x")
+"": SubResource("AnimationLibrary_bfndd")
 }
 tree_root = SubResource("AnimationNodeBlendTree_qxgrm")
 anim_player = NodePath("../dwarf/AnimationPlayer")
