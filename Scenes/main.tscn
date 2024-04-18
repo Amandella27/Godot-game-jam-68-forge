@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://yg5j5j3ftk42"]
+[gd_scene load_steps=14 format=3 uid="uid://yg5j5j3ftk42"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_kc5k5"]
 [ext_resource type="PackedScene" uid="uid://njfod8xarnho" path="res://Scenes/anvil.tscn" id="2_ywpje"]
@@ -93,7 +93,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00443745, 0, -0.01438)
 process_mode = 3
 
 [node name="HUD" parent="UIElements" instance=ExtResource("5_xun1b")]
-
 
 [node name="LavaHand" parent="." instance=ExtResource("6_ipa6w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1244, 0.747308, -3.36956)
