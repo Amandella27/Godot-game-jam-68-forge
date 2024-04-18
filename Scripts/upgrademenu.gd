@@ -9,12 +9,14 @@ const ATTACHVIEW = preload("res://Scenes/UI/attachview.tscn")
 @onready var upgrade_1 = %Upgrade1
 @onready var upgrade_2 = %Upgrade2
 @onready var upgrade_3 = %Upgrade3
+@onready var upgrade_1_button = $UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button
 
 
 var current_menu = self
 
 func _ready():
 	Globals.menusOpen = true
+	upgrade_1_button.grab_focus()
 
 func _on_upgrade_1_button_pressed():
 	checkUpgradeType(upgrade_1)

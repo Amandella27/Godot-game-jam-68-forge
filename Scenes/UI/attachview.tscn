@@ -104,6 +104,9 @@ theme_override_constants/margin_bottom = 10
 
 [node name="ForgeUp" type="Button" parent="MarginContainer/GridContainer/TopPanel/MarginContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../LeftPanel/MarginContainer/ForgeLeft")
+focus_neighbor_right = NodePath("../../../RightPanel/MarginContainer/ForgeRight")
+focus_neighbor_bottom = NodePath("../../../MiddlePanel/MarginContainer/ForgeForward")
 theme = ExtResource("2_4xgv0")
 
 [node name="Label" type="Label" parent="MarginContainer/GridContainer/TopPanel/MarginContainer/ForgeUp"]
@@ -151,6 +154,9 @@ theme_override_constants/margin_bottom = 10
 
 [node name="ForgeLeft" type="Button" parent="MarginContainer/GridContainer/LeftPanel/MarginContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../TopPanel/MarginContainer/ForgeUp")
+focus_neighbor_right = NodePath("../../../MiddlePanel/MarginContainer/ForgeForward")
+focus_neighbor_bottom = NodePath("../../../BottomPanel/MarginContainer/ForgeDown")
 theme = ExtResource("2_4xgv0")
 
 [node name="Label" type="Label" parent="MarginContainer/GridContainer/LeftPanel/MarginContainer/ForgeLeft"]
@@ -190,6 +196,10 @@ theme_override_constants/margin_bottom = 10
 
 [node name="ForgeForward" type="Button" parent="MarginContainer/GridContainer/MiddlePanel/MarginContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../LeftPanel/MarginContainer/ForgeLeft")
+focus_neighbor_top = NodePath("../../../TopPanel/MarginContainer/ForgeUp")
+focus_neighbor_right = NodePath("../../../RightPanel/MarginContainer/ForgeRight")
+focus_neighbor_bottom = NodePath("../../../BottomPanel/MarginContainer/ForgeDown")
 theme = ExtResource("2_4xgv0")
 
 [node name="Label" type="Label" parent="MarginContainer/GridContainer/MiddlePanel/MarginContainer/ForgeForward"]
@@ -231,6 +241,9 @@ theme_override_constants/margin_bottom = 10
 
 [node name="ForgeRight" type="Button" parent="MarginContainer/GridContainer/RightPanel/MarginContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../MiddlePanel/MarginContainer/ForgeForward")
+focus_neighbor_top = NodePath("../../../TopPanel/MarginContainer/ForgeUp")
+focus_neighbor_bottom = NodePath("../../../BottomPanel/MarginContainer/ForgeDown")
 theme = ExtResource("2_4xgv0")
 
 [node name="Label" type="Label" parent="MarginContainer/GridContainer/RightPanel/MarginContainer/ForgeRight"]
@@ -278,6 +291,9 @@ theme_override_constants/margin_bottom = 10
 
 [node name="ForgeDown" type="Button" parent="MarginContainer/GridContainer/BottomPanel/MarginContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../LeftPanel/MarginContainer/ForgeLeft")
+focus_neighbor_top = NodePath("../../../MiddlePanel/MarginContainer/ForgeForward")
+focus_neighbor_right = NodePath("../../../RightPanel/MarginContainer/ForgeRight")
 theme = ExtResource("2_4xgv0")
 
 [node name="Label" type="Label" parent="MarginContainer/GridContainer/BottomPanel/MarginContainer/ForgeDown"]

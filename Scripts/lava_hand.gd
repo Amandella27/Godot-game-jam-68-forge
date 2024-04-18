@@ -1,8 +1,11 @@
 extends Enemy
 
+signal hand_attack(location)
+
 @onready var lava_hand = $lavahand/Armature
 @onready var attack_timer = $AttackTimer
 @onready var animation_tree = $AnimationTree
+@onready var attack_location = $AttackLocation
 
 func playAnimation(passed_animation_player: AnimationPlayer):
 	passed_animation_player.play("idle")
@@ -30,5 +33,5 @@ func _physics_process(delta):
 
 func _on_attack_timer_timeout():
 	animation_tree["parameters/OneShot/request"] = 1
+	hand_attack.emit(attack_location.global_position)
 	attack_timer.start()
-	

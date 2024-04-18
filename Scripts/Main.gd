@@ -9,6 +9,7 @@ const UPGRADEMENU = preload("res://Scenes/UI/upgrademenu.tscn")
 @onready var player_manager = $PlayerManager
 @onready var enemy_spawner = $EnemySpawner
 @onready var lava = $World/volcanopit/Lava
+@onready var ambient_lava = $World/AmbientLava
 
 var paused = null
 var upgradeMenu
@@ -17,6 +18,8 @@ var playerSpawnLocation = Vector3(-3,0,-7)
 
 
 func _ready():
+	
+	ambient_lava.play()
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_player(playerSpawnLocation)
@@ -74,6 +77,7 @@ func update_armor_bar(new_value):
 func update_heat_bar(adjustment):
 	hud.update_heat(adjustment)
 	Globals.current_heat += adjustment
+	Globals.currentPlayer.checkHeatBuffs()
 	
 func armor_broken_warning():
 	hud.armor_warning()
@@ -93,3 +97,6 @@ func _on_hud_reset_game():
 func _on_lava_body_entered(body):
 	if body == Globals.currentPlayer:
 		gameover()
+
+func _on_ambient_lava_finished():
+	ambient_lava.play()

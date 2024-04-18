@@ -9026,6 +9026,24 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 }
+},
+"materials": {
+"Armor": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/Armor.tres"
+},
+"Hair": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/Hair.tres"
+},
+"Helmet": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/Helmet.tres"
+},
+"Skin": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/Skin.tres"
+}
 }
 }
 gltf/naming_version=1

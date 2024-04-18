@@ -11,10 +11,13 @@ const GAMEOVER = preload("res://Scenes/UI/gameover.tscn")
 @onready var armor_bar = %ArmorBar
 @onready var health_bar = %HealthBar
 @onready var heat_bar = %HeatBar
-@onready var ui_warnings = %UIWarnings
+@onready var ui_warn_center = %UIWarnCenter
 @onready var enemy_spawner = $"../../EnemySpawner"
 @onready var timer_info = %TimerInfo
 @onready var timer_info_2 = %TimerInfo2
+@onready var high_heat = %HighHeat
+@onready var medium_heat = %MediumHeat
+@onready var low_heat = %LowHeat
 
 var health_color: Color = Color(0.38, 0.031, 0)
 var armor_color: Color = Color(0.769, 0.745, 0)
@@ -56,28 +59,28 @@ func update_heat(adjustment):
 	current_heat = clamp(current_heat+adjustment, 0, 150)
 	heat_tween.set_parallel()
 	heat_tween.tween_property(heat_bar, "value", new_heat_total, 1).set_ease(Tween.EASE_IN_OUT)
-	
+	update_heat_labels()
 	
 func armor_warning():
 	var warning = ARMORBROKEN.instantiate()
-	ui_warnings.add_child((warning))
+	ui_warn_center.add_child((warning))
 	await get_tree().create_timer(3).timeout
 	warning.queue_free()
 
 func heat_warnings(old_heat_total, new_heat_total):
 	if old_heat_total < 50 and new_heat_total >= 50:
 		var warning = TEMPRISING.instantiate()
-		ui_warnings.add_child((warning))
+		ui_warn_center.add_child((warning))
 		await get_tree().create_timer(3).timeout
 		warning.queue_free()
 	if old_heat_total < 100 and new_heat_total >= 100:
 		var warning = HEATINGUP.instantiate()
-		ui_warnings.add_child((warning))
+		ui_warn_center.add_child((warning))
 		await get_tree().create_timer(3).timeout
 		warning.queue_free()
 	if old_heat_total < 150 and new_heat_total >= 150:
 		var warning = SWELTERING.instantiate()
-		ui_warnings.add_child((warning))
+		ui_warn_center.add_child((warning))
 		await get_tree().create_timer(3).timeout
 		warning.queue_free()
 
@@ -88,3 +91,21 @@ func gameover():
 	
 func hud_reset_game():
 	reset_game.emit()
+	
+func update_heat_labels():
+	if current_heat >= 0 and current_heat < 50:
+		low_heat.text = ""
+		medium_heat.text = ""
+		high_heat.text = ""
+	elif current_heat >= 50 and current_heat < 100:
+		low_heat.text = "Increased Movement Speed"
+		medium_heat.text = ""
+		high_heat.text = ""
+	elif current_heat >= 100 and current_heat < 150:
+		low_heat.text = "Increased Movement Speed"
+		medium_heat.text = "Improved Jumping"
+		high_heat.text = ""
+	elif current_heat >= 150:
+		low_heat.text = "Increased Movement Speed"
+		medium_heat.text = "Improved Jumping"
+		high_heat.text = "High Heat!"

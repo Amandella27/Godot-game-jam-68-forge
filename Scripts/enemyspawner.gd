@@ -2,8 +2,7 @@ extends Node3D
 
 signal spawn_enemy_defeated(heatvalue)
 
-const LAVASLUG = preload("res://Scenes/lavaslug.tscn")
-const LAVA_BAT = preload("res://Scenes/lava_bat.tscn")
+const HANDATTACK = preload("res://Scenes/handattack.tscn")
 
 @onready var spawn_timer = $SpawnTimer
 @onready var positions = $Positions
@@ -58,6 +57,16 @@ func randomizePositions():
 			enemy.enemy_defeated.connect(enemy_defeated)
 		else:
 			skipSpawn = true
+	if waveNumber >= 7:
+		enemyRandomnessLevel = randi_range(0,2)
+		var randomSpawns = randf_range(1,10)
+		if randomSpawns >= spawnRandomnessLevel:
+			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
+			enemy.enemy_defeated.connect(enemy_defeated)
+			if enemyRandomnessLevel == 2:
+				enemy.hand_attack.connect(hand_attack)
+		else:
+			skipSpawn = true
 	
 func enemy_defeated(heatvalue):
 	spawn_enemy_defeated.emit(heatvalue)
@@ -107,3 +116,8 @@ func remove_enemies():
 	for spawn in currentEnemies:
 		if spawn != null:
 			spawn.queue_free()
+
+func hand_attack(location):
+	var attack = HANDATTACK.instantiate()
+	add_child(attack)
+	attack.global_position = location

@@ -82,6 +82,8 @@ custom_minimum_size = Vector2(225, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../../MarginContainer3/Upgrade3Button")
+focus_neighbor_right = NodePath("../../MarginContainer2/Upgrade2Button")
 theme = ExtResource("2_7qp8v")
 
 [node name="Upgrade1" type="Label" parent="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button"]
@@ -117,6 +119,8 @@ custom_minimum_size = Vector2(225, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../../MarginContainer/Upgrade1Button")
+focus_neighbor_right = NodePath("../../MarginContainer3/Upgrade3Button")
 theme = ExtResource("2_7qp8v")
 
 [node name="Upgrade2" type="Label" parent="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/Upgrade2Button"]
@@ -150,6 +154,8 @@ custom_minimum_size = Vector2(225, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../../MarginContainer2/Upgrade2Button")
+focus_neighbor_right = NodePath("../../MarginContainer/Upgrade1Button")
 theme = ExtResource("2_7qp8v")
 text = "
 "

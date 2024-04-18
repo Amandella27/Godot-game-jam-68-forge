@@ -83,8 +83,8 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_right = 50
+theme_override_constants/margin_left = 125
+theme_override_constants/margin_right = 125
 theme_override_constants/margin_bottom = 15
 
 [node name="Retry" type="Button" parent="Panel/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer"]
@@ -113,37 +113,4 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Retry?"
 
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 15
-
-[node name="Quit" type="Button" parent="Panel/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_ukr34")
-
-[node name="QuitLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/Quit"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -33.5
-offset_top = -9.0
-offset_right = 33.5
-offset_bottom = 9.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_ukr34")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "Quit
-"
-horizontal_alignment = 1
-
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer/Retry" to="." method="_on_retry_pressed"]
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/Quit" to="." method="_on_quit_pressed"]

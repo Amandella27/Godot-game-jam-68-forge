@@ -27,8 +27,8 @@ signal player_gameover()
 
 var camera_sensitivity = 0.001
 var gravity = 9.8
-const JUMP_VELOCITY = 4.5
-const SPEED = 5.0
+var JUMP_VELOCITY = 4.5
+var SPEED = 5.0
 
 var attack_available:bool = true
 var jump_buffer: bool = false
@@ -121,3 +121,16 @@ func _on_armor_component_armor_broken():
 func _on_health_component_gameover():
 	self.visible = false
 	player_gameover.emit()
+
+func checkHeatBuffs():
+	if Globals.current_heat >= 0 and Globals.current_heat < 50:
+		SPEED = 5
+		JUMP_VELOCITY = 4.5
+	elif Globals.current_heat >= 50 and Globals.current_heat < 100:
+		SPEED = 7
+		JUMP_VELOCITY = 4.5
+	elif Globals.current_heat >= 100 and Globals.current_heat < 150:
+		SPEED = 7
+		JUMP_VELOCITY = 6
+	elif Globals.current_heat >= 150:
+		pass

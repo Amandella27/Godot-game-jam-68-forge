@@ -10,7 +10,7 @@ size = Vector3(1.48413, 1, 1.81348)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q7wla"]
 height = 4.0
 
-[sub_resource type="Animation" id="Animation_2beq2"]
+[sub_resource type="Animation" id="Animation_aqm3y"]
 resource_name = "attackanimation"
 length = 0.708333
 tracks/0/type = "rotation_3d"
@@ -112,7 +112,7 @@ tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = PackedFloat32Array(0, 1, 5.38304e-07, 3.29129e-06, 4.37722e-07, 1, 0.0333333, 1, 0.0694146, -0.0417578, 0.0556386, 0.99516, 0.0666667, 1, 0.184438, -0.110958, 0.147834, 0.965306, 0.1, 1, 0.279925, -0.168406, 0.224371, 0.918117, 0.133333, 1, 0.323392, -0.194557, 0.259212, 0.88903, 0.166667, 1, 0.308878, -0.185825, 0.247578, 0.899316, 0.2, 1, 0.272376, -0.163864, 0.21832, 0.922657, 0.233333, 1, 0.227803, -0.137048, 0.182594, 0.946564, 0.266667, 1, 0.181219, -0.109022, 0.145254, 0.966527, 0.3, 1, 0.13739, -0.0826535, 0.110124, 0.9809, 0.333333, 1, 0.0994053, -0.0598009, 0.0796773, 0.990047, 0.366667, 1, 0.07272, -0.0437464, 0.058288, 0.994686, 0.4, 1, 0.0528241, -0.0317766, 0.0423406, 0.9972, 0.433333, 1, 0.0374441, -0.0225236, 0.0300129, 0.998594, 0.466667, 1, 0.0252552, -0.0151905, 0.0202431, 0.999361, 0.5, 1, 0.0159109, -0.00956872, 0.0127532, 0.999746, 0.533333, 1, 0.00968327, -0.00582202, 0.00776152, 0.999906, 0.566667, 1, 0.00530442, -0.00318762, 0.0042517, 0.999972, 0.6, 1, 0.00245942, -0.00147603, 0.00197133, 0.999994, 0.633333, 1, 0.000836473, -0.000499639, 0.000670486, 0.999999, 0.666667, 1, 0.000127165, -7.28946e-05, 0.000101923, 1, 0.708333, 1, 5.38304e-07, 3.29129e-06, 4.37722e-07, 1)
 
-[sub_resource type="Animation" id="Animation_5lpus"]
+[sub_resource type="Animation" id="Animation_ev3g8"]
 resource_name = "idle-loop"
 length = 3.08333
 loop_mode = 1
@@ -215,10 +215,10 @@ tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = PackedFloat32Array(0, 1, -0.0153255, -0.000111479, -0.00194589, 0.999881)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vmopl"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fkjoi"]
 _data = {
-"attackanimation": SubResource("Animation_2beq2"),
-"idle": SubResource("Animation_5lpus")
+"attackanimation": SubResource("Animation_aqm3y"),
+"idle": SubResource("Animation_ev3g8")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1hbp3"]
@@ -239,13 +239,9 @@ nodes/OneShot/position = Vector2(900, 80)
 nodes/output/position = Vector2(1160, 100)
 node_connections = [&"OneShot", 0, &"Animation", &"OneShot", 1, &"Animation 2", &"output", 0, &"OneShot"]
 
-[node name="LavaHand" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_1jhko")]
+[node name="LavaHand" instance=ExtResource("1_1jhko")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 script = ExtResource("2_bdx08")
-SPEED = 0
-damage = -10
-heatvalue = 25
-animation_player = NodePath("lavahand/AnimationPlayer")
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_03661")
@@ -253,7 +249,7 @@ shape = SubResource("BoxShape3D_03661")
 [node name="HurtboxComponent" parent="." index="2"]
 collision_layer = 4
 
-[node name="CollisionShape3D" parent="HurtboxComponent" index="0"]
+[node name="CollisionShape3D" parent="HurtboxComponent" index="1"]
 shape = SubResource("CapsuleShape3D_q7wla")
 
 [node name="HitboxComponent" parent="." index="3" node_paths=PackedStringArray("health_component")]
@@ -269,23 +265,23 @@ shape = SubResource("CapsuleShape3D_q7wla")
 
 [node name="Skeleton3D" parent="lavahand/Armature" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-bones/2/rotation = Quaternion(0.344363, -0.113481, -0.0753458, 0.928902)
-bones/3/rotation = Quaternion(0.203197, 0.0421383, -0.40198, 0.891822)
-bones/4/rotation = Quaternion(0.270875, -0.0754495, 0.49425, 0.822588)
-bones/5/position = Vector3(0.0114613, 0.776589, -0.0644631)
-bones/5/rotation = Quaternion(0.321165, 0.027238, 0.00150698, 0.94663)
-bones/6/rotation = Quaternion(0.211539, -0.0471024, -0.191513, 0.957265)
-bones/7/position = Vector3(-0.127913, 0.778944, -0.0425364)
-bones/7/rotation = Quaternion(0.349041, 0.0775114, 0.020144, 0.933679)
-bones/8/rotation = Quaternion(0.214699, -0.0806162, -0.0311242, 0.97285)
-bones/9/position = Vector3(-0.26979, 0.725204, -0.0329958)
-bones/9/rotation = Quaternion(0.266165, 0.265868, 0.282354, 0.882466)
-bones/10/rotation = Quaternion(0.163543, -0.152535, 0.0595805, 0.97285)
+bones/2/rotation = Quaternion(0.410835, -0.0241867, -0.0148727, 0.911268)
+bones/3/rotation = Quaternion(0.245997, -0.00324222, -0.338343, 0.908294)
+bones/4/rotation = Quaternion(0.0901372, -0.0163531, 0.225357, 0.96996)
+bones/5/position = Vector3(0.011873, 0.778901, -0.0571905)
+bones/5/rotation = Quaternion(0.290213, 0.00129586, 0.0216846, 0.956716)
+bones/6/rotation = Quaternion(0.0394091, -0.0100749, -0.148799, 0.98803)
+bones/7/position = Vector3(-0.128428, 0.779113, -0.0434273)
+bones/7/rotation = Quaternion(0.317312, 0.0528322, 0.039437, 0.946027)
+bones/8/rotation = Quaternion(0.0459272, -0.0172431, -0.0066579, 0.998774)
+bones/9/position = Vector3(-0.269511, 0.722846, -0.0385448)
+bones/9/rotation = Quaternion(0.225768, 0.250033, 0.29209, 0.895096)
+bones/10/rotation = Quaternion(0.0349846, -0.0326267, 0.0127454, 0.998774)
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="5"]
 root_node = NodePath("../lavahand")
 libraries = {
-"": SubResource("AnimationLibrary_vmopl")
+"": SubResource("AnimationLibrary_fkjoi")
 }
 tree_root = SubResource("AnimationNodeBlendTree_wqejf")
 anim_player = NodePath("../lavahand/AnimationPlayer")
@@ -297,6 +293,9 @@ parameters/OneShot/request = 0
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="AttackLocation" type="Marker3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00235403, 3.49737, -0.464069)
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 

@@ -1,6 +1,7 @@
 extends Area3D
 
 const SWORD = preload("res://Scenes/sword.tscn")
+const SWORD_SPARKS = preload("res://Scenes/sword_sparks.tscn")
 
 @export var damage: int
 
@@ -18,6 +19,9 @@ func _ready():
 func _on_area_entered(area):
 	if area.is_in_group("Enemy") and area.has_method("take_damage"):
 		area.take_damage(damage)
+		var sparks = SWORD_SPARKS.instantiate()
+		add_child(sparks)
+		sparks.emitting = true
 		
 func _input(event):
 	if event.is_action_pressed("debugattach"):
