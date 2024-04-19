@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 class_name Enemy
 
-signal enemy_defeated(heatvalue)
+signal enemy_defeated(type,heatvalue)
 
 @onready var hurtbox_component = $HurtboxComponent
 
@@ -21,12 +21,11 @@ var gravity = 9.8
 
 
 func _ready():
-	
 	player_to_attack = Globals.currentPlayer
 	hurtbox_component.set_damage(damage)
-
+	
 func _physics_process(delta):
-
+	
 	if !player_to_attack == null:
 		direction = global_position.direction_to(Vector3(player_to_attack.global_position.x,0,player_to_attack.global_position.z))
 		look_at(Vector3(player_to_attack.global_position.x,0,player_to_attack.global_position.z))
@@ -50,7 +49,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_health_component_defeated():
-	enemy_defeated.emit(heatvalue)
+	enemy_defeated.emit(self.name,heatvalue)
 
 func playAnimation(_animationPlayer: AnimationPlayer):
 	pass

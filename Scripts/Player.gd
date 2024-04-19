@@ -65,7 +65,7 @@ func jump()->void:
 func on_jump_buffer_timeout()->void:
 	jump_buffer = false
 
-func _process(delta):
+func _process(_delta):
 	
 	var input_dir: Vector2 = Input.get_vector("cameraleft", "cameraright", "cameradown", "cameraup")
 	if input_dir != Vector2.ZERO:

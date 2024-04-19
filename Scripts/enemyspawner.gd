@@ -8,6 +8,9 @@ const HANDATTACK = preload("res://Scenes/handattack.tscn")
 @onready var positions = $Positions
 @onready var wave_timer = $WaveTimer
 @onready var rest_timer = $RestTimer
+@onready var snail_death = $SoundEffects/SnailDeath
+@onready var bat_death = $SoundEffects/BatDeath
+
 
 @export var spawnerOn: bool = true
 @export var waveNumber: int = 1
@@ -68,13 +71,14 @@ func randomizePositions():
 		else:
 			skipSpawn = true
 	
-func enemy_defeated(heatvalue):
+func enemy_defeated(type,heatvalue):
+	if type == "LavaSlug":
+		snail_death.play()
+	if type == "LavaBat":
+		bat_death.play()
 	spawn_enemy_defeated.emit(heatvalue)
 
 func startWave():
-	print("Spawn Min: ", spawnTimeMin)
-	print("Spawn Max: ", spawnTimeMax)
-	print(spawnTimeDifficultyMod)
 	wave_timer.start(10)
 	spawn_timer.start(randf_range((spawnTimeMin*spawnTimeDifficultyMod),(spawnTimeMax*spawnTimeDifficultyMod)))
 	spawn_enemies()

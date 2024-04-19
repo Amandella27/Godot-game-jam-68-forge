@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://2nqrxwumdvik"]
+[gd_scene load_steps=7 format=3 uid="uid://2nqrxwumdvik"]
 
 [ext_resource type="Script" path="res://Scripts/enemyspawner.gd" id="1_24oef"]
 [ext_resource type="PackedScene" uid="uid://clicowrhc21ve" path="res://Scenes/lavaslug.tscn" id="2_wbhoj"]
 [ext_resource type="PackedScene" uid="uid://dnwlwe11nwdnu" path="res://Scenes/lava_bat.tscn" id="3_mq4jc"]
 [ext_resource type="PackedScene" uid="uid://dv1hbai1h0o1d" path="res://Scenes/lava_hand.tscn" id="4_mqhfw"]
+[ext_resource type="AudioStream" uid="uid://ma87ix3wxexx" path="res://Assets/Sounds/slimejump-6913.mp3" id="5_w72mp"]
+[ext_resource type="AudioStream" uid="uid://w7gofjswwva3" path="res://Assets/Sounds/bat_01.mp3" id="6_rb11t"]
 
 [node name="EnemySpawner" type="Node3D"]
 script = ExtResource("1_24oef")
@@ -67,6 +69,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.75, 10)
 
 [node name="Position16" type="Marker3D" parent="Positions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0.75, 5)
+
+[node name="SoundEffects" type="Node3D" parent="."]
+
+[node name="SnailDeath" type="AudioStreamPlayer3D" parent="SoundEffects"]
+stream = ExtResource("5_w72mp")
+attenuation_model = 3
+
+[node name="BatDeath" type="AudioStreamPlayer3D" parent="SoundEffects"]
+stream = ExtResource("6_rb11t")
+attenuation_model = 3
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

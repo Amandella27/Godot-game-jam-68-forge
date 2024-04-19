@@ -26,7 +26,7 @@ func take_damage(amount):
 
 func damageIndicator():
 	
-	var flashColor = Color(1,0,0, 0)
+	var flashColor = Color(1,0,0, 1)
 	
 	for model in model_parts:
 		var originalColor = model_parts[model]
@@ -41,16 +41,6 @@ func damageIndicator():
 		tween.tween_property(model, "albedo_color", originalColor, 0.1)
 		tween.tween_property(model, "albedo_color", flashColor, 0.1)
 		tween.tween_property(model, "albedo_color", originalColor, 0.1)
-
-	#get_tree().create_timer(1.1).connect("timeout", reset_colors)
-	#print("Base")
-	#print(ARMOR.albedo_color)
-	#print(ARMOR.metallic)
-	#print(ARMOR.roughness)
-	#print("Model")
-	#print(model_parts[0].albedo_color)
-	#print(model_parts[0].metallic)
-	#print(model_parts[0].roughness)
 
 func reset_colors():
 	model_parts[0].albedo_color = originArmorColor
