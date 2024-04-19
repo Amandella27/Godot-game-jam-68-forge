@@ -101,6 +101,11 @@ func _physics_process(delta):
 		weapon.monitoring = true
 		attack_available = false
 		swordSounds[(randi_range(0,2))].play()
+	elif Input.is_action_just_pressed("Vaction") and attack_available:
+		animation_tree["parameters/OneShot2/request"] = 1
+		weapon.monitoring = true
+		attack_available = false
+		swordSounds[(randi_range(0,2))].play()
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -132,6 +137,7 @@ func _on_armor_component_armor_changed(new_armor):
 func end_attack():
 	weapon.monitoring = false
 	attack_available = true
+	print("test")
 
 func _on_armor_component_armor_broken():
 	player_armor_broken.emit()

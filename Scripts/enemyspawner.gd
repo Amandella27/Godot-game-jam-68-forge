@@ -64,7 +64,7 @@ func randomizePositions():
 			if enemyRandomnessLevel == 2:
 				enemy.hand_attack.connect(hand_attack)
 	elif waveNumber >= 3:
-		enemyRandomnessLevel = randi_range(0,2)
+		enemyRandomnessLevel = randi_range(0,1)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
@@ -72,7 +72,7 @@ func randomizePositions():
 			if enemyRandomnessLevel == 2:
 				enemy.hand_attack.connect(hand_attack)
 	elif waveNumber >= 1:
-		enemyRandomnessLevel = randi_range(0,2)
+		enemyRandomnessLevel = 0
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
