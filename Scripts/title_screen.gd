@@ -1,6 +1,6 @@
 extends Control
 
-
+@onready var how_to_play = %"How to Play"
 
 
 func _on_play_button_pressed():
@@ -8,4 +8,8 @@ func _on_play_button_pressed():
 
 
 func _on_how_to_play_button_pressed():
-	pass # Replace with function body.
+	how_to_play.visible = true
+
+
+func _on_x_how_to_play_pressed():
+	how_to_play.visible = false

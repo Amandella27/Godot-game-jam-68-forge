@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cu5bml37ggq8c"]
+[gd_scene load_steps=4 format=3 uid="uid://cu5bml37ggq8c"]
 
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_0t8l7"]
+[ext_resource type="Texture2D" uid="uid://drdpqdehmt2ru" path="res://Assets/titleimage.png" id="2_xeqdt"]
+[ext_resource type="FontFile" uid="uid://3v73fhbabj22" path="res://Assets/Fonts/Fine Blackboard.ttf" id="3_qc2e1"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -11,14 +13,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0t8l7")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.482353, 0, 0.00784314, 1)
+texture = ExtResource("2_xeqdt")
+expand_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1
@@ -38,7 +41,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("3_qc2e1")
+theme_override_font_sizes/font_size = 65
 text = "Forge me a Sword!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -48,19 +52,99 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+alignment = 1
+
 [node name="PlayButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 100)
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_qc2e1")
+theme_override_font_sizes/font_size = 22
 text = "Play"
 
 [node name="HowToPlayButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 100)
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_qc2e1")
+theme_override_font_sizes/font_size = 22
 text = "How to Play"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="How to Play" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ColorRect" type="ColorRect" parent="How to Play"]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.329412, 0.0862745, 0.0784314, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="How to Play"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="X How to Play" type="Button" parent="How to Play/MarginContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "X"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="How to Play/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="How to Play/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qc2e1")
+theme_override_font_sizes/font_size = 46
+text = "How to Play"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="How to Play/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 21
+text = "You are Lergin, the master sword forger. It's your main skill. It's actually you're only skill...but you're really really good at it! The dwarven kingdom has ordered you to forge the best sword in the heart of Ulthaki Volcano.
+
+Press left click to horizontal attack and right click to vertical attack.
+
+Press W, A, S, D to move.
+
+When you want to use the forge, press E. And select your upgrade! You can make your sword longer or repair your armor.
+
+Hit Escape to pause.
+
+You have ARMOR (yellow bar) and HEALTH (red bar). Your HEAT bar (orange bar) is what you use to upgrade. Use one third of the bar to resore your armor and two thirds of the bar to upgrade your sword. If you keep the bar at high levels you will get buffs. 1/3 of the bar will give you faster movement, 2/3 of the bar will give you better jumping, and a full bar will give you health regen."
+fit_content = true
 
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
+[connection signal="pressed" from="How to Play/MarginContainer/X How to Play" to="." method="_on_x_how_to_play_pressed"]
