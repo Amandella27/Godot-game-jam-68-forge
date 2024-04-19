@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 class_name Enemy
 
-signal enemy_defeated(type,heatvalue)
+signal enemy_defeated(node,type,heatvalue)
 
 @onready var hurtbox_component = $HurtboxComponent
 
@@ -49,7 +49,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_health_component_defeated():
-	enemy_defeated.emit(self.name,heatvalue)
+	enemy_defeated.emit(self,self.name,heatvalue)
 
 func playAnimation(_animationPlayer: AnimationPlayer):
 	pass

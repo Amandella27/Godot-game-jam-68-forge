@@ -15,9 +15,9 @@ const GAMEOVER = preload("res://Scenes/UI/gameover.tscn")
 @onready var enemy_spawner = $"../../EnemySpawner"
 @onready var timer_info = %TimerInfo
 @onready var timer_info_2 = %TimerInfo2
-@onready var high_heat = %HighHeat
-@onready var medium_heat = %MediumHeat
-@onready var low_heat = %LowHeat
+@onready var ms_up = %MSUp
+@onready var jump_up = %JumpUp
+@onready var hp_regen = %HPRegen
 
 var health_color: Color = Color(0.38, 0.031, 0)
 var armor_color: Color = Color(0.769, 0.745, 0)
@@ -31,7 +31,10 @@ func _ready():
 	
 	
 func _process(_delta):
-	if enemy_spawner.resting:
+	if enemy_spawner.checking:
+		timer_info.text = str("Enemies Remain")
+		timer_info_2.text = str("")
+	elif enemy_spawner.resting:
 		timer_info.text = str("Resting")
 		timer_info_2.text = str(snapped(enemy_spawner.rest_timer.time_left, 1))
 	else:
@@ -94,18 +97,18 @@ func hud_reset_game():
 	
 func update_heat_labels():
 	if current_heat >= 0 and current_heat < 50:
-		low_heat.text = ""
-		medium_heat.text = ""
-		high_heat.text = ""
+		ms_up.visible = false
+		jump_up.visible = false
+		hp_regen.visible = false
 	elif current_heat >= 50 and current_heat < 100:
-		low_heat.text = "Increased Movement Speed"
-		medium_heat.text = ""
-		high_heat.text = ""
+		ms_up.visible = true
+		jump_up.visible = false
+		hp_regen.visible = false
 	elif current_heat >= 100 and current_heat < 150:
-		low_heat.text = "Increased Movement Speed"
-		medium_heat.text = "Improved Jumping"
-		high_heat.text = ""
+		ms_up.visible = true
+		jump_up.visible = true
+		hp_regen.visible = false
 	elif current_heat >= 150:
-		low_heat.text = "Increased Movement Speed"
-		medium_heat.text = "Improved Jumping"
-		high_heat.text = "High Heat!"
+		ms_up.visible = true
+		jump_up.visible = true
+		hp_regen.visible = true

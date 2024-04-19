@@ -10,6 +10,7 @@ const UPGRADEMENU = preload("res://Scenes/UI/upgrademenu.tscn")
 @onready var enemy_spawner = $EnemySpawner
 @onready var lava = $World/volcanopit/Lava
 @onready var ambient_lava = $World/AmbientLava
+@onready var background_music = $BackgroundMusic
 
 var paused = null
 var upgradeMenu
@@ -18,9 +19,8 @@ var playerSpawnLocation = Vector3(-3,0,-7)
 
 
 func _ready():
-	
 	ambient_lava.play()
-	
+	background_music.play()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_player(playerSpawnLocation)
 	
@@ -67,11 +67,9 @@ func _on_anvil_near_anvil():
 func _on_anvil_left_anvil():
 	playerNearAnvil = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	if Globals.input_mode == "Mouse":
-		Globals.currentPlayer.interact_popup_e.visible = false
-	elif Globals.input_mode == "Controller":
-		Globals.currentPlayer.interact_popup_y.visible = false
-	
+	Globals.currentPlayer.interact_popup_y.visible = false
+	Globals.currentPlayer.interact_popup_e.visible = false
+
 	if upgradeMenu != null:
 		upgradeMenu.queue_free()
 
@@ -83,7 +81,7 @@ func update_armor_bar(new_value):
 	
 func update_heat_bar(adjustment):
 	hud.update_heat(adjustment)
-	Globals.current_heat += adjustment
+	Globals.current_heat = clamp(Globals.current_heat+adjustment, 0, 150)
 	Globals.currentPlayer.checkHeatBuffs()
 	
 func armor_broken_warning():

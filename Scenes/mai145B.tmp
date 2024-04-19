@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://yg5j5j3ftk42"]
+[gd_scene load_steps=14 format=3 uid="uid://yg5j5j3ftk42"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_kc5k5"]
 [ext_resource type="PackedScene" uid="uid://njfod8xarnho" path="res://Scenes/anvil.tscn" id="2_ywpje"]
@@ -6,7 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://5je6mbc7vwer" path="res://Assets/Sounds/lava-loop-3-28887.mp3" id="4_ksswk"]
 [ext_resource type="PackedScene" uid="uid://bpv254igwn1vd" path="res://Scenes/volcanopit.tscn" id="5_bqjfq"]
 [ext_resource type="PackedScene" uid="uid://docnyp7cxuxsc" path="res://Scenes/UI/hud.tscn" id="5_xun1b"]
-[ext_resource type="AudioStream" uid="uid://cbjvumglunsi3" path="res://Assets/Sounds/Mine.mp3" id="7_7sajj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ywx2g"]
 sky_top_color = Color(0.643137, 0.345098, 0.384314, 1)
@@ -104,18 +103,13 @@ volume_db = -5.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_8sp4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00443745, 0, -0.01438)
-waveTime = 5
-restTime = 10
+spawnerOn = null
+waveNumber = 7
 
 [node name="UIElements" type="Node" parent="."]
 process_mode = 3
 
 [node name="HUD" parent="UIElements" instance=ExtResource("5_xun1b")]
-
-[node name="BackgroundMusic" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("7_7sajj")
-attenuation_model = 3
-volume_db = -6.0
 
 [connection signal="leftAnvil" from="World/anvil" to="." method="_on_anvil_left_anvil"]
 [connection signal="nearAnvil" from="World/anvil" to="." method="_on_anvil_near_anvil"]

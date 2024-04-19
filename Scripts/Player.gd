@@ -20,6 +20,7 @@ signal player_gameover()
 @onready var interact_popup_y = %InteractPopupY
 
 @onready var weapon = $dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon
+@onready var regen_timer = $RegenTimer
 
 @onready var health_component:HealthComponent = $HealthComponent
 @onready var armor_component:ArmorComponent = $ArmorComponent
@@ -36,9 +37,9 @@ var SPEED = 5.0
 
 var attack_available:bool = true
 var jump_buffer: bool = false
+var regen_active: bool = false
 
 func _ready():
-
 
 	Globals.currentPlayer = self
 	Globals.currentWeapon = weapon
@@ -46,6 +47,7 @@ func _ready():
 	
 	player_health_changed.emit(health_component.get_health())
 	player_armor_changed.emit(armor_component.get_armor())
+	regen_timer.timeout.connect(heat_health_regen)
 	
 func _input(event):
 	
@@ -142,11 +144,22 @@ func checkHeatBuffs():
 	if Globals.current_heat >= 0 and Globals.current_heat < 50:
 		SPEED = 5
 		JUMP_VELOCITY = 4.5
+		regen_active = false
+		regen_timer.stop()
 	elif Globals.current_heat >= 50 and Globals.current_heat < 100:
 		SPEED = 7
 		JUMP_VELOCITY = 4.5
+		regen_active = false
+		regen_timer.stop()
 	elif Globals.current_heat >= 100 and Globals.current_heat < 150:
 		SPEED = 7
 		JUMP_VELOCITY = 6
-	elif Globals.current_heat >= 150:
-		pass
+		regen_active = false
+		regen_timer.stop()
+	elif Globals.current_heat == 150:
+		if !regen_active:
+			regen_timer.start(2)
+		
+func heat_health_regen():
+	regen_active = true
+	health_component.adjust_health(1)

@@ -1,5 +1,7 @@
 extends Enemy
 
+class_name LavaHand
+
 signal hand_attack(location)
 
 @onready var lava_hand = $lavahand/Armature

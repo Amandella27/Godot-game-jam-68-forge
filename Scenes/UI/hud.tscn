@@ -1,8 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://docnyp7cxuxsc"]
+[gd_scene load_steps=15 format=3 uid="uid://docnyp7cxuxsc"]
 
 [ext_resource type="Script" path="res://Scripts/hud.gd" id="1_s63j7"]
 [ext_resource type="StyleBox" uid="uid://rehm8s0yxkfi" path="res://Styles/progressbarbackgroundstyle.tres" id="2_5diea"]
 [ext_resource type="Theme" uid="uid://dvnwmjqtsjco" path="res://Themes/UpgradeButtonTheme.tres" id="2_qfon4"]
+[ext_resource type="Texture2D" uid="uid://cdmuvdsnp7wa" path="res://Assets/msup.svg" id="4_k8pdl"]
+[ext_resource type="Texture2D" uid="uid://df4mcpwsdpl75" path="res://Assets/jumpup.svg" id="4_rcygd"]
+[ext_resource type="Texture2D" uid="uid://d15eqa6vw4k5r" path="res://Assets/hpregen.svg" id="4_ylpr1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0t6x"]
 bg_color = Color(0.768627, 0.745098, 0, 1)
@@ -189,36 +192,42 @@ size_flags_vertical = 8
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 70
+theme_override_constants/margin_bottom = 60
 
-[node name="HighHeat" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer/VBoxContainer/MarginContainer"]
+[node name="HPRegen" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
+visible = false
+texture_filter = 1
 layout_mode = 2
-theme = ExtResource("2_qfon4")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-horizontal_alignment = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("4_ylpr1")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 70
+theme_override_constants/margin_bottom = 60
 
-[node name="MediumHeat" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer/VBoxContainer/MarginContainer2"]
+[node name="JumpUp" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer/VBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
+visible = false
+texture_filter = 1
 layout_mode = 2
-theme = ExtResource("2_qfon4")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-horizontal_alignment = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("4_rcygd")
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_bottom = 32
 
-[node name="LowHeat" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer/VBoxContainer/MarginContainer3"]
+[node name="MSUp" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer/VBoxContainer/MarginContainer3"]
 unique_name_in_owner = true
+visible = false
+texture_filter = 1
 layout_mode = 2
-theme = ExtResource("2_qfon4")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-horizontal_alignment = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("4_k8pdl")
 
 [node name="HeatBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
 unique_name_in_owner = true

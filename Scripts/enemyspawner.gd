@@ -8,20 +8,26 @@ const HANDATTACK = preload("res://Scenes/handattack.tscn")
 @onready var positions = $Positions
 @onready var wave_timer = $WaveTimer
 @onready var rest_timer = $RestTimer
+@onready var check_timer = $CheckTimer
 @onready var snail_death = $SoundEffects/SnailDeath
 @onready var bat_death = $SoundEffects/BatDeath
 
 
 @export var spawnerOn: bool = true
 @export var waveNumber: int = 1
+@export var waveTime: int = 30
+@export var restTime: int = 1
 @export var spawnableEnemies: Array[PackedScene]
 
 var currentEnemies: Array
+var currentSpawn: Array
+
 
 var spawnPositions: Array
 var enemy: Enemy
 var skipSpawn: bool = false
 var resting: bool = false
+var checking: bool = false
 
 var enemyRandomnessLevel = randi_range(0,0)
 var spawnRandomnessLevel: float = 5
@@ -33,16 +39,19 @@ func _ready():
 	spawnPositions = positions.get_children()
 	Globals.current_wave = waveNumber
 	startWave()
-		
+
 func spawn_enemies():
 	if !resting and spawnerOn:
 		for points in spawnPositions:
 			randomizePositions()
 			if skipSpawn:
 				skipSpawn = false
+			elif checkForHand(points):
+				pass
 			else:
 				points.add_child(enemy)
 				currentEnemies.append(enemy)
+				currentSpawn.append(enemy)
 
 func randomizePositions():
 	if waveNumber >= 1:
@@ -71,19 +80,25 @@ func randomizePositions():
 		else:
 			skipSpawn = true
 	
-func enemy_defeated(type,heatvalue):
+func enemy_defeated(node,type,heatvalue):
 	if type == "LavaSlug":
 		snail_death.play()
 	if type == "LavaBat":
 		bat_death.play()
 	spawn_enemy_defeated.emit(heatvalue)
+	currentEnemies.erase(node)
 
 func startWave():
-	wave_timer.start(10)
+	wave_timer.start(waveTime)
 	spawn_timer.start(randf_range((spawnTimeMin*spawnTimeDifficultyMod),(spawnTimeMax*spawnTimeDifficultyMod)))
+	currentSpawn.clear()
 	spawn_enemies()
+	checkEmptySpawn()
 
 func _on_wave_timer_timeout():
+	if currentEnemies.is_empty():
+		rest_timer.start(restTime)
+		resting = true
 	waveNumber += 1
 	Globals.current_wave = waveNumber
 	if spawnTimeDifficultyMod > .05:
@@ -91,15 +106,16 @@ func _on_wave_timer_timeout():
 	spawnTimeMin = 7 * spawnTimeDifficultyMod
 	spawnTimeMax = 7 * spawnTimeDifficultyMod
 	spawnTimeMin = clamp(spawnTimeMin, 1, 7)
-	spawnTimeMax = clamp(spawnTimeMax, 1, 7)
-	spawn_timer.stop()
+	spawnTimeMax = clamp(spawnTimeMax, 1, 7)	
+	spawn_timer.stop()	
 	wave_timer.stop()
-	resting = true
-	rest_timer.start(5)
-	
+	checking = true
+	check_timer.start(1)
 	
 func _on_spawn_timer_timeout():
+	currentSpawn.clear()
 	spawn_enemies()
+	checkEmptySpawn()
 
 func _on_rest_timer_timeout():
 	resting = false
@@ -126,3 +142,21 @@ func hand_attack(location):
 	add_child(attack)
 	attack.global_position = location
 	attack.initialize()
+
+func checkForHand(point):
+	for spawn in point.get_children():
+		if spawn is LavaHand:
+			return true
+
+func checkEmptySpawn():
+	while currentSpawn.is_empty():
+		spawn_enemies()
+
+func _on_check_timer_timeout():
+	if currentEnemies.is_empty():
+		check_timer.stop()
+		checking = false
+		rest_timer.start(restTime)
+		resting = true
+	else:
+		check_timer.start(1)

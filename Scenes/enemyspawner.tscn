@@ -20,6 +20,8 @@ wait_time = 10.0
 [node name="RestTimer" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="CheckTimer" type="Timer" parent="."]
+
 [node name="Positions" type="Node3D" parent="."]
 
 [node name="Position1" type="Marker3D" parent="Positions"]
@@ -83,3 +85,4 @@ attenuation_model = 3
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]
+[connection signal="timeout" from="CheckTimer" to="." method="_on_check_timer_timeout"]

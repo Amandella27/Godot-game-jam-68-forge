@@ -6,7 +6,7 @@ var currentPlayer: Player
 var currentWeapon
 var menusOpen: bool
 var hud
-var current_heat: int
+var current_heat: int = 0
 var current_wave: int
 var input_mode: String ## Can be "Controller" or "Mouse"
 
