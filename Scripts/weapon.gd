@@ -24,7 +24,8 @@ func _on_area_entered(area):
 		sparks.emitting = true
 		
 func _input(event):
-	if event.is_action_pressed("debugattach"):
+	
+	if event.is_action_pressed("debugattach") and !OS.has_feature("web"):
 		add_sword()
 
 func add_sword(direction: String = "straight"):
