@@ -6,6 +6,7 @@ const SWORD_SPARKS = preload("res://Scenes/sword_sparks.tscn")
 @export var damage: int
 
 @onready var starting_sword: Sword = $StartingSword
+@onready var add_sword_audio = %AddSwordAudio
 
 
 
@@ -29,7 +30,7 @@ func _input(event):
 		add_sword()
 
 func add_sword(direction: String = "straight"):
-
+	add_sword_audio.play()
 	var new_sword = SWORD.instantiate()
 	add_child(new_sword)
 	if direction == "straight":

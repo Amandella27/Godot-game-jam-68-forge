@@ -104,7 +104,8 @@ volume_db = -5.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_8sp4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00443745, 0, -0.01438)
-restTime = 10
+waveTime = 10
+restTime = 5
 
 [node name="UIElements" type="Node" parent="."]
 process_mode = 3
