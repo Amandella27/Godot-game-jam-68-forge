@@ -647,6 +647,7 @@ animation = &"idleanimation"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_71a1s"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qxgrm"]
+graph_offset = Vector2(-48.4124, -12.9322)
 nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_hx5f4")
 nodes/BlendSpace2D/position = Vector2(-400, 280)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_y7saw")
@@ -702,12 +703,12 @@ bones/1/position = Vector3(0.0151737, 0.362649, 0.00380585)
 bones/1/rotation = Quaternion(0.286625, -0.0153368, -0.0281841, 0.957505)
 bones/2/rotation = Quaternion(0.0560478, -7.55213e-05, -0.000686424, 0.998428)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.0629719, -0.189058, 0.956863, -0.211437)
+bones/3/rotation = Quaternion(-0.0629104, -0.189068, 0.956866, -0.211433)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.356321, 0.00703063, 0.0351304, 0.933677)
-bones/6/rotation = Quaternion(0.0813715, -0.0999141, 0.96621, 0.223238)
+bones/4/rotation = Quaternion(0.356366, 0.0070305, 0.0351349, 0.933659)
+bones/6/rotation = Quaternion(0.0813152, -0.099928, 0.966214, 0.223232)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.303956, -0.00716978, -0.0299682, 0.952188)
+bones/7/rotation = Quaternion(0.304009, -0.00716965, -0.0299735, 0.95217)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.0589997, -0.194581, 0.977326, -0.0590795)
 bones/10/rotation = Quaternion(-0.204241, 0.00415017, -0.0750367, 0.976032)
@@ -729,7 +730,7 @@ bones/21/rotation = Quaternion(0.143178, 0.692459, -0.692459, -0.143178)
 bones/22/rotation = Quaternion(0.0617429, 0.704406, 0.704406, 0.0617429)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="dwarf/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.972232, -0.1517, -0.17819, 0.0368479, -0.851174, 0.523589, -0.231099, 0.502484, 0.833129, -0.802887, 0.0864585, -0.0350141)
+transform = Transform3D(-0.972217, -0.151729, -0.17825, 0.0368188, -0.851125, 0.52367, -0.231169, 0.502558, 0.833064, -0.802887, 0.0864759, -0.0350146)
 bone_name = "Hand.r"
 bone_idx = 8
 

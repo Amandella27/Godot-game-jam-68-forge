@@ -18,6 +18,7 @@ const GAMEOVER = preload("res://Scenes/UI/gameover.tscn")
 @onready var ms_up = %MSUp
 @onready var jump_up = %JumpUp
 @onready var hp_regen = %HPRegen
+@onready var ui_warn_center_2 = %UIWarnCenter2
 
 var health_color: Color = Color(0.38, 0.031, 0)
 var armor_color: Color = Color(0.769, 0.745, 0)
@@ -66,7 +67,7 @@ func update_heat(adjustment):
 	
 func armor_warning():
 	var warning = ARMORBROKEN.instantiate()
-	ui_warn_center.add_child((warning))
+	ui_warn_center_2.add_child((warning))
 	await get_tree().create_timer(3).timeout
 	warning.queue_free()
 
