@@ -3,6 +3,9 @@ extends Node3D
 signal spawn_enemy_defeated(heatvalue)
 
 const HANDATTACK = preload("res://Scenes/handattack.tscn")
+const LAVASLUG = preload("res://Scenes/lavaslug.tscn")
+const LAVA_BAT = preload("res://Scenes/lava_bat.tscn")
+const LAVA_HAND = preload("res://Scenes/lava_hand.tscn")
 
 @onready var spawn_timer = $SpawnTimer
 @onready var positions = $Positions
@@ -17,11 +20,11 @@ const HANDATTACK = preload("res://Scenes/handattack.tscn")
 @export var waveNumber: int = 1
 @export var waveTime: int = 30
 @export var restTime: int = 1
-@export var spawnableEnemies: Array[PackedScene]
+
+var spawnableEnemies: Array = [LAVASLUG,LAVA_BAT,LAVA_HAND]
 
 var currentEnemies: Array
 var currentSpawn: Array
-
 
 var spawnPositions: Array
 var enemy: Enemy
@@ -54,11 +57,14 @@ func spawn_enemies():
 				currentSpawn.append(enemy)
 
 func randomizePositions():
-	if waveNumber >= 1:
+	if waveNumber >= 5:
+		enemyRandomnessLevel = randi_range(0,2)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
+			if enemyRandomnessLevel == 2:
+				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
 	elif waveNumber >= 3:
@@ -69,16 +75,13 @@ func randomizePositions():
 			enemy.enemy_defeated.connect(enemy_defeated)
 		else:
 			skipSpawn = true
-	elif waveNumber >= 5:
-		enemyRandomnessLevel = randi_range(0,2)
+	elif waveNumber >= 1:
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
-			if enemyRandomnessLevel == 2:
-				enemy.hand_attack.connect(hand_attack)
-	else:
-		skipSpawn = true
+		else:
+			skipSpawn = true
 	
 func enemy_defeated(node,type,heatvalue):
 	if type == "LavaSlug":
@@ -96,11 +99,11 @@ func startWave():
 	checkEmptySpawn()
 
 func _on_wave_timer_timeout():
+	waveNumber += 1
+	Globals.current_wave = waveNumber
 	if currentEnemies.is_empty():
 		rest_timer.start(restTime)
 		resting = true
-	waveNumber += 1
-	Globals.current_wave = waveNumber
 	if spawnTimeDifficultyMod > .05:
 		spawnTimeDifficultyMod -= .05
 	spawnTimeMin = 7 * spawnTimeDifficultyMod

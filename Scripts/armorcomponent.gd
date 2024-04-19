@@ -34,14 +34,14 @@ func get_armor() -> int:
 func adjust_armor(adjustment: int):
 	
 	if adjustment > 0:
-		current_armor += adjustment
+		current_armor = clamp(current_armor+adjustment, 0, 100)
 		emit_signal("armor_changed", current_armor)
 	elif !invincible:
 
 		if actor.is_in_group("Player") and current_armor > 0:
 			invincible = true
 			#hurt_sound.play()
-			current_armor += adjustment
+			current_armor = clamp(current_armor+adjustment, 0, 100)
 			#damageIndicator()
 			emit_signal("armor_changed", current_armor)
 			if current_armor <= 0:

@@ -49,6 +49,7 @@ func _input(event):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		ui_elements.add_child(upgradeMenu)
 		upgradeMenu.used_heat.connect(update_heat_bar)
+		upgradeMenu.menu_not_enough_heat.connect(clear_not_enough_heat_warning)
 	elif event.is_action_pressed("use") and playerNearAnvil == true and upgradeMenu != null:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		upgradeMenu.queue_free()
@@ -98,10 +99,16 @@ func _on_hud_reset_game():
 	update_heat_bar(-150)
 	lava.get_overlapping_bodies()
 
-
 func _on_lava_body_entered(body):
 	if body == Globals.currentPlayer:
 		gameover()
 
 func _on_ambient_lava_finished():
 	ambient_lava.play()
+
+func clear_not_enough_heat_warning():
+	await get_tree().create_timer(3).timeout
+	var more_heat_needed_tween = create_tween()
+	var more_heat_needed_shadow_tween = create_tween()
+	more_heat_needed_tween.tween_property(hud.more_heat_needed.label_settings, "font_color", Color(1, 1, 1, 0), 1).set_ease(Tween.EASE_OUT).set_delay(3.0)
+	more_heat_needed_shadow_tween.tween_property(hud.more_heat_needed.label_settings, "shadow_color", Color(0, 0, 0, 0), .65).set_ease(Tween.EASE_OUT).set_delay(3.0)

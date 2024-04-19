@@ -1,15 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://2nqrxwumdvik"]
+[gd_scene load_steps=4 format=3 uid="uid://2nqrxwumdvik"]
 
 [ext_resource type="Script" path="res://Scripts/enemyspawner.gd" id="1_24oef"]
-[ext_resource type="PackedScene" uid="uid://clicowrhc21ve" path="res://Scenes/lavaslug.tscn" id="2_wbhoj"]
-[ext_resource type="PackedScene" uid="uid://dnwlwe11nwdnu" path="res://Scenes/lava_bat.tscn" id="3_mq4jc"]
-[ext_resource type="PackedScene" uid="uid://dv1hbai1h0o1d" path="res://Scenes/lava_hand.tscn" id="4_mqhfw"]
 [ext_resource type="AudioStream" uid="uid://ma87ix3wxexx" path="res://Assets/Sounds/slimejump-6913.mp3" id="5_w72mp"]
 [ext_resource type="AudioStream" uid="uid://w7gofjswwva3" path="res://Assets/Sounds/bat_01.mp3" id="6_rb11t"]
 
 [node name="EnemySpawner" type="Node3D"]
 script = ExtResource("1_24oef")
-spawnableEnemies = Array[PackedScene]([ExtResource("2_wbhoj"), ExtResource("3_mq4jc"), ExtResource("4_mqhfw")])
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 5.0

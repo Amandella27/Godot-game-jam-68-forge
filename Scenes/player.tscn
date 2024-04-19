@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://brmrk0ke8mxrc"]
+[gd_scene load_steps=33 format=3 uid="uid://brmrk0ke8mxrc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_3bkjk"]
 [ext_resource type="Script" path="res://Scripts/armorcomponent.gd" id="1_rqhxq"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://bloflu1blve71" path="res://Assets/Sounds/swing-whoosh-weapon-1-189819.mp3" id="11_jx4w5"]
 [ext_resource type="AudioStream" uid="uid://dtn2156tmq5u7" path="res://Assets/Sounds/swing-whoosh-4-198496.mp3" id="11_qau47"]
 [ext_resource type="Texture2D" uid="uid://cgtu6pb0s0oow" path="res://Assets/Eo_circle_yellow_white_letter-y.svg.png" id="14_qtu7n"]
+[ext_resource type="AudioStream" uid="uid://32xjjxlrbwjx" path="res://Assets/Sounds/weapons-smithing-42563.mp3" id="15_2t0hv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0h75s"]
 radius = 0.290192
@@ -699,16 +700,16 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 bones/0/rotation = Quaternion(-0.248614, 0.0140236, 0.0294315, 0.968054)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(0.0151737, 0.362649, 0.00380585)
+bones/1/position = Vector3(0.0110519, 0.290559, -0.0359351)
 bones/1/rotation = Quaternion(0.286625, -0.0153368, -0.0281841, 0.957505)
-bones/2/rotation = Quaternion(0.0560478, -7.55213e-05, -0.000686424, 0.998428)
+bones/2/rotation = Quaternion(0.125097, -0.000122905, -0.000679541, 0.992144)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.0629104, -0.189068, 0.956866, -0.211433)
+bones/3/rotation = Quaternion(-0.086341, -0.18478, 0.955531, -0.212984)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.356366, 0.0070305, 0.0351349, 0.933659)
-bones/6/rotation = Quaternion(0.0813152, -0.099928, 0.966214, 0.223232)
+bones/4/rotation = Quaternion(0.338667, 0.00708041, 0.0333899, 0.940287)
+bones/6/rotation = Quaternion(0.103006, -0.0941816, 0.964292, 0.225081)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.304009, -0.00716965, -0.0299735, 0.95217)
+bones/7/rotation = Quaternion(0.28259, -0.00721965, -0.0278616, 0.958809)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.0589997, -0.194581, 0.977326, -0.0590795)
 bones/10/rotation = Quaternion(-0.204241, 0.00415017, -0.0750367, 0.976032)
@@ -719,18 +720,18 @@ bones/13/rotation = Quaternion(-0.136175, -0.00420675, 0.0500295, 0.989412)
 bones/14/rotation = Quaternion(0.731685, 0.00250492, -0.0255557, 0.681159)
 bones/15/rotation = Quaternion(-0.0168485, 0.563089, 0.825436, -0.0360752)
 bones/15/scale = Vector3(1, 1, 0.999999)
-bones/16/position = Vector3(0.793629, 0.102895, -0.148919)
+bones/16/position = Vector3(0.793629, 0.0138854, -0.148919)
 bones/17/rotation = Quaternion(-0.143178, 0.692459, -0.692459, 0.143178)
 bones/18/rotation = Quaternion(-0.0617429, 0.704406, 0.704406, -0.0617429)
 bones/19/rotation = Quaternion(0.0434195, 0.621766, 0.78089, 0.041633)
 bones/19/scale = Vector3(1, 1, 1.00001)
-bones/20/position = Vector3(-0.802886, 0.0864758, -0.0350145)
+bones/20/position = Vector3(-0.802886, -0.00253417, -0.0350145)
 bones/20/rotation = Quaternion(0.167142, 0.687069, -0.687069, -0.167142)
 bones/21/rotation = Quaternion(0.143178, 0.692459, -0.692459, -0.143178)
 bones/22/rotation = Quaternion(0.0617429, 0.704406, 0.704406, 0.0617429)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="dwarf/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.972217, -0.151729, -0.17825, 0.0368188, -0.851125, 0.52367, -0.231169, 0.502558, 0.833064, -0.802887, 0.0864759, -0.0350146)
+transform = Transform3D(-0.977743, -0.141734, -0.154695, 0.0483045, -0.869581, 0.491422, -0.204171, 0.473011, 0.857073, -0.802886, -0.00253525, -0.0350145)
 bone_name = "Hand.r"
 bone_idx = 8
 
@@ -789,6 +790,12 @@ texture = ExtResource("14_qtu7n")
 
 [node name="RegenTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="AddSwordAudio" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("15_2t0hv")
+attenuation_model = 3
+volume_db = -5.0
 
 [connection signal="gameover" from="HealthComponent" to="." method="_on_health_component_gameover"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
