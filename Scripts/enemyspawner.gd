@@ -61,7 +61,7 @@ func randomizePositions():
 			enemy.enemy_defeated.connect(enemy_defeated)
 		else:
 			skipSpawn = true
-	if waveNumber >= 4:
+	elif waveNumber >= 3:
 		enemyRandomnessLevel = randi_range(0,1)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
@@ -69,7 +69,7 @@ func randomizePositions():
 			enemy.enemy_defeated.connect(enemy_defeated)
 		else:
 			skipSpawn = true
-	if waveNumber >= 7:
+	elif waveNumber >= 5:
 		enemyRandomnessLevel = randi_range(0,2)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
@@ -77,8 +77,8 @@ func randomizePositions():
 			enemy.enemy_defeated.connect(enemy_defeated)
 			if enemyRandomnessLevel == 2:
 				enemy.hand_attack.connect(hand_attack)
-		else:
-			skipSpawn = true
+	else:
+		skipSpawn = true
 	
 func enemy_defeated(node,type,heatvalue):
 	if type == "LavaSlug":
