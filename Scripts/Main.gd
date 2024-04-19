@@ -53,7 +53,7 @@ func _input(event):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		upgradeMenu.queue_free()
 
-	elif event.is_action_pressed("remove_enemies") and paused == null:
+	elif event.is_action_pressed("remove_enemies") and paused == null and !OS.has_feature("web"):
 		enemy_spawner.remove_enemies()
 
 func _on_anvil_near_anvil():

@@ -1,5 +1,7 @@
 extends Node
 
+const MAIN = preload("res://Scenes/main.tscn")
+
 var currentPlayer: Player
 var currentWeapon
 var menusOpen: bool
