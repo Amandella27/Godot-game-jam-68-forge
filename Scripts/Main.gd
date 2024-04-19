@@ -43,7 +43,6 @@ func _input(event):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		paused = PAUSEMENU.instantiate()
 		ui_elements.add_child(paused)
-		
 	elif event.is_action_pressed("use") and playerNearAnvil == true and upgradeMenu == null:
 		upgradeMenu = UPGRADEMENU.instantiate()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -52,7 +51,6 @@ func _input(event):
 	elif event.is_action_pressed("use") and playerNearAnvil == true and upgradeMenu != null:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		upgradeMenu.queue_free()
-
 	elif event.is_action_pressed("remove_enemies") and paused == null and !OS.has_feature("web"):
 		enemy_spawner.remove_enemies()
 
@@ -72,7 +70,8 @@ func _on_anvil_left_anvil():
 
 	if upgradeMenu != null:
 		upgradeMenu.queue_free()
-
+	
+	
 func update_health_bar(new_value):
 	hud.update_health(new_value)
 
@@ -97,7 +96,6 @@ func _on_hud_reset_game():
 	spawn_player(playerSpawnLocation)
 	update_heat_bar(-150)
 	lava.get_overlapping_bodies()
-
 
 func _on_lava_body_entered(body):
 	if body == Globals.currentPlayer:

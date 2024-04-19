@@ -29,7 +29,7 @@ var skipSpawn: bool = false
 var resting: bool = false
 var checking: bool = false
 
-var enemyRandomnessLevel = randi_range(0,0)
+var enemyRandomnessLevel = 2
 var spawnRandomnessLevel: float = 5
 var spawnTimeMin: float = 7
 var spawnTimeMax: float = 7
@@ -54,22 +54,8 @@ func spawn_enemies():
 				currentSpawn.append(enemy)
 
 func randomizePositions():
-	if waveNumber >= 1:
-		var randomSpawns = randf_range(1,10)
-		if randomSpawns >= spawnRandomnessLevel:
-			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
-			enemy.enemy_defeated.connect(enemy_defeated)
-		else:
-			skipSpawn = true
-	elif waveNumber >= 3:
-		enemyRandomnessLevel = randi_range(0,1)
-		var randomSpawns = randf_range(1,10)
-		if randomSpawns >= spawnRandomnessLevel:
-			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
-			enemy.enemy_defeated.connect(enemy_defeated)
-		else:
-			skipSpawn = true
-	elif waveNumber >= 5:
+	
+	if waveNumber >= 5:
 		enemyRandomnessLevel = randi_range(0,2)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
@@ -77,8 +63,24 @@ func randomizePositions():
 			enemy.enemy_defeated.connect(enemy_defeated)
 			if enemyRandomnessLevel == 2:
 				enemy.hand_attack.connect(hand_attack)
-	else:
-		skipSpawn = true
+	elif waveNumber >= 3:
+		enemyRandomnessLevel = randi_range(0,2)
+		var randomSpawns = randf_range(1,10)
+		if randomSpawns >= spawnRandomnessLevel:
+			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
+			enemy.enemy_defeated.connect(enemy_defeated)
+			if enemyRandomnessLevel == 2:
+				enemy.hand_attack.connect(hand_attack)
+	elif waveNumber >= 1:
+		enemyRandomnessLevel = randi_range(0,2)
+		var randomSpawns = randf_range(1,10)
+		if randomSpawns >= spawnRandomnessLevel:
+			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
+			enemy.enemy_defeated.connect(enemy_defeated)
+			if enemyRandomnessLevel == 2:
+				enemy.hand_attack.connect(hand_attack)
+		else:
+			skipSpawn = true
 	
 func enemy_defeated(node,type,heatvalue):
 	if type == "LavaSlug":
@@ -125,7 +127,7 @@ func _on_rest_timer_timeout():
 func reset_spawner():
 	waveNumber = 1
 	resting = false
-	enemyRandomnessLevel = randi_range(0,0)
+	enemyRandomnessLevel = 0
 	spawnRandomnessLevel = 5
 	spawnTimeMin = 7
 	spawnTimeMax = 7
@@ -138,6 +140,7 @@ func remove_enemies():
 			spawn.queue_free()
 
 func hand_attack(location):
+	print("test")
 	var attack = HANDATTACK.instantiate()
 	add_child(attack)
 	attack.global_position = location

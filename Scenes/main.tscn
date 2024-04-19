@@ -58,9 +58,9 @@ sides = 32
 material = SubResource("StandardMaterial3D_rm8d5")
 
 [node name="OuterRing2" type="CSGCylinder3D" parent="World/Arena"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.90622, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.24649, 0)
 radius = 14.3049
-height = 8.60993
+height = 16.5262
 sides = 32
 material = SubResource("StandardMaterial3D_rm8d5")
 
