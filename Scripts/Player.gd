@@ -133,7 +133,7 @@ func _on_health_component_health_changed(new_health):
 	
 func _on_armor_component_armor_changed(new_armor):
 	player_armor_changed.emit(new_armor)
-	
+
 func end_attack():
 	weapon.monitoring = false
 	attack_available = true

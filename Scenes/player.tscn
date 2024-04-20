@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://brmrk0ke8mxrc"]
+[gd_scene load_steps=41 format=3 uid="uid://brmrk0ke8mxrc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_3bkjk"]
 [ext_resource type="Script" path="res://Scripts/armorcomponent.gd" id="1_rqhxq"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://32xjjxlrbwjx" path="res://Assets/Sounds/weapons-smithing-42563.mp3" id="13_tcoyn"]
 [ext_resource type="Animation" uid="uid://kh727tcc050a" path="res://Animations/jumpnimationdwarf.res" id="14_px8qb"]
 [ext_resource type="Texture2D" uid="uid://cgtu6pb0s0oow" path="res://Assets/Eo_circle_yellow_white_letter-y.svg.png" id="14_qtu7n"]
+[ext_resource type="AudioStream" uid="uid://1sw1ac0x725u" path="res://Assets/Sounds/dwarfpain.mp3" id="19_43y6t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0h75s"]
 radius = 0.290192
@@ -812,16 +813,16 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 bones/0/position = Vector3(0.00801672, -0.153321, 0.131178)
 bones/0/rotation = Quaternion(-0.248614, 0.0140236, 0.0294315, 0.968054)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(0.0123498, 0.31326, -0.023421)
+bones/1/position = Vector3(0.0107771, 0.285754, -0.0385843)
 bones/1/rotation = Quaternion(0.286625, -0.0153368, -0.0281841, 0.957505)
-bones/2/rotation = Quaternion(0.103403, -0.000108037, -0.000682063, 0.994639)
+bones/2/rotation = Quaternion(0.12968, -0.000126043, -0.000678966, 0.991556)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.0790124, -0.186208, 0.955984, -0.212552)
+bones/3/rotation = Quaternion(-0.0878865, -0.184468, 0.955431, -0.213069)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.344354, 0.00706467, 0.0339505, 0.938199)
-bones/6/rotation = Quaternion(0.0961596, -0.0960842, 0.964934, 0.224553)
+bones/4/rotation = Quaternion(0.337449, 0.00708374, 0.0332698, 0.940729)
+bones/6/rotation = Quaternion(0.104457, -0.0937672, 0.964151, 0.225186)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.289523, -0.00720392, -0.0285452, 0.956718)
+bones/7/rotation = Quaternion(0.281098, -0.00722298, -0.0277146, 0.959252)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.0589997, -0.194581, 0.977326, -0.0590795)
 bones/10/rotation = Quaternion(-0.204241, 0.00415017, -0.0750367, 0.976032)
@@ -832,18 +833,18 @@ bones/13/rotation = Quaternion(-0.136175, -0.00420675, 0.0500295, 0.989412)
 bones/14/rotation = Quaternion(0.731685, 0.00250492, -0.0255557, 0.681159)
 bones/15/rotation = Quaternion(-0.0168485, 0.563089, 0.825436, -0.0360752)
 bones/15/scale = Vector3(1, 1, 0.999999)
-bones/16/position = Vector3(0.793629, 0.0419139, -0.148919)
+bones/16/position = Vector3(0.793629, 0.00795171, -0.148919)
 bones/17/rotation = Quaternion(-0.143178, 0.692459, -0.692459, 0.143178)
 bones/18/rotation = Quaternion(-0.0617429, 0.704406, 0.704406, -0.0617429)
 bones/19/rotation = Quaternion(0.0434195, 0.621766, 0.78089, 0.041633)
 bones/19/scale = Vector3(1, 1, 1.00001)
-bones/20/position = Vector3(-0.802886, 0.0254944, -0.0350145)
+bones/20/position = Vector3(-0.802886, -0.00846782, -0.0350145)
 bones/20/rotation = Quaternion(0.167142, 0.687069, -0.687069, -0.167142)
 bones/21/rotation = Quaternion(0.143178, 0.692459, -0.692459, -0.143178)
 bones/22/rotation = Quaternion(0.0617429, 0.704406, 0.704406, 0.0617429)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="dwarf/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.976104, -0.144634, -0.162176, 0.0446313, -0.863843, 0.501779, -0.212669, 0.482551, 0.849656, -0.802885, 0.0254925, -0.035014)
+transform = Transform3D(-0.978077, -0.141151, -0.153104, 0.0490893, -0.870787, 0.489204, -0.202373, 0.470963, 0.858626, -0.802886, -0.00846863, -0.035014)
 bone_name = "Hand.r"
 bone_idx = 8
 
@@ -916,6 +917,17 @@ texture = ExtResource("14_qtu7n")
 wait_time = 2.0
 
 [node name="ThornsCooldownTimer" type="Timer" parent="."]
+
+[node name="PlayerPainSound" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("19_43y6t")
+attenuation_model = 3
+volume_db = -8.0
+
+[node name="PainSoundCD" type="Timer" parent="PlayerPainSound"]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
 
 [connection signal="gameover" from="HealthComponent" to="." method="_on_health_component_gameover"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
