@@ -23,7 +23,7 @@ const LAVA_HAND = preload("res://Scenes/lava_hand.tscn")
 @export var waveTime: int = 30
 @export var restTime: int = 10
 
-var spawnableEnemies: Array = [LAVASLUG,LAVASLUG,LAVA_BAT,LAVA_BAT,LAVA_HAND]
+var spawnableEnemies: Array = [LAVASLUG,LAVASLUG,LAVASLUG,LAVA_BAT,LAVA_BAT,LAVA_BAT,LAVA_HAND]
 
 var currentEnemies: Array
 var currentSpawn: Array
@@ -35,7 +35,7 @@ var resting: bool = false
 var checking: bool = false
 
 var enemyRandomnessLevel
-var spawnRandomnessLevel: float = 5
+var spawnRandomnessLevel: float = 6
 var spawnTimeMin: float = 7
 var spawnTimeMax: float = 7
 var spawnTimeDifficultyMod: float = 1
@@ -61,23 +61,23 @@ func spawn_enemies():
 func randomizePositions():
 
 	if waveNumber >= 5:
-		enemyRandomnessLevel = randi_range(0,4)
+		enemyRandomnessLevel = randi_range(0,6)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
-			if enemyRandomnessLevel == 4:
+			if enemyRandomnessLevel == 6:
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
 			
 	elif waveNumber >= 3:
-		enemyRandomnessLevel = randi_range(0,2)
+		enemyRandomnessLevel = randi_range(0,5)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
-			if enemyRandomnessLevel == 4:
+			if enemyRandomnessLevel == 6:
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
@@ -88,7 +88,7 @@ func randomizePositions():
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
-			if enemyRandomnessLevel == 4:
+			if enemyRandomnessLevel == 6:
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
@@ -180,7 +180,6 @@ func _on_check_timer_timeout():
 		rest_timer.start(restTime)
 		resting = true
 		Globals.regen_active = true
-		Globals.currentPlayer.regen_timer.start(2)
 	else:
 		check_timer.start(1)
 		Globals.regen_active = false

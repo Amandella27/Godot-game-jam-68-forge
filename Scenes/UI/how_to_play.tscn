@@ -61,7 +61,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 21
-text = "You are Lergin, the master sword forger. It's your main skill. It's actually you're only skill... but you're really really good at it! The dwarven kingdom has ordered you to forge the best sword in the heart of Ulthaki Volcano.
+text = "You are Lergin, the master sword forger. It's your main skill. It's actually your only skill... but you're really really good at it! The dwarven kingdom has ordered you to forge the best sword in the heart of Ulthaki Volcano.
 
 Press left click to horizontal attack and right click to vertical attack.
 Press W, A, S, D to move and Tab to pause.

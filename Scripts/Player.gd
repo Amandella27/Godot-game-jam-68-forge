@@ -166,4 +166,4 @@ func checkHeatBuffs():
 			regen_timer.start(2)
 		
 func heat_health_regen():
-	health_component.adjust_health(1)
+	health_component.adjust_health(2)

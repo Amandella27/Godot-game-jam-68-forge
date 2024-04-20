@@ -11,6 +11,7 @@ const UPGRADEMENU = preload("res://Scenes/UI/upgrademenu.tscn")
 @onready var lava = $World/volcanopit/Lava
 @onready var ambient_lava = $World/AmbientLava
 @onready var background_music = $BackgroundMusic
+@onready var game_over_audio = $GameOverAudio
 
 var paused = null
 var upgradeMenu
@@ -90,6 +91,7 @@ func armor_broken_warning():
 
 func gameover():
 	hud.gameover()
+	game_over_audio.play()
 
 func _on_hud_reset_game():
 	Globals.reset_globals()
