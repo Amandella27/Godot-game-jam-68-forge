@@ -150,7 +150,6 @@ func remove_enemies():
 			spawn.queue_free()
 
 func hand_attack(location):
-	print("test")
 	var attack = HANDATTACK.instantiate()
 	add_child(attack)
 	attack.global_position = location

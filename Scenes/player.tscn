@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://brmrk0ke8mxrc"]
+[gd_scene load_steps=40 format=3 uid="uid://brmrk0ke8mxrc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_3bkjk"]
 [ext_resource type="Script" path="res://Scripts/armorcomponent.gd" id="1_rqhxq"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://dtn2156tmq5u7" path="res://Assets/Sounds/swing-whoosh-4-198496.mp3" id="11_qau47"]
 [ext_resource type="Animation" uid="uid://cxh8lx4arlp0o" path="res://Animations/Vattackanimationdwarf.res" id="12_ltg50"]
 [ext_resource type="AudioStream" uid="uid://32xjjxlrbwjx" path="res://Assets/Sounds/weapons-smithing-42563.mp3" id="13_tcoyn"]
+[ext_resource type="Animation" uid="uid://kh727tcc050a" path="res://Animations/jumpnimationdwarf.res" id="14_px8qb"]
 [ext_resource type="Texture2D" uid="uid://cgtu6pb0s0oow" path="res://Assets/Eo_circle_yellow_white_letter-y.svg.png" id="14_qtu7n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0h75s"]
@@ -26,7 +27,7 @@ height = 1.37845
 radius = 0.420581
 height = 1.44748
 
-[sub_resource type="Animation" id="Animation_7v4dd"]
+[sub_resource type="Animation" id="Animation_qyhnh"]
 resource_name = "idleanimation-loop"
 length = 1.04167
 loop_mode = 1
@@ -192,7 +193,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.731685, 0.00250492, -0.0255557, 0.681159)
 
-[sub_resource type="Animation" id="Animation_pdeol"]
+[sub_resource type="Animation" id="Animation_pfuv2"]
 resource_name = "runbackanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -358,7 +359,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="Animation" id="Animation_octc7"]
+[sub_resource type="Animation" id="Animation_6pggv"]
 resource_name = "runforwardanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -524,7 +525,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="Animation" id="Animation_fpmhi"]
+[sub_resource type="Animation" id="Animation_eu8du"]
 resource_name = "runleftanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -690,14 +691,15 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3wrdi"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ncsjn"]
 _data = {
 "Vattackanimation": ExtResource("12_ltg50"),
 "attackanimation": ExtResource("8_ygyyq"),
-"idleanimation": SubResource("Animation_7v4dd"),
-"runbackanimation": SubResource("Animation_pdeol"),
-"runforwardanimation": SubResource("Animation_octc7"),
-"runleftanimation": SubResource("Animation_fpmhi")
+"idleanimation": SubResource("Animation_qyhnh"),
+"jumpanimation": ExtResource("14_px8qb"),
+"runbackanimation": SubResource("Animation_pfuv2"),
+"runforwardanimation": SubResource("Animation_6pggv"),
+"runleftanimation": SubResource("Animation_eu8du")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ifqut"]
@@ -722,6 +724,8 @@ blend_point_2/pos = Vector2(0, 1.1)
 blend_point_3/node = SubResource("AnimationNodeAnimation_4kvns")
 blend_point_3/pos = Vector2(0, -1)
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3j16s"]
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_y7saw"]
 filter_enabled = true
 filters = ["..", "Armature/Skeleton3D:Body", "Armature/Skeleton3D:Hand.l", "Armature/Skeleton3D:Hand.r", "Armature/Skeleton3D:Head", "Armature/Skeleton3D:LowerArm.l", "Armature/Skeleton3D:LowerArm.r", "Armature/Skeleton3D:MainBone", "Armature/Skeleton3D:UpperArm.l", "Armature/Skeleton3D:UpperArm.r"]
@@ -739,26 +743,33 @@ animation = &"attackanimation"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xcigi"]
 animation = &"idleanimation"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cj04m"]
+animation = &"jumpanimation"
+
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_71a1s"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qxgrm"]
-graph_offset = Vector2(-733.064, -58.3606)
+graph_offset = Vector2(-428.942, -42.7355)
 nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_hx5f4")
-nodes/BlendSpace2D/position = Vector2(-400, 280)
+nodes/BlendSpace2D/position = Vector2(-240, 300)
+nodes/JumpOneShot/node = SubResource("AnimationNodeOneShot_3j16s")
+nodes/JumpOneShot/position = Vector2(440, 120)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_y7saw")
-nodes/OneShot/position = Vector2(360, 80)
+nodes/OneShot/position = Vector2(700, -40)
 nodes/OneShot2/node = SubResource("AnimationNodeOneShot_fml2j")
-nodes/OneShot2/position = Vector2(620, 160)
+nodes/OneShot2/position = Vector2(1060, 100)
 nodes/Vattackanimation/node = SubResource("AnimationNodeAnimation_1s6jh")
-nodes/Vattackanimation/position = Vector2(120, 560)
+nodes/Vattackanimation/position = Vector2(780, 360)
 nodes/attackanimation/node = SubResource("AnimationNodeAnimation_61jxq")
-nodes/attackanimation/position = Vector2(-80, 400)
+nodes/attackanimation/position = Vector2(360, 420)
 nodes/idleanimation/node = SubResource("AnimationNodeAnimation_xcigi")
-nodes/idleanimation/position = Vector2(-400, 60)
-nodes/output/position = Vector2(900, 140)
+nodes/idleanimation/position = Vector2(-360, 80)
+nodes/jumpAnimation/node = SubResource("AnimationNodeAnimation_cj04m")
+nodes/jumpAnimation/position = Vector2(100, 320)
+nodes/output/position = Vector2(1340, 20)
 nodes/runblend/node = SubResource("AnimationNodeBlend2_71a1s")
-nodes/runblend/position = Vector2(40, 140)
-node_connections = [&"OneShot", 0, &"runblend", &"OneShot", 1, &"attackanimation", &"OneShot2", 0, &"OneShot", &"OneShot2", 1, &"Vattackanimation", &"output", 0, &"OneShot2", &"runblend", 0, &"idleanimation", &"runblend", 1, &"BlendSpace2D"]
+nodes/runblend/position = Vector2(60, 0)
+node_connections = [&"JumpOneShot", 0, &"runblend", &"JumpOneShot", 1, &"jumpAnimation", &"OneShot", 0, &"JumpOneShot", &"OneShot", 1, &"attackanimation", &"OneShot2", 0, &"OneShot", &"OneShot2", 1, &"Vattackanimation", &"output", 0, &"OneShot2", &"runblend", 0, &"idleanimation", &"runblend", 1, &"BlendSpace2D"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("swordSounds") groups=["Player"]]
 collision_mask = 6
@@ -798,18 +809,19 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="dwarf/Armature" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+bones/0/position = Vector3(0.00801672, -0.153321, 0.131178)
 bones/0/rotation = Quaternion(-0.248614, 0.0140236, 0.0294315, 0.968054)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(0.0139506, 0.341258, -0.00798652)
+bones/1/position = Vector3(0.0110178, 0.289963, -0.0362637)
 bones/1/rotation = Quaternion(0.286625, -0.0153368, -0.0281841, 0.957505)
-bones/2/rotation = Quaternion(0.076571, -8.96233e-05, -0.000684726, 0.997064)
+bones/2/rotation = Quaternion(0.125666, -0.000123294, -0.000679471, 0.992072)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.0699099, -0.18787, 0.956502, -0.211947)
+bones/3/rotation = Quaternion(-0.0865327, -0.184741, 0.955519, -0.212995)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.351222, 0.00704531, 0.0346277, 0.935625)
-bones/6/rotation = Quaternion(0.0877357, -0.0983105, 0.965679, 0.223833)
+bones/4/rotation = Quaternion(0.338516, 0.00708083, 0.033375, 0.940342)
+bones/6/rotation = Quaternion(0.103186, -0.0941301, 0.964274, 0.225094)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.29783, -0.0071845, -0.0293643, 0.95414)
+bones/7/rotation = Quaternion(0.282404, -0.00722006, -0.0278434, 0.958864)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.0589997, -0.194581, 0.977326, -0.0590795)
 bones/10/rotation = Quaternion(-0.204241, 0.00415017, -0.0750367, 0.976032)
@@ -820,18 +832,18 @@ bones/13/rotation = Quaternion(-0.136175, -0.00420675, 0.0500295, 0.989412)
 bones/14/rotation = Quaternion(0.731685, 0.00250492, -0.0255557, 0.681159)
 bones/15/rotation = Quaternion(-0.0168485, 0.563089, 0.825436, -0.0360752)
 bones/15/scale = Vector3(1, 1, 0.999999)
-bones/16/position = Vector3(0.793629, 0.0764833, -0.148919)
+bones/16/position = Vector3(0.793629, 0.0131493, -0.148919)
 bones/17/rotation = Quaternion(-0.143178, 0.692459, -0.692459, 0.143178)
 bones/18/rotation = Quaternion(-0.0617429, 0.704406, 0.704406, -0.0617429)
 bones/19/rotation = Quaternion(0.0434195, 0.621766, 0.78089, 0.041633)
 bones/19/scale = Vector3(1, 1, 1.00001)
-bones/20/position = Vector3(-0.802886, 0.0600638, -0.0350145)
+bones/20/position = Vector3(-0.802886, -0.00327027, -0.0350145)
 bones/20/rotation = Quaternion(0.167142, 0.687069, -0.687069, -0.167142)
 bones/21/rotation = Quaternion(0.143178, 0.692459, -0.692459, -0.143178)
 bones/22/rotation = Quaternion(0.0617429, 0.704406, 0.704406, 0.0617429)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="dwarf/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.973954, -0.148529, -0.171326, 0.0401755, -0.856672, 0.514294, -0.223158, 0.494015, 0.840327, -0.802886, 0.0600625, -0.0350145)
+transform = Transform3D(-0.977784, -0.141661, -0.154498, 0.0484018, -0.869731, 0.491146, -0.203948, 0.472757, 0.857266, -0.802886, -0.00327143, -0.0350141)
 bone_name = "Hand.r"
 bone_idx = 8
 
@@ -871,11 +883,14 @@ autoplay = "idleanimation"
 root_node = NodePath("../dwarf")
 root_motion_track = NodePath("Armature/Skeleton3D:MainBone")
 libraries = {
-"": SubResource("AnimationLibrary_3wrdi")
+"": SubResource("AnimationLibrary_ncsjn")
 }
 tree_root = SubResource("AnimationNodeBlendTree_qxgrm")
 anim_player = NodePath("../dwarf/AnimationPlayer")
 parameters/BlendSpace2D/blend_position = Vector2(0, 0)
+parameters/JumpOneShot/active = false
+parameters/JumpOneShot/internal_active = false
+parameters/JumpOneShot/request = 0
 parameters/OneShot/active = false
 parameters/OneShot/internal_active = false
 parameters/OneShot/request = 0

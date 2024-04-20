@@ -92,7 +92,7 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
-			jump()
+			animation_tree["parameters/JumpOneShot/request"] = 1
 		else:
 			jump_buffer = true
 			get_tree().create_timer(jump_buffer_timer).timeout.connect(on_jump_buffer_timeout)
@@ -138,7 +138,6 @@ func _on_armor_component_armor_changed(new_armor):
 func end_attack():
 	weapon.monitoring = false
 	attack_available = true
-	print("test")
 
 func _on_armor_component_armor_broken():
 	player_armor_broken.emit()
