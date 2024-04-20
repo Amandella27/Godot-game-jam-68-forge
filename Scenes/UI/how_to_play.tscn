@@ -38,6 +38,7 @@ theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 15
 
 [node name="X How to Play" type="Button" parent="MainPanel/MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 8

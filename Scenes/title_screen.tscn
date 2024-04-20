@@ -67,6 +67,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_vertical = 4
+focus_neighbor_right = NodePath("../HowToPlayButton")
 theme = ExtResource("4_6ckig")
 theme_override_fonts/font = ExtResource("3_qc2e1")
 theme_override_font_sizes/font_size = 22
@@ -89,13 +90,14 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../PlayButton")
 theme = ExtResource("4_6ckig")
 theme_override_fonts/font = ExtResource("3_qc2e1")
 theme_override_font_sizes/font_size = 22
 text = "
 "
 
-[node name="Play" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/HowToPlayButton"]
+[node name="How to Play" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/HowToPlayButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -120,5 +122,7 @@ layout_mode = 1
 
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
+[connection signal="closed" from="How to Play" to="." method="_on_how_to_play_closed"]
+[connection signal="visibility_changed" from="How to Play" to="How to Play" method="_on_visibility_changed"]
 
 [editable path="How to Play"]

@@ -27,7 +27,7 @@ height = 1.37845
 radius = 0.420581
 height = 1.44748
 
-[sub_resource type="Animation" id="Animation_hj5y8"]
+[sub_resource type="Animation" id="Animation_qyhnh"]
 resource_name = "idleanimation-loop"
 length = 1.04167
 loop_mode = 1
@@ -193,7 +193,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.731685, 0.00250492, -0.0255557, 0.681159)
 
-[sub_resource type="Animation" id="Animation_ag314"]
+[sub_resource type="Animation" id="Animation_pfuv2"]
 resource_name = "runbackanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -359,7 +359,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="Animation" id="Animation_700re"]
+[sub_resource type="Animation" id="Animation_6pggv"]
 resource_name = "runforwardanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -525,7 +525,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="Animation" id="Animation_0ryvp"]
+[sub_resource type="Animation" id="Animation_eu8du"]
 resource_name = "runleftanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -691,15 +691,15 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2afh6"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ncsjn"]
 _data = {
 "Vattackanimation": ExtResource("12_ltg50"),
 "attackanimation": ExtResource("8_ygyyq"),
-"idleanimation": SubResource("Animation_hj5y8"),
+"idleanimation": SubResource("Animation_qyhnh"),
 "jumpanimation": ExtResource("14_px8qb"),
-"runbackanimation": SubResource("Animation_ag314"),
-"runforwardanimation": SubResource("Animation_700re"),
-"runleftanimation": SubResource("Animation_0ryvp")
+"runbackanimation": SubResource("Animation_pfuv2"),
+"runforwardanimation": SubResource("Animation_6pggv"),
+"runleftanimation": SubResource("Animation_eu8du")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ifqut"]
@@ -812,16 +812,16 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 bones/0/position = Vector3(0.00801672, -0.153321, 0.131178)
 bones/0/rotation = Quaternion(-0.248614, 0.0140236, 0.0294315, 0.968054)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(0.0145402, 0.351569, -0.00230257)
+bones/1/position = Vector3(0.0105524, 0.281824, -0.0407507)
 bones/1/rotation = Quaternion(0.286625, -0.0153368, -0.0281841, 0.957505)
-bones/2/rotation = Quaternion(0.0666795, -8.28289e-05, -0.000685581, 0.997774)
+bones/2/rotation = Quaternion(0.133424, -0.000128606, -0.000678485, 0.991059)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.0665407, -0.188454, 0.956681, -0.211705)
+bones/3/rotation = Quaternion(-0.0890666, -0.184228, 0.955354, -0.213133)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.353712, 0.00703819, 0.0348732, 0.934678)
-bones/6/rotation = Quaternion(0.0846393, -0.0990987, 0.965941, 0.223548)
+bones/4/rotation = Quaternion(0.336675, 0.00708585, 0.0331935, 0.941009)
+bones/6/rotation = Quaternion(0.105566, -0.0934477, 0.964043, 0.225265)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.300826, -0.00717734, -0.0296596, 0.953191)
+bones/7/rotation = Quaternion(0.279952, -0.00722554, -0.0276016, 0.95959)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.0589997, -0.194581, 0.977326, -0.0590795)
 bones/10/rotation = Quaternion(-0.204241, 0.00415017, -0.0750367, 0.976032)
@@ -832,18 +832,18 @@ bones/13/rotation = Quaternion(-0.136175, -0.00420675, 0.0500295, 0.989412)
 bones/14/rotation = Quaternion(0.731685, 0.00250492, -0.0255557, 0.681159)
 bones/15/rotation = Quaternion(-0.0168485, 0.563089, 0.825436, -0.0360752)
 bones/15/scale = Vector3(1, 1, 0.999999)
-bones/16/position = Vector3(0.793629, 0.0892139, -0.148919)
+bones/16/position = Vector3(0.793629, 0.00309964, -0.148919)
 bones/17/rotation = Quaternion(-0.143178, 0.692459, -0.692459, 0.143178)
 bones/18/rotation = Quaternion(-0.0617429, 0.704406, 0.704406, -0.0617429)
 bones/19/rotation = Quaternion(0.0434195, 0.621766, 0.78089, 0.041633)
 bones/19/scale = Vector3(1, 1, 1.00001)
-bones/20/position = Vector3(-0.802886, 0.0727944, -0.0350145)
+bones/20/position = Vector3(-0.802886, -0.0133199, -0.0350145)
 bones/20/rotation = Quaternion(0.167142, 0.687069, -0.687069, -0.167142)
 bones/21/rotation = Quaternion(0.143178, 0.692459, -0.692459, -0.143178)
 bones/22/rotation = Quaternion(0.0617429, 0.704406, 0.704406, 0.0617429)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="dwarf/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.973127, -0.150047, -0.174672, 0.0385516, -0.854006, 0.518832, -0.22702, 0.498156, 0.836841, -0.802885, 0.0727931, -0.0350143)
+transform = Transform3D(-0.97833, -0.140713, -0.151887, 0.0496914, -0.871706, 0.487503, -0.200999, 0.469391, 0.859809, -0.802887, -0.0132969, -0.0350141)
 bone_name = "Hand.r"
 bone_idx = 8
 
@@ -883,7 +883,7 @@ autoplay = "idleanimation"
 root_node = NodePath("../dwarf")
 root_motion_track = NodePath("Armature/Skeleton3D:MainBone")
 libraries = {
-"": SubResource("AnimationLibrary_2afh6")
+"": SubResource("AnimationLibrary_ncsjn")
 }
 tree_root = SubResource("AnimationNodeBlendTree_qxgrm")
 anim_player = NodePath("../dwarf/AnimationPlayer")

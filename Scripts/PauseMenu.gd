@@ -31,3 +31,7 @@ func resume_game():
 	if Globals.menusOpen == false:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	queue_free()
+
+
+func _on_how_to_play_closed():
+	how_to_play.grab_focus()
