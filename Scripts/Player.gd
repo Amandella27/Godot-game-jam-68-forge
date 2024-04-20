@@ -38,6 +38,7 @@ var SPEED = 5.0
 
 var attack_available:bool = true
 var jump_buffer: bool = false
+var regen_active: bool = false
 
 func _ready():
 
@@ -133,7 +134,7 @@ func _on_health_component_health_changed(new_health):
 	
 func _on_armor_component_armor_changed(new_armor):
 	player_armor_changed.emit(new_armor)
-
+	
 func end_attack():
 	weapon.monitoring = false
 	attack_available = true
@@ -149,21 +150,22 @@ func checkHeatBuffs():
 	if Globals.current_heat >= 0 and Globals.current_heat < 50:
 		SPEED = 5
 		JUMP_VELOCITY = 4.5
-		Globals.regen_active = false
+		regen_active = false
 		regen_timer.stop()
 	elif Globals.current_heat >= 50 and Globals.current_heat < 100:
 		SPEED = 7
 		JUMP_VELOCITY = 4.5
-		Globals.regen_active = false
+		regen_active = false
 		regen_timer.stop()
 	elif Globals.current_heat >= 100 and Globals.current_heat < 150:
 		SPEED = 7
 		JUMP_VELOCITY = 6
-		Globals.regen_active = false
+		regen_active = false
 		regen_timer.stop()
 	elif Globals.current_heat == 150:
-		if !Globals.regen_active:
+		if !regen_active:
 			regen_timer.start(2)
 		
 func heat_health_regen():
+	regen_active = true
 	health_component.adjust_health(1)

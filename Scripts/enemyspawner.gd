@@ -14,7 +14,6 @@ const LAVA_HAND = preload("res://Scenes/lava_hand.tscn")
 @onready var check_timer = $CheckTimer
 @onready var snail_death = $SoundEffects/SnailDeath
 @onready var bat_death = $SoundEffects/BatDeath
-@onready var hand_death = $SoundEffects/HandDeath
 @onready var enemy_projectiles = $EnemyProjectiles
 
 
@@ -96,10 +95,8 @@ func randomizePositions():
 func enemy_defeated(node,type,heatvalue):
 	if type == "LavaSlug":
 		snail_death.play()
-	elif type == "LavaBat":
+	if type == "LavaBat":
 		bat_death.play()
-	elif type == "LavaHand":
-		hand_death.play()
 	spawn_enemy_defeated.emit(heatvalue)
 	currentEnemies.erase(node)
 
@@ -179,12 +176,10 @@ func _on_check_timer_timeout():
 		checking = false
 		rest_timer.start(restTime)
 		resting = true
-		Globals.regen_active = true
-		Globals.currentPlayer.regen_timer.start(2)
+		Globals.currentPlayer.regen_active = true
 	else:
 		check_timer.start(1)
-		Globals.regen_active = false
-		Globals.currentPlayer.regen_timer.stop()
+		Globals.currentPlayer.regen_active = false
 		
 func clear_projectiles():
 	var currentProjectiles = enemy_projectiles.get_children()

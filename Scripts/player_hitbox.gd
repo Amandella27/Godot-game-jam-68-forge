@@ -3,8 +3,6 @@ extends HitboxComponent
 class_name PlayerHitbox
 
 @onready var thorns_cooldown_timer = $"../ThornsCooldownTimer"
-@onready var player_pain_sound = %PlayerPainSound
-@onready var pain_sound_cd = %PainSoundCD
 
 const ARMOR = preload("res://Assets/Armor.tres")
 const HAIR = preload("res://Assets/Hair.tres")
@@ -32,10 +30,6 @@ func take_damage(amount):
 	
 	if get_parent() is Player:
 		damageIndicator()
-		print(pain_sound_cd.time_left)
-		if pain_sound_cd.time_left == 0:
-			player_pain_sound.play()
-			pain_sound_cd.start(2)
  
 func damageIndicator():
 	
