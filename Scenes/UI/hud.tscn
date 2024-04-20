@@ -95,6 +95,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_override_constants/separation = 1
 
+[node name="ThornsCooldown" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_qfon4")
@@ -160,6 +164,20 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_vertical = 3
 
+<<<<<<< Updated upstream
+=======
+[node name="UpgradeWarning" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+label_settings = SubResource("LabelSettings_7l8xw")
+horizontal_alignment = 1
+
+>>>>>>> Stashed changes
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 visibility_layer = 3
 z_as_relative = false

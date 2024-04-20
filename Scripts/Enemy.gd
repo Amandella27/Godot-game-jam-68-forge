@@ -5,6 +5,7 @@ class_name Enemy
 signal enemy_defeated(node,type,heatvalue)
 
 @onready var hurtbox_component = $HurtboxComponent
+@onready var hitbox_component = $HitboxComponent
 
 @export var SPEED: int = 2
 @export var damage: int
@@ -17,12 +18,12 @@ signal enemy_defeated(node,type,heatvalue)
 var direction: Vector3
 var player_to_attack:CharacterBody3D = null
 var gravity = 9.8
-
-
+var is_projectile: bool = false
 
 func _ready():
 	player_to_attack = Globals.currentPlayer
 	hurtbox_component.set_damage(damage)
+	hurtbox_component.take_thorns_damage.connect(hitbox_component.take_damage)
 	
 func _physics_process(delta):
 	

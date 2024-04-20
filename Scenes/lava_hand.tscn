@@ -268,21 +268,21 @@ transform = Transform3D(-0.131543, 0, -1.14998e-08, 0, 1.51206, 0, 1.14998e-08, 
 
 [node name="Skeleton3D" parent="lavahand/Armature" index="1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-bones/2/rotation = Quaternion(0.388091, -0.00802933, -0.0180801, 0.921409)
-bones/3/rotation = Quaternion(0.23874, 0.0147889, -0.369554, 0.897895)
-bones/4/rotation = Quaternion(0.096931, -0.0264418, 0.292545, 0.950959)
-bones/5/position = Vector3(0.00862984, 0.794257, -0.0609125)
-bones/5/rotation = Quaternion(0.401127, 0.0461702, 0.0533427, 0.913302)
-bones/6/rotation = Quaternion(0.106867, 0.0669921, -0.124492, 0.984171)
-bones/7/position = Vector3(-0.129668, 0.777889, -0.0392812)
-bones/7/rotation = Quaternion(0.425104, 0.0959807, 0.0755598, 0.896864)
-bones/8/rotation = Quaternion(0.120843, 0.0512429, 0.0204449, 0.991137)
-bones/9/position = Vector3(-0.265026, 0.708767, -0.0391719)
-bones/9/rotation = Quaternion(0.328797, 0.255846, 0.350334, 0.838869)
-bones/10/rotation = Quaternion(0.0991268, 0.00197902, 0.0884121, 0.991137)
+bones/2/rotation = Quaternion(0.404446, -0.00471931, -0.0100348, 0.914495)
+bones/3/rotation = Quaternion(0.246443, 0.00235248, -0.349644, 0.903886)
+bones/4/rotation = Quaternion(0.0734708, -0.0156334, 0.233769, 0.969386)
+bones/5/position = Vector3(0.0100133, 0.788219, -0.0585028)
+bones/5/rotation = Quaternion(0.352902, 0.0248837, 0.0427122, 0.934354)
+bones/6/rotation = Quaternion(0.0600886, 0.0395742, -0.129651, 0.988946)
+bones/7/position = Vector3(-0.129262, 0.7784, -0.0410668)
+bones/7/rotation = Quaternion(0.378129, 0.0756597, 0.0630405, 0.9205)
+bones/8/rotation = Quaternion(0.0713844, 0.0302712, 0.0120772, 0.996916)
+bones/9/position = Vector3(-0.266846, 0.714254, -0.0396603)
+bones/9/rotation = Quaternion(0.282586, 0.252241, 0.32826, 0.865312)
+bones/10/rotation = Quaternion(0.0585566, 0.0011704, 0.0522272, 0.996916)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="lavahand/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.956138, 0.213933, 0.200081, 0.238016, -0.169308, -0.956391, -0.170728, 0.962064, -0.212801, 0.0275039, 3.0475, 0.52336)
+transform = Transform3D(0.971137, 0.205984, 0.120266, 0.128017, -0.0246725, -0.991465, -0.201259, 0.978244, -0.0503296, 0.0182024, 3.03809, 0.542295)
 bone_name = "Bone.010"
 bone_idx = 6
 

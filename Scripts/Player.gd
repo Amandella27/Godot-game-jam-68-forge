@@ -21,6 +21,7 @@ signal player_gameover()
 
 @onready var weapon = $dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon
 @onready var regen_timer = $RegenTimer
+@onready var thorns_cooldown_timer = $ThornsCooldownTimer
 
 @onready var health_component:HealthComponent = $HealthComponent
 @onready var armor_component:ArmorComponent = $ArmorComponent

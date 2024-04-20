@@ -19,6 +19,11 @@ const GAMEOVER = preload("res://Scenes/UI/gameover.tscn")
 @onready var jump_up = %JumpUp
 @onready var hp_regen = %HPRegen
 @onready var ui_warn_center_2 = %UIWarnCenter2
+<<<<<<< Updated upstream
+=======
+@onready var upgrade_warning = %UpgradeWarning
+@onready var thorns_cooldown = %ThornsCooldown
+>>>>>>> Stashed changes
 
 var health_color: Color = Color(0.38, 0.031, 0)
 var armor_color: Color = Color(0.769, 0.745, 0)
@@ -41,6 +46,9 @@ func _process(_delta):
 	else:
 		timer_info.text = str("Wave ",  enemy_spawner.waveNumber)
 		timer_info_2.text = str(snapped(enemy_spawner.wave_timer.time_left, 1))
+		
+	if Globals.currentPlayer.hitbox_component.has_thorns:
+		thorns_cooldown.text =  str(snapped(Globals.currentPlayer.thorns_cooldown_timer.time_left, 1))
 
 func update_health(new_value):
 	var health_tween = create_tween()

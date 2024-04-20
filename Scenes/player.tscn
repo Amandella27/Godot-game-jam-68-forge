@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=32 format=3 uid="uid://brmrk0ke8mxrc"]
+=======
+[gd_scene load_steps=34 format=3 uid="uid://brmrk0ke8mxrc"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_3bkjk"]
 [ext_resource type="Script" path="res://Scripts/armorcomponent.gd" id="1_rqhxq"]
@@ -7,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://wyas78h11w3c" path="res://Scenes/health_component.tscn" id="4_e06ys"]
 [ext_resource type="PackedScene" uid="uid://c2bbmdsd1d3ac" path="res://Scenes/hitbox_component.tscn" id="4_j2tln"]
 [ext_resource type="PackedScene" uid="uid://b8q56woe4onxb" path="res://Scenes/armor_component.tscn" id="5_s7j0c"]
+[ext_resource type="Script" path="res://Scripts/player_hitbox.gd" id="6_5vl1n"]
 [ext_resource type="PackedScene" uid="uid://bdwbqsn65btfl" path="res://Assets/dwarf.glb" id="6_towm1"]
 [ext_resource type="PackedScene" uid="uid://ycvgs5jb8imr" path="res://Scenes/sword.tscn" id="8_bd7kl"]
 [ext_resource type="Animation" uid="uid://bbftk6vk7svpy" path="res://Animations/attackanimationdwarf.res" id="8_ygyyq"]
@@ -685,6 +690,8 @@ max_armor = 100
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component", "armor_component") groups=["Player"] instance=ExtResource("4_j2tln")]
 collision_mask = 4
+script = ExtResource("6_5vl1n")
+thornsDamage = -50
 health_component = NodePath("../HealthComponent")
 armor_component = NodePath("../ArmorComponent")
 
@@ -699,6 +706,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 bones/0/rotation = Quaternion(-0.248614, 0.0140236, 0.0294315, 0.968054)
 bones/0/scale = Vector3(1, 1, 1)
+<<<<<<< Updated upstream
 bones/1/position = Vector3(0.0151737, 0.362649, 0.00380585)
 bones/1/rotation = Quaternion(0.286625, -0.0153368, -0.0281841, 0.957505)
 bones/2/rotation = Quaternion(0.0560478, -7.55213e-05, -0.000686424, 0.998428)
@@ -709,6 +717,18 @@ bones/4/rotation = Quaternion(0.356366, 0.0070305, 0.0351349, 0.933659)
 bones/6/rotation = Quaternion(0.0813152, -0.099928, 0.966214, 0.223232)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(0.304009, -0.00716965, -0.0299735, 0.95217)
+=======
+bones/1/position = Vector3(0.0115319, 0.298955, -0.0313069)
+bones/1/rotation = Quaternion(0.286625, -0.0153368, -0.0281841, 0.957505)
+bones/2/rotation = Quaternion(0.117082, -0.000117413, -0.000680511, 0.993122)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(-0.0836359, -0.185316, 0.955702, -0.21283)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(0.340783, 0.00707459, 0.0335985, 0.939515)
+bones/6/rotation = Quaternion(0.100472, -0.0948956, 0.964533, 0.224892)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(0.285175, -0.00721382, -0.0281165, 0.958036)
+>>>>>>> Stashed changes
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.0589997, -0.194581, 0.977326, -0.0590795)
 bones/10/rotation = Quaternion(-0.204241, 0.00415017, -0.0750367, 0.976032)
@@ -719,18 +739,30 @@ bones/13/rotation = Quaternion(-0.136175, -0.00420675, 0.0500295, 0.989412)
 bones/14/rotation = Quaternion(0.731685, 0.00250492, -0.0255557, 0.681159)
 bones/15/rotation = Quaternion(-0.0168485, 0.563089, 0.825436, -0.0360752)
 bones/15/scale = Vector3(1, 1, 0.999999)
+<<<<<<< Updated upstream
 bones/16/position = Vector3(0.793629, 0.102895, -0.148919)
+=======
+bones/16/position = Vector3(0.793629, 0.0242514, -0.148919)
+>>>>>>> Stashed changes
 bones/17/rotation = Quaternion(-0.143178, 0.692459, -0.692459, 0.143178)
 bones/18/rotation = Quaternion(-0.0617429, 0.704406, 0.704406, -0.0617429)
 bones/19/rotation = Quaternion(0.0434195, 0.621766, 0.78089, 0.041633)
 bones/19/scale = Vector3(1, 1, 1.00001)
+<<<<<<< Updated upstream
 bones/20/position = Vector3(-0.802886, 0.0864758, -0.0350145)
+=======
+bones/20/position = Vector3(-0.802886, 0.00783189, -0.0350145)
+>>>>>>> Stashed changes
 bones/20/rotation = Quaternion(0.167142, 0.687069, -0.687069, -0.167142)
 bones/21/rotation = Quaternion(0.143178, 0.692459, -0.692459, -0.143178)
 bones/22/rotation = Quaternion(0.0617429, 0.704406, 0.704406, 0.0617429)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="dwarf/Armature/Skeleton3D" index="1"]
+<<<<<<< Updated upstream
 transform = Transform3D(-0.972217, -0.151729, -0.17825, 0.0368188, -0.851125, 0.52367, -0.231169, 0.502558, 0.833064, -0.802887, 0.0864759, -0.0350146)
+=======
+transform = Transform3D(-0.977148, -0.14278, -0.157468, 0.0469396, -0.867467, 0.495275, -0.207313, 0.476565, 0.854346, -0.802886, 0.0078305, -0.0350144)
+>>>>>>> Stashed changes
 bone_name = "Hand.r"
 bone_idx = 8
 
@@ -790,10 +822,22 @@ texture = ExtResource("14_qtu7n")
 [node name="RegenTimer" type="Timer" parent="."]
 wait_time = 2.0
 
+<<<<<<< Updated upstream
+=======
+[node name="ThornsCooldownTimer" type="Timer" parent="."]
+
+[node name="AddSwordAudio" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("15_2t0hv")
+attenuation_model = 3
+volume_db = -5.0
+
+>>>>>>> Stashed changes
 [connection signal="gameover" from="HealthComponent" to="." method="_on_health_component_gameover"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="armor_broken" from="ArmorComponent" to="." method="_on_armor_component_armor_broken"]
 [connection signal="armor_broken" from="ArmorComponent" to="HealthComponent" method="_on_armor_component_armor_broken"]
 [connection signal="armor_changed" from="ArmorComponent" to="." method="_on_armor_component_armor_changed"]
+[connection signal="timeout" from="ThornsCooldownTimer" to="HitboxComponent" method="_on_thorns_cooldown_timer_timeout"]
 
 [editable path="dwarf"]

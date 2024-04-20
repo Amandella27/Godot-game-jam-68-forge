@@ -49,6 +49,10 @@ func _input(event):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		ui_elements.add_child(upgradeMenu)
 		upgradeMenu.used_heat.connect(update_heat_bar)
+<<<<<<< Updated upstream
+=======
+		upgradeMenu.menu_upgrade_warning.connect(clear_upgrade_warning_warning)
+>>>>>>> Stashed changes
 	elif event.is_action_pressed("use") and playerNearAnvil == true and upgradeMenu != null:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		upgradeMenu.queue_free()
@@ -105,3 +109,13 @@ func _on_lava_body_entered(body):
 
 func _on_ambient_lava_finished():
 	ambient_lava.play()
+<<<<<<< Updated upstream
+=======
+
+func clear_upgrade_warning_warning():
+	await get_tree().create_timer(3).timeout
+	var upgrade_warning_tween = create_tween()
+	var upgrade_warning_shadow_tween = create_tween()
+	upgrade_warning_tween.tween_property(hud.upgrade_warning.label_settings, "font_color", Color(1, 1, 1, 0), 1).set_ease(Tween.EASE_OUT).set_delay(3.0)
+	upgrade_warning_shadow_tween.tween_property(hud.upgrade_warning.label_settings, "shadow_color", Color(0, 0, 0, 0), .65).set_ease(Tween.EASE_OUT).set_delay(3.0)
+>>>>>>> Stashed changes
