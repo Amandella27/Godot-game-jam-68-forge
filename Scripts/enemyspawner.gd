@@ -77,6 +77,9 @@ func randomizePositions():
 			enemy.enemy_defeated.connect(enemy_defeated)
 			if enemyRandomnessLevel == 2:
 				enemy.hand_attack.connect(hand_attack)
+			else:
+				skipSpawn = true
+			
 	elif waveNumber >= 1:
 		enemyRandomnessLevel = 0
 		var randomSpawns = randf_range(1,10)
