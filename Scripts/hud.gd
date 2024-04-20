@@ -37,10 +37,9 @@ func _ready():
 	
 func _process(_delta):
 	if enemy_spawner.checking:
-		timer_info.text = str("Enemies Remain")
 		timer_info_2.text = str("")
 	elif enemy_spawner.resting:
-		timer_info.text = str("Resting")
+		timer_info.text = str("Next Wave in")
 		timer_info_2.text = str(snapped(enemy_spawner.rest_timer.time_left, 1))
 	else:
 		timer_info.text = str("Wave ",  enemy_spawner.waveNumber)
