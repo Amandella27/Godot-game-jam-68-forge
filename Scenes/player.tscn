@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://brmrk0ke8mxrc"]
+[gd_scene load_steps=41 format=3 uid="uid://brmrk0ke8mxrc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_3bkjk"]
 [ext_resource type="Script" path="res://Scripts/armorcomponent.gd" id="1_rqhxq"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://32xjjxlrbwjx" path="res://Assets/Sounds/weapons-smithing-42563.mp3" id="13_tcoyn"]
 [ext_resource type="Animation" uid="uid://kh727tcc050a" path="res://Animations/jumpnimationdwarf.res" id="14_px8qb"]
 [ext_resource type="Texture2D" uid="uid://cgtu6pb0s0oow" path="res://Assets/Eo_circle_yellow_white_letter-y.svg.png" id="14_qtu7n"]
+[ext_resource type="AudioStream" uid="uid://1sw1ac0x725u" path="res://Assets/Sounds/dwarfpain.mp3" id="19_wv01y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0h75s"]
 radius = 0.290192
@@ -27,7 +28,7 @@ height = 1.37845
 radius = 0.420581
 height = 1.44748
 
-[sub_resource type="Animation" id="Animation_qyhnh"]
+[sub_resource type="Animation" id="Animation_un154"]
 resource_name = "idleanimation-loop"
 length = 1.04167
 loop_mode = 1
@@ -193,7 +194,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.731685, 0.00250492, -0.0255557, 0.681159)
 
-[sub_resource type="Animation" id="Animation_pfuv2"]
+[sub_resource type="Animation" id="Animation_ejt60"]
 resource_name = "runbackanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -359,7 +360,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="Animation" id="Animation_6pggv"]
+[sub_resource type="Animation" id="Animation_o1nni"]
 resource_name = "runforwardanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -525,7 +526,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="Animation" id="Animation_eu8du"]
+[sub_resource type="Animation" id="Animation_g6ncu"]
 resource_name = "runleftanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -691,15 +692,15 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ncsjn"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0626j"]
 _data = {
 "Vattackanimation": ExtResource("12_ltg50"),
 "attackanimation": ExtResource("8_ygyyq"),
-"idleanimation": SubResource("Animation_qyhnh"),
+"idleanimation": SubResource("Animation_un154"),
 "jumpanimation": ExtResource("14_px8qb"),
-"runbackanimation": SubResource("Animation_pfuv2"),
-"runforwardanimation": SubResource("Animation_6pggv"),
-"runleftanimation": SubResource("Animation_eu8du")
+"runbackanimation": SubResource("Animation_ejt60"),
+"runforwardanimation": SubResource("Animation_o1nni"),
+"runleftanimation": SubResource("Animation_g6ncu")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ifqut"]
@@ -812,18 +813,16 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 bones/0/position = Vector3(0.00801672, -0.153321, 0.131178)
 bones/0/rotation = Quaternion(-0.248614, 0.0140236, 0.0294315, 0.968054)
 bones/0/scale = Vector3(1, 1, 1)
-
-bones/1/position = Vector3(0.0105524, 0.281824, -0.0407507)
+bones/1/position = Vector3(0.0142778, 0.346979, -0.0048327)
 bones/1/rotation = Quaternion(0.286625, -0.0153368, -0.0281841, 0.957505)
-bones/2/rotation = Quaternion(0.133424, -0.000128606, -0.000678485, 0.991059)
+bones/2/rotation = Quaternion(0.0710825, -8.58536e-05, -0.000685209, 0.99747)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.0890666, -0.184228, 0.955354, -0.213133)
+bones/3/rotation = Quaternion(-0.068042, -0.188197, 0.956602, -0.211814)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.336675, 0.00708585, 0.0331935, 0.941009)
-bones/6/rotation = Quaternion(0.105566, -0.0934477, 0.964043, 0.225265)
+bones/4/rotation = Quaternion(0.352607, 0.00704135, 0.0347643, 0.935099)
+bones/6/rotation = Quaternion(0.086017, -0.0987508, 0.965825, 0.223677)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.279952, -0.00722554, -0.0276016, 0.95959)
-
+bones/7/rotation = Quaternion(0.299498, -0.00718053, -0.0295287, 0.953613)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.0589997, -0.194581, 0.977326, -0.0590795)
 bones/10/rotation = Quaternion(-0.204241, 0.00415017, -0.0750367, 0.976032)
@@ -834,24 +833,18 @@ bones/13/rotation = Quaternion(-0.136175, -0.00420675, 0.0500295, 0.989412)
 bones/14/rotation = Quaternion(0.731685, 0.00250492, -0.0255557, 0.681159)
 bones/15/rotation = Quaternion(-0.0168485, 0.563089, 0.825436, -0.0360752)
 bones/15/scale = Vector3(1, 1, 0.999999)
-
-bones/16/position = Vector3(0.793629, 0.00309964, -0.148919)
-
+bones/16/position = Vector3(0.793629, 0.0835471, -0.148919)
 bones/17/rotation = Quaternion(-0.143178, 0.692459, -0.692459, 0.143178)
 bones/18/rotation = Quaternion(-0.0617429, 0.704406, 0.704406, -0.0617429)
 bones/19/rotation = Quaternion(0.0434195, 0.621766, 0.78089, 0.041633)
 bones/19/scale = Vector3(1, 1, 1.00001)
-
-bones/20/position = Vector3(-0.802886, -0.0133199, -0.0350145)
-
+bones/20/position = Vector3(-0.802886, 0.0671275, -0.0350145)
 bones/20/rotation = Quaternion(0.167142, 0.687069, -0.687069, -0.167142)
 bones/21/rotation = Quaternion(0.143178, 0.692459, -0.692459, -0.143178)
 bones/22/rotation = Quaternion(0.0617429, 0.704406, 0.704406, 0.0617429)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="dwarf/Armature/Skeleton3D" index="1"]
-
-transform = Transform3D(-0.97833, -0.140713, -0.151887, 0.0496914, -0.871706, 0.487503, -0.200999, 0.469391, 0.859809, -0.802887, -0.0132969, -0.0350141)
-
+transform = Transform3D(-0.973497, -0.149366, -0.173183, 0.0392741, -0.855194, 0.516818, -0.2253, 0.49632, 0.838395, -0.802887, 0.0671269, -0.0350142)
 bone_name = "Hand.r"
 bone_idx = 8
 
@@ -891,7 +884,7 @@ autoplay = "idleanimation"
 root_node = NodePath("../dwarf")
 root_motion_track = NodePath("Armature/Skeleton3D:MainBone")
 libraries = {
-"": SubResource("AnimationLibrary_ncsjn")
+"": SubResource("AnimationLibrary_0626j")
 }
 tree_root = SubResource("AnimationNodeBlendTree_qxgrm")
 anim_player = NodePath("../dwarf/AnimationPlayer")
@@ -925,11 +918,21 @@ wait_time = 2.0
 
 [node name="ThornsCooldownTimer" type="Timer" parent="."]
 
+[node name="PlayerPainSound" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("19_wv01y")
+attenuation_model = 3
+volume_db = -8.0
+
+[node name="PainSoundCD" type="Timer" parent="PlayerPainSound"]
+unique_name_in_owner = true
+
 [connection signal="gameover" from="HealthComponent" to="." method="_on_health_component_gameover"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="armor_broken" from="ArmorComponent" to="." method="_on_armor_component_armor_broken"]
 [connection signal="armor_broken" from="ArmorComponent" to="HealthComponent" method="_on_armor_component_armor_broken"]
 [connection signal="armor_changed" from="ArmorComponent" to="." method="_on_armor_component_armor_changed"]
 [connection signal="timeout" from="ThornsCooldownTimer" to="HitboxComponent" method="_on_thorns_cooldown_timer_timeout"]
+[connection signal="timeout" from="PlayerPainSound/PainSoundCD" to="." method="_on_pain_sound_cd_timeout"]
 
 [editable path="dwarf"]
