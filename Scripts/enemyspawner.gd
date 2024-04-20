@@ -83,7 +83,7 @@ func randomizePositions():
 			skipSpawn = true
 				
 	elif waveNumber >= 1:
-		enemyRandomnessLevel = 4
+		enemyRandomnessLevel = 0
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
