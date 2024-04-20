@@ -25,6 +25,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.426432, -0.0258331)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
 
-[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
-
 [connection signal="defeated" from="HealthComponent" to="." method="_on_health_component_defeated"]

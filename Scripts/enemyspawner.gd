@@ -14,6 +14,7 @@ const LAVA_HAND = preload("res://Scenes/lava_hand.tscn")
 @onready var check_timer = $CheckTimer
 @onready var snail_death = $SoundEffects/SnailDeath
 @onready var bat_death = $SoundEffects/BatDeath
+@onready var hand_death = $SoundEffects/HandDeath
 @onready var enemy_projectiles = $EnemyProjectiles
 
 
@@ -82,7 +83,7 @@ func randomizePositions():
 			skipSpawn = true
 				
 	elif waveNumber >= 1:
-		enemyRandomnessLevel = 0
+		enemyRandomnessLevel = 4
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
@@ -95,8 +96,10 @@ func randomizePositions():
 func enemy_defeated(node,type,heatvalue):
 	if type == "LavaSlug":
 		snail_death.play()
-	if type == "LavaBat":
+	elif type == "LavaBat":
 		bat_death.play()
+	elif type == "LavaHand":
+		hand_death.play()
 	spawn_enemy_defeated.emit(heatvalue)
 	currentEnemies.erase(node)
 
