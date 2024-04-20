@@ -17,7 +17,6 @@ var upgradeMenu
 var playerNearAnvil:bool = false
 var playerSpawnLocation = Vector3(-3,0,-7)
 
-
 func _ready():
 	ambient_lava.play()
 	background_music.play()
@@ -93,7 +92,6 @@ func gameover():
 
 func _on_hud_reset_game():
 	Globals.reset_globals()
-	enemy_spawner.remove_enemies()
 	enemy_spawner.reset_spawner()
 	spawn_player(playerSpawnLocation)
 	update_heat_bar(-150)

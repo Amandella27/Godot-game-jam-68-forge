@@ -68,7 +68,7 @@ func randomizePositions():
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
-
+			
 	elif waveNumber >= 3:
 		enemyRandomnessLevel = randi_range(0,1)
 		var randomSpawns = randf_range(1,10)
@@ -77,6 +77,9 @@ func randomizePositions():
 			enemy.enemy_defeated.connect(enemy_defeated)
 			if enemyRandomnessLevel == 2:
 				enemy.hand_attack.connect(hand_attack)
+		else:
+			skipSpawn = true
+				
 	elif waveNumber >= 1:
 		enemyRandomnessLevel = 0
 		var randomSpawns = randf_range(1,10)
@@ -85,7 +88,6 @@ func randomizePositions():
 			enemy.enemy_defeated.connect(enemy_defeated)
 			if enemyRandomnessLevel == 2:
 				enemy.hand_attack.connect(hand_attack)
-
 		else:
 			skipSpawn = true
 	
@@ -100,7 +102,6 @@ func enemy_defeated(node,type,heatvalue):
 func startWave():
 	wave_timer.start(waveTime)
 	spawn_timer.start(randf_range((spawnTimeMin*spawnTimeDifficultyMod),(spawnTimeMax*spawnTimeDifficultyMod)))
-	currentSpawn.clear()
 	spawn_enemies()
 	checkEmptySpawn()
 
@@ -127,13 +128,18 @@ func _on_spawn_timer_timeout():
 	checkEmptySpawn()
 
 func _on_rest_timer_timeout():
+	currentSpawn.clear()
 	resting = false
 	rest_timer.stop()
 	startWave()
 
 func reset_spawner():
-	waveNumber = 1
+	remove_enemies()
+	currentEnemies.clear()
+	currentSpawn.clear()
+	checking = false
 	resting = false
+	waveNumber = 1
 	enemyRandomnessLevel = 0
 	spawnRandomnessLevel = 5
 	spawnTimeMin = 7
