@@ -176,10 +176,12 @@ func _on_check_timer_timeout():
 		checking = false
 		rest_timer.start(restTime)
 		resting = true
-		Globals.currentPlayer.regen_active = true
+		Globals.regen_active = true
+		Globals.currentPlayer.regen_timer.start(2)
 	else:
 		check_timer.start(1)
-		Globals.currentPlayer.regen_active = false
+		Globals.regen_active = false
+		Globals.currentPlayer.regen_timer.stop()
 		
 func clear_projectiles():
 	var currentProjectiles = enemy_projectiles.get_children()
