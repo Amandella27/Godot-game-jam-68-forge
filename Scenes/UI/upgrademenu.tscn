@@ -176,8 +176,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_7qp8v")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Upgrade 3"
+text = "Spiked Armor"
 
 [connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button" to="." method="_on_upgrade_1_button_pressed"]
 [connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button" to="UpgradeMenu" method="_on_upgrade_1_button_pressed"]
 [connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/Upgrade2Button" to="." method="_on_upgrade_2_button_pressed"]
+[connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer3/Upgrade3Button" to="." method="_on_upgrade_3_button_pressed"]

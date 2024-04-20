@@ -10,6 +10,7 @@ const SWORD_SPARKS = preload("res://Scenes/sword_sparks.tscn")
 
 
 
+
 var attachPoint: Vector3
 
 func _ready():

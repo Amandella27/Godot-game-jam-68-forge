@@ -1,5 +1,7 @@
 extends RigidBody3D
 
+class_name HandAttack
+
 @onready var hurtbox_component = $HurtboxComponent
 
 @export var SPEED: float = 2.5
@@ -10,6 +12,7 @@ extends RigidBody3D
 var direction: Vector3
 var gravity = 9.8
 var player_to_attack:CharacterBody3D = null
+var is_projectile = true
 
 func _ready():
 	
