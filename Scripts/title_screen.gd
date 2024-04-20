@@ -9,7 +9,3 @@ func _on_play_button_pressed():
 
 func _on_how_to_play_button_pressed():
 	how_to_play.visible = true
-
-
-func _on_x_how_to_play_pressed():
-	how_to_play.visible = false

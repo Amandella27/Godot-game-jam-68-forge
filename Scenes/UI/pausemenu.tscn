@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="1_gbqgn"]
 [ext_resource type="Theme" uid="uid://dvnwmjqtsjco" path="res://Themes/UpgradeButtonTheme.tres" id="2_f51ow"]
-[ext_resource type="PackedScene" uid="uid://euxjmkwpt68r" path="res://Scenes/UI/how_to_play.tscn" id="3_7xpxp"]
+[ext_resource type="PackedScene" uid="uid://nxexr13pfsqy" path="res://Scenes/UI/how_to_play.tscn" id="3_7xpxp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jpchl"]
 bg_color = Color(0.596078, 0.0470588, 0, 1)
@@ -138,9 +138,11 @@ theme_override_font_sizes/font_size = 20
 text = "How To Play
 "
 
-[node name="HowToPlay" parent="." instance=ExtResource("3_7xpxp")]
-visible = false
+[node name="How to Play" parent="." instance=ExtResource("3_7xpxp")]
+unique_name_in_owner = true
 
 [connection signal="pressed" from="PauseMenu/MarginContainer/Panel/VBoxContainer/HBoxContainer/MarginContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/Panel/VBoxContainer/HBoxContainer/MarginContainer/Resume" to="PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/Panel/VBoxContainer/HBoxContainer/MarginContainer2/HowtoPlay" to="." method="_on_howto_play_pressed"]
+
+[editable path="How to Play"]

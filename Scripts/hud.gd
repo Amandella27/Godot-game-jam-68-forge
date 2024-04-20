@@ -22,6 +22,7 @@ const GAMEOVER = preload("res://Scenes/UI/gameover.tscn")
 @onready var upgrade_warning = %UpgradeWarning
 @onready var thorns_cooldown = %ThornsCooldown
 @onready var thorns_armor_icon = %ThornsArmorIcon
+@onready var thorns_upgrades = %ThornsUpgrades
 
 var health_color: Color = Color(0.38, 0.031, 0)
 var armor_color: Color = Color(0.769, 0.745, 0)
@@ -106,6 +107,7 @@ func hud_reset_game():
 	reset_game.emit()
 	thorns_armor_icon.visible = false
 	thorns_cooldown.text = ""
+	thorns_upgrades.text = ""
 	
 func update_heat_labels():
 	if current_heat >= 0 and current_heat < 50:

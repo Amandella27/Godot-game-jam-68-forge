@@ -55,6 +55,7 @@ func _input(event):
 
 	elif event.is_action_pressed("remove_enemies") and paused == null and !OS.has_feature("web"):
 		enemy_spawner.remove_enemies()
+		enemy_spawner.clear_projectiles()
 
 func _on_anvil_near_anvil():
 	playerNearAnvil = true
