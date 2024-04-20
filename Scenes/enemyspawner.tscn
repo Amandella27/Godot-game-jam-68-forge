@@ -78,6 +78,8 @@ attenuation_model = 3
 stream = ExtResource("6_rb11t")
 attenuation_model = 3
 
+[node name="EnemyProjectiles" type="Node3D" parent="."]
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]

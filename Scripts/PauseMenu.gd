@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var how_to_play = $HowToPlay
+@onready var how_to_play = %"How to Play"
 @onready var resume = $PauseMenu/MarginContainer/Panel/VBoxContainer/HBoxContainer/MarginContainer/Resume
 @onready var pause_menu = $PauseMenu
 
@@ -24,7 +24,6 @@ func _on_resume_pressed():
 	resume_game()
 
 func _on_howto_play_pressed():
-	pause_menu.visible = false
 	how_to_play.visible = true
 	
 func resume_game():

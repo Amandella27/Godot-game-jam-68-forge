@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://docnyp7cxuxsc"]
+[gd_scene load_steps=18 format=3 uid="uid://docnyp7cxuxsc"]
 
 [ext_resource type="Script" path="res://Scripts/hud.gd" id="1_s63j7"]
 [ext_resource type="StyleBox" uid="uid://rehm8s0yxkfi" path="res://Styles/progressbarbackgroundstyle.tres" id="2_5diea"]
+[ext_resource type="Texture2D" uid="uid://cii356mqsmms4" path="res://Assets/thornsarmor.svg" id="2_lhc60"]
 [ext_resource type="Theme" uid="uid://dvnwmjqtsjco" path="res://Themes/UpgradeButtonTheme.tres" id="2_qfon4"]
 [ext_resource type="FontFile" uid="uid://3v73fhbabj22" path="res://Assets/Fonts/Fine Blackboard.ttf" id="4_i0cp8"]
 [ext_resource type="Texture2D" uid="uid://cdmuvdsnp7wa" path="res://Assets/msup.svg" id="4_k8pdl"]
@@ -101,9 +102,36 @@ size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_override_constants/separation = 1
 
-[node name="ThornsCooldown" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ThornsArmorIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_lhc60")
+
+[node name="ThornsCooldown" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_i0cp8")
+theme_override_font_sizes/font_size = 18
+
+[node name="ThornsUpgrades" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_i0cp8")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2

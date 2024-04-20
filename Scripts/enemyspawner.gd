@@ -14,12 +14,13 @@ const LAVA_HAND = preload("res://Scenes/lava_hand.tscn")
 @onready var check_timer = $CheckTimer
 @onready var snail_death = $SoundEffects/SnailDeath
 @onready var bat_death = $SoundEffects/BatDeath
+@onready var enemy_projectiles = $EnemyProjectiles
 
 
 @export var spawnerOn: bool = true
 @export var waveNumber: int = 1
 @export var waveTime: int = 30
-@export var restTime: int = 1
+@export var restTime: int = 10
 
 var spawnableEnemies: Array = [LAVASLUG,LAVA_BAT,LAVA_HAND]
 
@@ -32,7 +33,7 @@ var skipSpawn: bool = false
 var resting: bool = false
 var checking: bool = false
 
-var enemyRandomnessLevel = 2
+var enemyRandomnessLevel
 var spawnRandomnessLevel: float = 5
 var spawnTimeMin: float = 7
 var spawnTimeMax: float = 7
@@ -68,7 +69,7 @@ func randomizePositions():
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
-
+			
 	elif waveNumber >= 3:
 		enemyRandomnessLevel = randi_range(0,1)
 		var randomSpawns = randf_range(1,10)
@@ -77,9 +78,9 @@ func randomizePositions():
 			enemy.enemy_defeated.connect(enemy_defeated)
 			if enemyRandomnessLevel == 2:
 				enemy.hand_attack.connect(hand_attack)
-			else:
-				skipSpawn = true
-			
+		else:
+			skipSpawn = true
+				
 	elif waveNumber >= 1:
 		enemyRandomnessLevel = 0
 		var randomSpawns = randf_range(1,10)
@@ -88,7 +89,6 @@ func randomizePositions():
 			enemy.enemy_defeated.connect(enemy_defeated)
 			if enemyRandomnessLevel == 2:
 				enemy.hand_attack.connect(hand_attack)
-
 		else:
 			skipSpawn = true
 	
@@ -103,7 +103,6 @@ func enemy_defeated(node,type,heatvalue):
 func startWave():
 	wave_timer.start(waveTime)
 	spawn_timer.start(randf_range((spawnTimeMin*spawnTimeDifficultyMod),(spawnTimeMax*spawnTimeDifficultyMod)))
-	currentSpawn.clear()
 	spawn_enemies()
 	checkEmptySpawn()
 
@@ -130,13 +129,19 @@ func _on_spawn_timer_timeout():
 	checkEmptySpawn()
 
 func _on_rest_timer_timeout():
+	currentSpawn.clear()
 	resting = false
 	rest_timer.stop()
 	startWave()
 
 func reset_spawner():
-	waveNumber = 1
+	remove_enemies()
+	clear_projectiles()
+	currentEnemies.clear()
+	currentSpawn.clear()
+	checking = false
 	resting = false
+	waveNumber = 1
 	enemyRandomnessLevel = 0
 	spawnRandomnessLevel = 5
 	spawnTimeMin = 7
@@ -151,7 +156,7 @@ func remove_enemies():
 
 func hand_attack(location):
 	var attack = HANDATTACK.instantiate()
-	add_child(attack)
+	enemy_projectiles.add_child(attack)
 	attack.global_position = location
 	attack.initialize()
 
@@ -172,3 +177,9 @@ func _on_check_timer_timeout():
 		resting = true
 	else:
 		check_timer.start(1)
+
+func clear_projectiles():
+	var currentProjectiles = enemy_projectiles.get_children()
+	print(currentProjectiles)
+	for projectile in currentProjectiles:
+		projectile.queue_free()

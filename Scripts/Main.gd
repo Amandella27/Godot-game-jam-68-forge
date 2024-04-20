@@ -17,7 +17,6 @@ var upgradeMenu
 var playerNearAnvil:bool = false
 var playerSpawnLocation = Vector3(-3,0,-7)
 
-
 func _ready():
 	ambient_lava.play()
 	background_music.play()
@@ -56,6 +55,7 @@ func _input(event):
 
 	elif event.is_action_pressed("remove_enemies") and paused == null and !OS.has_feature("web"):
 		enemy_spawner.remove_enemies()
+		enemy_spawner.clear_projectiles()
 
 func _on_anvil_near_anvil():
 	playerNearAnvil = true
@@ -93,7 +93,6 @@ func gameover():
 
 func _on_hud_reset_game():
 	Globals.reset_globals()
-	enemy_spawner.remove_enemies()
 	enemy_spawner.reset_spawner()
 	spawn_player(playerSpawnLocation)
 	update_heat_bar(-150)

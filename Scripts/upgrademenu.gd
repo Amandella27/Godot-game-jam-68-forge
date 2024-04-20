@@ -14,7 +14,6 @@ const ATTACHVIEW = preload("res://Scenes/UI/attachview.tscn")
 
 
 var current_menu = self
-var thorns_upgrades: int = 0
 
 func _ready():
 	Globals.menusOpen = true
@@ -43,14 +42,19 @@ func checkUpgradeType(upgradeText):
 		used_heat.emit(-50)
 		Globals.currentPlayer.armor_component.adjust_armor(100)
 		return true
-	if upgradeText.text == "Spiked Armor" and Globals.current_heat >= 50 and thorns_upgrades < 5:
+	if upgradeText.text == "Spiked Armor" and Globals.current_heat >= 0 and Globals.thorns_upgrades < 5:
 		used_heat.emit(-50)
-		thorns_upgrades += 1
+		Globals.thorns_upgrades += 1
 		Globals.currentPlayer.hitbox_component.has_thorns = true
 		Globals.currentPlayer.hitbox_component.thorns_available = true
 		Globals.currentPlayer.hitbox_component.thorns_cooldown -= 1
+		Globals.hud.thorns_armor_icon.visible = true
+		Globals.hud.thorns_upgrades.text = str("x",Globals.thorns_upgrades)
+		if Globals.thorns_upgrades == 5:
+			Globals.hud.thorns_upgrades.text = str("MAX")
 		return true
-	elif upgradeText.text == "Spiked Armor" and thorns_upgrades == 5:
+	elif upgradeText.text == "Spiked Armor" and Globals.thorns_upgrades == 5:
+		Globals.hud.thorns_upgrades.text = str("MAX")
 		upgrade_warning("Max upgrade\nreached")
 	else:
 		upgrade_warning("Not enough\nheat")
