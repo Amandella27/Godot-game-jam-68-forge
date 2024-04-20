@@ -98,7 +98,6 @@ func _on_hud_reset_game():
 	update_heat_bar(-150)
 	lava.get_overlapping_bodies()
 
-
 func _on_lava_body_entered(body):
 	if body == Globals.currentPlayer:
 		gameover()
