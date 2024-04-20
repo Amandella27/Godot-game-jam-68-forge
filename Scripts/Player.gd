@@ -97,12 +97,12 @@ func _physics_process(delta):
 			jump_buffer = true
 			get_tree().create_timer(jump_buffer_timer).timeout.connect(on_jump_buffer_timeout)
 		
-	elif Input.is_action_just_pressed("action") and attack_available:
+	elif Input.is_action_just_pressed("action") and attack_available and Globals.menusOpen == false:
 		animation_tree["parameters/OneShot/request"] = 1
 		weapon.monitoring = true
 		attack_available = false
 		swordSounds[(randi_range(0,2))].play()
-	elif Input.is_action_just_pressed("Vaction") and attack_available:
+	elif Input.is_action_just_pressed("Vaction") and attack_available and Globals.menusOpen == false:
 		animation_tree["parameters/OneShot2/request"] = 1
 		weapon.monitoring = true
 		attack_available = false

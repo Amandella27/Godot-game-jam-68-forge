@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3uh6g3rrp12g"]
+[gd_scene load_steps=5 format=3 uid="uid://b3uh6g3rrp12g"]
 
 [ext_resource type="Theme" uid="uid://b4knmhu40p3li" path="res://Themes/UITitleTheme.tres" id="1_0nymn"]
 [ext_resource type="Script" path="res://Scripts/upgrademenu.gd" id="1_2b1ss"]
 [ext_resource type="Theme" uid="uid://dvnwmjqtsjco" path="res://Themes/UpgradeButtonTheme.tres" id="2_7qp8v"]
-[ext_resource type="AudioStream" uid="uid://32xjjxlrbwjx" path="res://Assets/Sounds/weapons-smithing-42563.mp3" id="4_4d8c0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yal7c"]
 bg_color = Color(0.596078, 0.0470588, 0, 1)
@@ -179,12 +178,6 @@ grow_vertical = 2
 theme = ExtResource("2_7qp8v")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Spiked Armor"
-
-[node name="AddSwordAudio" type="AudioStreamPlayer3D" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("4_4d8c0")
-attenuation_model = 3
-volume_db = -8.0
 
 [connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button" to="." method="_on_upgrade_1_button_pressed"]
 [connection signal="pressed" from="UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button" to="UpgradeMenu" method="_on_upgrade_1_button_pressed"]

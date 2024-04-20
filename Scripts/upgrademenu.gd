@@ -11,6 +11,7 @@ const ATTACHVIEW = preload("res://Scenes/UI/attachview.tscn")
 @onready var upgrade_2 = %Upgrade2
 @onready var upgrade_3 = %Upgrade3
 @onready var upgrade_1_button = $UpgradeMenu/MainContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Upgrade1Button
+@onready var add_sword_audio = %AddSwordAudio
 
 
 var current_menu = self
@@ -20,40 +21,45 @@ func _ready():
 	upgrade_1_button.grab_focus()
 
 func _on_upgrade_1_button_pressed():
-	checkUpgradeType(upgrade_1)
-	main_container.visible = false
+	if forgeAttachment():
+		main_container.visible = false
 	
 func _on_upgrade_2_button_pressed():
-	if checkUpgradeType(upgrade_2):
+	if repairArmor():
 		main_container.visible = false
 		
 func _on_upgrade_3_button_pressed():
-	if checkUpgradeType(upgrade_3):
+	if spikedArmor():
 		main_container.visible = false
 	
-func checkUpgradeType(upgradeText):
-	if upgradeText.text == "Forge Attachment":
-		var forge_menu = ATTACHVIEW.instantiate()
-		add_child(forge_menu)
-		forge_menu.upgrade_selected.connect(new_sword)
-		forge_menu.not_enough_heat.connect(upgrade_warning)
-		current_menu = forge_menu
-	if upgradeText.text == "Repair Armor" and Globals.current_heat >= 50:
+func forgeAttachment():
+	var forge_menu = ATTACHVIEW.instantiate()
+	add_child(forge_menu)
+	forge_menu.upgrade_selected.connect(new_sword)
+	forge_menu.not_enough_heat.connect(upgrade_warning)
+	current_menu = forge_menu
+	return true
+	
+func repairArmor():
+	if Globals.current_heat >= 50:
 		used_heat.emit(-50)
 		Globals.currentPlayer.armor_component.adjust_armor(100)
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		add_sword_audio.play()
 		return true
-	if upgradeText.text == "Spiked Armor" and Globals.current_heat >= 0 and Globals.thorns_upgrades < 5:
+	else:
+		upgrade_warning("Not enough\nheat")
+		
+func spikedArmor(): 
+	if Globals.current_heat >= 50 and Globals.thorns_upgrades < 5:
 		used_heat.emit(-50)
-		Globals.thorns_upgrades += 1
-		Globals.currentPlayer.hitbox_component.has_thorns = true
-		Globals.currentPlayer.hitbox_component.thorns_available = true
-		Globals.currentPlayer.hitbox_component.thorns_cooldown -= 1
-		Globals.hud.thorns_armor_icon.visible = true
-		Globals.hud.thorns_upgrades.text = str("x",Globals.thorns_upgrades)
+		Globals.upgradeThorns()
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		add_sword_audio.play()
 		if Globals.thorns_upgrades == 5:
 			Globals.hud.thorns_upgrades.text = str("MAX")
 		return true
-	elif upgradeText.text == "Spiked Armor" and Globals.thorns_upgrades == 5:
+	elif Globals.thorns_upgrades == 5:
 		Globals.hud.thorns_upgrades.text = str("MAX")
 		upgrade_warning("Max upgrade\nreached")
 	else:

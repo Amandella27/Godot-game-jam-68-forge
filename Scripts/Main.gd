@@ -64,12 +64,12 @@ func _on_anvil_near_anvil():
 	elif Globals.input_mode == "Controller":
 		Globals.currentPlayer.interact_popup_y.visible = true
 	
-	
 func _on_anvil_left_anvil():
 	playerNearAnvil = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Globals.currentPlayer.interact_popup_y.visible = false
 	Globals.currentPlayer.interact_popup_e.visible = false
+	Globals.menusOpen = false
 
 	if upgradeMenu != null:
 		upgradeMenu.queue_free()

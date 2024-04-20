@@ -47,7 +47,7 @@ func _process(_delta):
 		timer_info_2.text = str(snapped(enemy_spawner.wave_timer.time_left, 1))
 		
 	if Globals.currentPlayer.hitbox_component.has_thorns and Globals.currentPlayer.thorns_cooldown_timer.time_left == 0:
-		thorns_cooldown.text = "GO"
+		thorns_cooldown.text = ""
 	elif Globals.currentPlayer.hitbox_component.has_thorns:
 		thorns_cooldown.text =  str(snapped(Globals.currentPlayer.thorns_cooldown_timer.time_left, 1))
 		

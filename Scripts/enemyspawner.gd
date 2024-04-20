@@ -22,7 +22,7 @@ const LAVA_HAND = preload("res://Scenes/lava_hand.tscn")
 @export var waveTime: int = 30
 @export var restTime: int = 10
 
-var spawnableEnemies: Array = [LAVASLUG,LAVA_BAT,LAVA_HAND]
+var spawnableEnemies: Array = [LAVASLUG,LAVASLUG,LAVASLUG,LAVA_BAT,LAVA_BAT,LAVA_HAND]
 
 var currentEnemies: Array
 var currentSpawn: Array
@@ -60,23 +60,23 @@ func spawn_enemies():
 func randomizePositions():
 
 	if waveNumber >= 5:
-		enemyRandomnessLevel = randi_range(0,2)
+		enemyRandomnessLevel = randi_range(0,5)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
-			if enemyRandomnessLevel == 2:
+			if enemyRandomnessLevel == 5:
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
 			
 	elif waveNumber >= 3:
-		enemyRandomnessLevel = randi_range(0,1)
+		enemyRandomnessLevel = randi_range(0,3)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
-			if enemyRandomnessLevel == 2:
+			if enemyRandomnessLevel == 5:
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
@@ -87,7 +87,7 @@ func randomizePositions():
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
-			if enemyRandomnessLevel == 2:
+			if enemyRandomnessLevel == 5:
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
@@ -101,6 +101,7 @@ func enemy_defeated(node,type,heatvalue):
 	currentEnemies.erase(node)
 
 func startWave():
+	print("Spawn Interval: ",spawnTimeMin)
 	wave_timer.start(waveTime)
 	spawn_timer.start(randf_range((spawnTimeMin*spawnTimeDifficultyMod),(spawnTimeMax*spawnTimeDifficultyMod)))
 	spawn_enemies()
@@ -112,12 +113,12 @@ func _on_wave_timer_timeout():
 	if currentEnemies.is_empty():
 		rest_timer.start(restTime)
 		resting = true
-	if spawnTimeDifficultyMod > .05:
-		spawnTimeDifficultyMod -= .05
+	if spawnTimeDifficultyMod >= .025:
+		spawnTimeDifficultyMod -= .025
 	spawnTimeMin = 7 * spawnTimeDifficultyMod
 	spawnTimeMax = 7 * spawnTimeDifficultyMod
 	spawnTimeMin = clamp(spawnTimeMin, 1, 7)
-	spawnTimeMax = clamp(spawnTimeMax, 1, 7)	
+	spawnTimeMax = clamp(spawnTimeMax, 1, 7)
 	spawn_timer.stop()	
 	wave_timer.stop()
 	checking = true
