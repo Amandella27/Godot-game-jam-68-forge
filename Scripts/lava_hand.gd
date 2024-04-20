@@ -30,9 +30,7 @@ func _physics_process(delta):
 		elif velocity.y < 0:
 			velocity.y -= gravity * delta * 2
 		
-
 	move_and_slide()
-
 
 func _on_attack_timer_timeout():
 	animation_tree["parameters/OneShot/request"] = 1

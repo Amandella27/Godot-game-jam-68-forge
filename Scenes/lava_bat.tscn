@@ -16,7 +16,7 @@ collision_layer = 4
 script = ExtResource("2_y04ho")
 SPEED = 3
 damage = -15
-heatvalue = 5
+heatvalue = 4
 affectedByGravity = false
 animation_player = NodePath("lavabat/AnimationPlayer")
 
