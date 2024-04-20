@@ -43,15 +43,17 @@ func _input(event):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		paused = PAUSEMENU.instantiate()
 		ui_elements.add_child(paused)
+		
 	elif event.is_action_pressed("use") and playerNearAnvil == true and upgradeMenu == null:
 		upgradeMenu = UPGRADEMENU.instantiate()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		ui_elements.add_child(upgradeMenu)
 		upgradeMenu.used_heat.connect(update_heat_bar)
-		upgradeMenu.menu_not_enough_heat.connect(clear_not_enough_heat_warning)
+		upgradeMenu.menu_upgrade_warning.connect(clear_upgrade_warning)
 	elif event.is_action_pressed("use") and playerNearAnvil == true and upgradeMenu != null:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		upgradeMenu.queue_free()
+
 	elif event.is_action_pressed("remove_enemies") and paused == null and !OS.has_feature("web"):
 		enemy_spawner.remove_enemies()
 
@@ -71,8 +73,7 @@ func _on_anvil_left_anvil():
 
 	if upgradeMenu != null:
 		upgradeMenu.queue_free()
-	
-	
+
 func update_health_bar(new_value):
 	hud.update_health(new_value)
 
@@ -98,6 +99,7 @@ func _on_hud_reset_game():
 	update_heat_bar(-150)
 	lava.get_overlapping_bodies()
 
+
 func _on_lava_body_entered(body):
 	if body == Globals.currentPlayer:
 		gameover()
@@ -105,9 +107,9 @@ func _on_lava_body_entered(body):
 func _on_ambient_lava_finished():
 	ambient_lava.play()
 
-func clear_not_enough_heat_warning():
+func clear_upgrade_warning():
 	await get_tree().create_timer(3).timeout
-	var more_heat_needed_tween = create_tween()
-	var more_heat_needed_shadow_tween = create_tween()
-	more_heat_needed_tween.tween_property(hud.more_heat_needed.label_settings, "font_color", Color(1, 1, 1, 0), 1).set_ease(Tween.EASE_OUT).set_delay(3.0)
-	more_heat_needed_shadow_tween.tween_property(hud.more_heat_needed.label_settings, "shadow_color", Color(0, 0, 0, 0), .65).set_ease(Tween.EASE_OUT).set_delay(3.0)
+	var upgrade_warning_tween = create_tween()
+	var upgrade_warning_shadow_tween = create_tween()
+	upgrade_warning_tween.tween_property(hud.upgrade_warning.label_settings, "font_color", Color(1, 1, 1, 0), 1).set_ease(Tween.EASE_OUT).set_delay(3.0)
+	upgrade_warning_shadow_tween.tween_property(hud.upgrade_warning.label_settings, "shadow_color", Color(0, 0, 0, 0), .65).set_ease(Tween.EASE_OUT).set_delay(3.0)

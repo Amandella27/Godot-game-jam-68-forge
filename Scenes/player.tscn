@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://brmrk0ke8mxrc"]
+[gd_scene load_steps=37 format=3 uid="uid://brmrk0ke8mxrc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_3bkjk"]
 [ext_resource type="Script" path="res://Scripts/armorcomponent.gd" id="1_rqhxq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://wyas78h11w3c" path="res://Scenes/health_component.tscn" id="4_e06ys"]
 [ext_resource type="PackedScene" uid="uid://c2bbmdsd1d3ac" path="res://Scenes/hitbox_component.tscn" id="4_j2tln"]
 [ext_resource type="PackedScene" uid="uid://b8q56woe4onxb" path="res://Scenes/armor_component.tscn" id="5_s7j0c"]
+[ext_resource type="Script" path="res://Scripts/player_hitbox.gd" id="6_1toe0"]
 [ext_resource type="PackedScene" uid="uid://bdwbqsn65btfl" path="res://Assets/dwarf.glb" id="6_towm1"]
 [ext_resource type="PackedScene" uid="uid://ycvgs5jb8imr" path="res://Scenes/sword.tscn" id="8_bd7kl"]
 [ext_resource type="Animation" uid="uid://bbftk6vk7svpy" path="res://Animations/attackanimationdwarf.res" id="8_ygyyq"]
@@ -14,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bloflu1blve71" path="res://Assets/Sounds/swing-whoosh-weapon-1-189819.mp3" id="11_jx4w5"]
 [ext_resource type="AudioStream" uid="uid://dtn2156tmq5u7" path="res://Assets/Sounds/swing-whoosh-4-198496.mp3" id="11_qau47"]
 [ext_resource type="Animation" uid="uid://cxh8lx4arlp0o" path="res://Animations/Vattackanimationdwarf.res" id="12_ltg50"]
+[ext_resource type="AudioStream" uid="uid://32xjjxlrbwjx" path="res://Assets/Sounds/weapons-smithing-42563.mp3" id="13_tcoyn"]
 [ext_resource type="Texture2D" uid="uid://cgtu6pb0s0oow" path="res://Assets/Eo_circle_yellow_white_letter-y.svg.png" id="14_qtu7n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0h75s"]
@@ -24,7 +26,7 @@ height = 1.37845
 radius = 0.420581
 height = 1.44748
 
-[sub_resource type="Animation" id="Animation_rjsxl"]
+[sub_resource type="Animation" id="Animation_7v4dd"]
 resource_name = "idleanimation-loop"
 length = 1.04167
 loop_mode = 1
@@ -190,7 +192,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.731685, 0.00250492, -0.0255557, 0.681159)
 
-[sub_resource type="Animation" id="Animation_y71ke"]
+[sub_resource type="Animation" id="Animation_pdeol"]
 resource_name = "runbackanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -356,7 +358,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="Animation" id="Animation_i7tqk"]
+[sub_resource type="Animation" id="Animation_octc7"]
 resource_name = "runforwardanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -522,7 +524,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="Animation" id="Animation_ysie5"]
+[sub_resource type="Animation" id="Animation_fpmhi"]
 resource_name = "runleftanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -688,14 +690,14 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1u8lu"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3wrdi"]
 _data = {
 "Vattackanimation": ExtResource("12_ltg50"),
 "attackanimation": ExtResource("8_ygyyq"),
-"idleanimation": SubResource("Animation_rjsxl"),
-"runbackanimation": SubResource("Animation_y71ke"),
-"runforwardanimation": SubResource("Animation_i7tqk"),
-"runleftanimation": SubResource("Animation_ysie5")
+"idleanimation": SubResource("Animation_7v4dd"),
+"runbackanimation": SubResource("Animation_pdeol"),
+"runforwardanimation": SubResource("Animation_octc7"),
+"runleftanimation": SubResource("Animation_fpmhi")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ifqut"]
@@ -782,6 +784,8 @@ max_armor = 100
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component", "armor_component") groups=["Player"] instance=ExtResource("4_j2tln")]
 collision_mask = 4
+script = ExtResource("6_1toe0")
+thornsDamage = -50
 health_component = NodePath("../HealthComponent")
 armor_component = NodePath("../ArmorComponent")
 
@@ -796,16 +800,16 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 bones/0/rotation = Quaternion(-0.248614, 0.0140236, 0.0294315, 0.968054)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(0.0145979, 0.352579, -0.0017458)
+bones/1/position = Vector3(0.0139506, 0.341258, -0.00798652)
 bones/1/rotation = Quaternion(0.286625, -0.0153368, -0.0281841, 0.957505)
-bones/2/rotation = Quaternion(0.0657104, -8.2163e-05, -0.000685661, 0.997838)
+bones/2/rotation = Quaternion(0.076571, -8.96233e-05, -0.000684726, 0.997064)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.0662102, -0.188511, 0.956698, -0.21168)
+bones/3/rotation = Quaternion(-0.0699099, -0.18787, 0.956502, -0.211947)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.353955, 0.00703749, 0.0348971, 0.934585)
-bones/6/rotation = Quaternion(0.0843361, -0.0991752, 0.965966, 0.22352)
+bones/4/rotation = Quaternion(0.351222, 0.00704531, 0.0346277, 0.935625)
+bones/6/rotation = Quaternion(0.0877357, -0.0983105, 0.965679, 0.223833)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.301118, -0.00717664, -0.0296884, 0.953098)
+bones/7/rotation = Quaternion(0.29783, -0.0071845, -0.0293643, 0.95414)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.0589997, -0.194581, 0.977326, -0.0590795)
 bones/10/rotation = Quaternion(-0.204241, 0.00415017, -0.0750367, 0.976032)
@@ -816,18 +820,18 @@ bones/13/rotation = Quaternion(-0.136175, -0.00420675, 0.0500295, 0.989412)
 bones/14/rotation = Quaternion(0.731685, 0.00250492, -0.0255557, 0.681159)
 bones/15/rotation = Quaternion(-0.0168485, 0.563089, 0.825436, -0.0360752)
 bones/15/scale = Vector3(1, 1, 0.999999)
-bones/16/position = Vector3(0.793629, 0.090461, -0.148919)
+bones/16/position = Vector3(0.793629, 0.0764833, -0.148919)
 bones/17/rotation = Quaternion(-0.143178, 0.692459, -0.692459, 0.143178)
 bones/18/rotation = Quaternion(-0.0617429, 0.704406, 0.704406, -0.0617429)
 bones/19/rotation = Quaternion(0.0434195, 0.621766, 0.78089, 0.041633)
 bones/19/scale = Vector3(1, 1, 1.00001)
-bones/20/position = Vector3(-0.802886, 0.0740414, -0.0350145)
+bones/20/position = Vector3(-0.802886, 0.0600638, -0.0350145)
 bones/20/rotation = Quaternion(0.167142, 0.687069, -0.687069, -0.167142)
 bones/21/rotation = Quaternion(0.143178, 0.692459, -0.692459, -0.143178)
 bones/22/rotation = Quaternion(0.0617429, 0.704406, 0.704406, 0.0617429)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="dwarf/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.973045, -0.150199, -0.174998, 0.038394, -0.853744, 0.519276, -0.227398, 0.498559, 0.836498, -0.802886, 0.0740407, -0.0350145)
+transform = Transform3D(-0.973954, -0.148529, -0.171326, 0.0401755, -0.856672, 0.514294, -0.223158, 0.494015, 0.840327, -0.802886, 0.0600625, -0.0350145)
 bone_name = "Hand.r"
 bone_idx = 8
 
@@ -854,6 +858,12 @@ unique_name_in_owner = true
 stream = ExtResource("11_qau47")
 volume_db = -10.0
 
+[node name="AddSwordAudio" type="AudioStreamPlayer3D" parent="dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon"]
+unique_name_in_owner = true
+stream = ExtResource("13_tcoyn")
+attenuation_model = 3
+volume_db = -8.0
+
 [node name="AnimationPlayer" parent="dwarf" index="1"]
 autoplay = "idleanimation"
 
@@ -861,7 +871,7 @@ autoplay = "idleanimation"
 root_node = NodePath("../dwarf")
 root_motion_track = NodePath("Armature/Skeleton3D:MainBone")
 libraries = {
-"": SubResource("AnimationLibrary_1u8lu")
+"": SubResource("AnimationLibrary_3wrdi")
 }
 tree_root = SubResource("AnimationNodeBlendTree_qxgrm")
 anim_player = NodePath("../dwarf/AnimationPlayer")
@@ -890,10 +900,13 @@ texture = ExtResource("14_qtu7n")
 [node name="RegenTimer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="ThornsCooldownTimer" type="Timer" parent="."]
+
 [connection signal="gameover" from="HealthComponent" to="." method="_on_health_component_gameover"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="armor_broken" from="ArmorComponent" to="." method="_on_armor_component_armor_broken"]
 [connection signal="armor_broken" from="ArmorComponent" to="HealthComponent" method="_on_armor_component_armor_broken"]
 [connection signal="armor_changed" from="ArmorComponent" to="." method="_on_armor_component_armor_changed"]
+[connection signal="timeout" from="ThornsCooldownTimer" to="HitboxComponent" method="_on_thorns_cooldown_timer_timeout"]
 
 [editable path="dwarf"]
