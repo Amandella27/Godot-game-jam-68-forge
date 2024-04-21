@@ -9,8 +9,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_yfwit"]
 size = Vector3(0.725586, 0.626831, 1.64258)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mxsgm"]
-size = Vector3(0.725586, 0.775635, 1.92188)
+[sub_resource type="BoxShape3D" id="BoxShape3D_kaflc"]
+size = Vector3(0.725586, 0.888916, 1.92188)
 
 [node name="LavaSlug" type="CharacterBody3D" node_paths=PackedStringArray("animation_player") groups=["Enemy"]]
 collision_layer = 4
@@ -52,8 +52,8 @@ collision_mask = 0
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.378641, -0.0809803)
-shape = SubResource("BoxShape3D_mxsgm")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.435282, -0.0809803)
+shape = SubResource("BoxShape3D_kaflc")
 
 [connection signal="defeated" from="HealthComponent" to="." method="_on_health_component_defeated"]
 
