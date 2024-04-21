@@ -101,7 +101,6 @@ volume_db = -5.0
 [node name="PlayerManager" type="Node3D" parent="."]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_8sp4a")]
-waveNumber = 5
 waveTime = 25
 
 [node name="UIElements" type="Node" parent="."]
