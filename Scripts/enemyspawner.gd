@@ -1,6 +1,7 @@
 extends Node3D
 
 signal spawn_enemy_defeated(heatvalue)
+signal check_music(current_wave)
 
 const HANDATTACK = preload("res://Scenes/handattack.tscn")
 const LAVASLUG = preload("res://Scenes/lavaslug.tscn")
@@ -43,6 +44,7 @@ var spawnTimeDifficultyMod: float = 1
 func _ready():
 	spawnPositions = positions.get_children()
 	Globals.current_wave = waveNumber
+	check_music.emit(waveNumber)
 	startWave()
 
 func spawn_enemies():
@@ -57,6 +59,7 @@ func spawn_enemies():
 				points.add_child(enemy)
 				currentEnemies.append(enemy)
 				currentSpawn.append(enemy)
+	
 
 func randomizePositions():
 
@@ -104,6 +107,7 @@ func enemy_defeated(node,type,heatvalue):
 	currentEnemies.erase(node)
 
 func startWave():
+	check_music.emit(waveNumber)
 	print("Spawn Interval: ",spawnTimeMin)
 	wave_timer.start(waveTime)
 	spawn_timer.start(randf_range((spawnTimeMin*spawnTimeDifficultyMod),(spawnTimeMax*spawnTimeDifficultyMod)))

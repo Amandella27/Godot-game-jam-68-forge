@@ -3,6 +3,8 @@ extends Node3D
 const PLAYER = preload("res://Scenes/player.tscn")
 const PAUSEMENU = preload("res://Scenes/UI/pausemenu.tscn")
 const UPGRADEMENU = preload("res://Scenes/UI/upgrademenu.tscn")
+const EPIC = preload("res://Assets/Sounds/epic.mp3")
+const MINE = preload("res://Assets/Sounds/Mine.mp3")
 
 @onready var ui_elements = $UIElements
 @onready var hud = $UIElements/HUD
@@ -17,6 +19,7 @@ var paused = null
 var upgradeMenu
 var playerNearAnvil:bool = false
 var playerSpawnLocation = Vector3(-4,0,-7)
+var backgroundmusics:Array = [MINE, EPIC]
 
 func _ready():
 	ambient_lava.play()
@@ -25,6 +28,7 @@ func _ready():
 	spawn_player(playerSpawnLocation)
 	
 	enemy_spawner.spawn_enemy_defeated.connect(update_heat_bar)
+	enemy_spawner.check_music.connect(update_bg_music)
 
 func spawn_player(location:Vector3):
 	var player = PLAYER.instantiate()
@@ -115,3 +119,13 @@ func clear_upgrade_warning():
 	var upgrade_warning_shadow_tween = create_tween()
 	upgrade_warning_tween.tween_property(hud.upgrade_warning.label_settings, "font_color", Color(1, 1, 1, 0), 1).set_ease(Tween.EASE_OUT).set_delay(3.0)
 	upgrade_warning_shadow_tween.tween_property(hud.upgrade_warning.label_settings, "shadow_color", Color(0, 0, 0, 0), .65).set_ease(Tween.EASE_OUT).set_delay(3.0)
+
+func update_bg_music(current_wave):
+	if current_wave >= 5 and background_music.stream == MINE:
+		background_music.stream = EPIC
+		background_music.volume_db = -11
+		background_music.play()
+	elif current_wave < 5 and background_music.stream == EPIC:
+		background_music.stream = MINE
+		background_music.volume_db = -6
+		background_music.play()
