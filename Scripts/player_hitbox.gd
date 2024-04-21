@@ -32,7 +32,6 @@ func take_damage(amount):
 	
 	if get_parent() is Player:
 		damageIndicator()
-		print(pain_sound_cd.time_left)
 		if pain_sound_cd.time_left == 0:
 			player_pain_sound.play()
 			pain_sound_cd.start(2)
@@ -54,12 +53,6 @@ func damageIndicator():
 		tween.tween_property(model, "albedo_color", originalColor, 0.1)
 		tween.tween_property(model, "albedo_color", flashColor, 0.1)
 		tween.tween_property(model, "albedo_color", originalColor, 0.1)
-
-func reset_colors():
-	model_parts[0].albedo_color = originArmorColor
-	model_parts[1].albedo_color = originHairColor
-	model_parts[2].albedo_color = originHelmColor
-	model_parts[3].albedo_color = originSkinColor
 
 func _on_thorns_cooldown_timer_timeout():
 	thorns_available = true
