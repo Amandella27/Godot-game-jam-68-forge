@@ -28,7 +28,7 @@ height = 1.37845
 radius = 0.420581
 height = 1.44748
 
-[sub_resource type="Animation" id="Animation_un154"]
+[sub_resource type="Animation" id="Animation_jbdq0"]
 resource_name = "idleanimation-loop"
 length = 1.04167
 loop_mode = 1
@@ -194,7 +194,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.731685, 0.00250492, -0.0255557, 0.681159)
 
-[sub_resource type="Animation" id="Animation_ejt60"]
+[sub_resource type="Animation" id="Animation_m1fpb"]
 resource_name = "runbackanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -360,7 +360,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="Animation" id="Animation_o1nni"]
+[sub_resource type="Animation" id="Animation_d8gfi"]
 resource_name = "runforwardanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -526,7 +526,7 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="Animation" id="Animation_g6ncu"]
+[sub_resource type="Animation" id="Animation_1ujdl"]
 resource_name = "runleftanimation-loop"
 length = 0.541667
 loop_mode = 1
@@ -692,15 +692,15 @@ tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 0.0695491, 0.306183, 0.0918595, 0.944975)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0626j"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d1okg"]
 _data = {
 "Vattackanimation": ExtResource("12_ltg50"),
 "attackanimation": ExtResource("8_ygyyq"),
-"idleanimation": SubResource("Animation_un154"),
+"idleanimation": SubResource("Animation_jbdq0"),
 "jumpanimation": ExtResource("14_px8qb"),
-"runbackanimation": SubResource("Animation_ejt60"),
-"runforwardanimation": SubResource("Animation_o1nni"),
-"runleftanimation": SubResource("Animation_g6ncu")
+"runbackanimation": SubResource("Animation_m1fpb"),
+"runforwardanimation": SubResource("Animation_d8gfi"),
+"runleftanimation": SubResource("Animation_1ujdl")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ifqut"]
@@ -776,6 +776,7 @@ node_connections = [&"JumpOneShot", 0, &"runblend", &"JumpOneShot", 1, &"jumpAni
 collision_mask = 6
 script = ExtResource("1_3bkjk")
 swordSounds = [NodePath("dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon/StartingSword/SwordWoosh1"), NodePath("dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon/StartingSword/SwordWoosh2"), NodePath("dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon/StartingSword/SwordWoosh3")]
+metadata/_edit_pinned_properties_ = [&"swordSounds"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62652, 0)
@@ -813,16 +814,16 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 bones/0/position = Vector3(0.00801672, -0.153321, 0.131178)
 bones/0/rotation = Quaternion(-0.248614, 0.0140236, 0.0294315, 0.968054)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(0.010528, 0.281398, -0.0409856)
+bones/1/position = Vector3(0.0143413, 0.34809, -0.00422028)
 bones/1/rotation = Quaternion(0.286625, -0.0153368, -0.0281841, 0.957505)
-bones/2/rotation = Quaternion(0.13383, -0.000128884, -0.000678432, 0.991004)
+bones/2/rotation = Quaternion(0.0700167, -8.51214e-05, -0.0006853, 0.997546)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.0890021, -0.184241, 0.955358, -0.213129)
+bones/3/rotation = Quaternion(-0.067679, -0.18826, 0.956621, -0.211788)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.336495, 0.00708634, 0.0331758, 0.941074)
-bones/6/rotation = Quaternion(0.105505, -0.0934652, 0.964049, 0.225261)
+bones/4/rotation = Quaternion(0.352875, 0.00704058, 0.0347907, 0.934997)
+bones/6/rotation = Quaternion(0.0856833, -0.0988357, 0.965853, 0.223646)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.280015, -0.0072254, -0.0276078, 0.959571)
+bones/7/rotation = Quaternion(0.299821, -0.00717976, -0.0295605, 0.95351)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.0589997, -0.194581, 0.977326, -0.0590795)
 bones/10/rotation = Quaternion(-0.204241, 0.00415017, -0.0750367, 0.976032)
@@ -833,18 +834,18 @@ bones/13/rotation = Quaternion(-0.136175, -0.00420675, 0.0500295, 0.989412)
 bones/14/rotation = Quaternion(0.731685, 0.00250492, -0.0255557, 0.681159)
 bones/15/rotation = Quaternion(-0.0168485, 0.563089, 0.825436, -0.0360752)
 bones/15/scale = Vector3(1, 1, 0.999999)
-bones/16/position = Vector3(0.793629, 0.00257341, -0.148919)
+bones/16/position = Vector3(0.793629, 0.0849187, -0.148919)
 bones/17/rotation = Quaternion(-0.143178, 0.692459, -0.692459, 0.143178)
 bones/18/rotation = Quaternion(-0.0617429, 0.704406, 0.704406, -0.0617429)
 bones/19/rotation = Quaternion(0.0434195, 0.621766, 0.78089, 0.041633)
 bones/19/scale = Vector3(1, 1, 1.00001)
-bones/20/position = Vector3(-0.802886, -0.0138461, -0.0350145)
+bones/20/position = Vector3(-0.802886, 0.0684992, -0.0350145)
 bones/20/rotation = Quaternion(0.167142, 0.687069, -0.687069, -0.167142)
 bones/21/rotation = Quaternion(0.143178, 0.692459, -0.692459, -0.143178)
 bones/22/rotation = Quaternion(0.0617429, 0.704406, 0.704406, 0.0617429)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="dwarf/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.978316, -0.140736, -0.151954, 0.0496585, -0.871656, 0.487596, -0.201074, 0.469477, 0.859744, -0.802887, -0.0137657, -0.0350141)
+transform = Transform3D(-0.973408, -0.149531, -0.173543, 0.0390995, -0.854906, 0.517307, -0.225716, 0.496766, 0.838019, -0.802887, 0.0684988, -0.0350141)
 bone_name = "Hand.r"
 bone_idx = 8
 
@@ -884,7 +885,7 @@ autoplay = "idleanimation"
 root_node = NodePath("../dwarf")
 root_motion_track = NodePath("Armature/Skeleton3D:MainBone")
 libraries = {
-"": SubResource("AnimationLibrary_0626j")
+"": SubResource("AnimationLibrary_d1okg")
 }
 tree_root = SubResource("AnimationNodeBlendTree_qxgrm")
 anim_player = NodePath("../dwarf/AnimationPlayer")
@@ -913,9 +914,6 @@ visible = false
 modulate = Color(1, 0.788235, 0.662745, 1)
 texture = ExtResource("14_qtu7n")
 
-[node name="RegenTimer" type="Timer" parent="."]
-wait_time = 2.0
-
 [node name="ThornsCooldownTimer" type="Timer" parent="."]
 
 [node name="PlayerPainSound" type="AudioStreamPlayer3D" parent="."]
@@ -929,6 +927,7 @@ unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
+[connection signal="max_heat_kill" from="." to="HealthComponent" method="_on_player_max_heat_kill"]
 [connection signal="gameover" from="HealthComponent" to="." method="_on_health_component_gameover"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="armor_broken" from="ArmorComponent" to="." method="_on_armor_component_armor_broken"]

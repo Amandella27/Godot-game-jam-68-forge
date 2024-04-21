@@ -24,7 +24,7 @@ const LAVA_HAND = preload("res://Scenes/lava_hand.tscn")
 @export var waveTime: int = 30
 @export var restTime: int = 10
 
-var spawnableEnemies: Array = [LAVASLUG,LAVASLUG,LAVASLUG,LAVASLUG,LAVA_BAT,LAVA_BAT,LAVA_BAT,LAVA_BAT,LAVA_HAND]
+var spawnableEnemies: Array = [LAVASLUG,LAVASLUG,LAVASLUG,LAVASLUG,LAVASLUG,LAVA_BAT,LAVA_BAT,LAVA_BAT,LAVA_HAND]
 
 var currentEnemies: Array
 var currentSpawn: Array
@@ -183,11 +183,10 @@ func _on_check_timer_timeout():
 		checking = false
 		rest_timer.start(restTime)
 		resting = true
-		Globals.regen_active = true
 	else:
 		check_timer.start(1)
-		Globals.regen_active = false
-		Globals.currentPlayer.regen_timer.stop()
+
+
 		
 func clear_projectiles():
 	var currentProjectiles = enemy_projectiles.get_children()
