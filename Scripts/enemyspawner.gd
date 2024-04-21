@@ -42,6 +42,8 @@ var spawnTimeDifficultyMod: float = 1
 
 func _ready():
 	spawnPositions = positions.get_children()
+	if OS.has_feature("web"):
+		waveNumber = 1
 	Globals.current_wave = waveNumber
 	startWave()
 
