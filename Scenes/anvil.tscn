@@ -22,7 +22,7 @@ script = ExtResource("2_debuh")
 surface_material_override/0 = SubResource("StandardMaterial3D_b405o")
 
 [node name="Area3D" type="Area3D" parent="." index="1"]
-collision_layer = 2
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
 shape = SubResource("BoxShape3D_06rpw")
