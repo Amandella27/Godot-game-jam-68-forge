@@ -16,7 +16,7 @@ const UPGRADEMENU = preload("res://Scenes/UI/upgrademenu.tscn")
 var paused = null
 var upgradeMenu
 var playerNearAnvil:bool = false
-var playerSpawnLocation = Vector3(-3,0,-7)
+var playerSpawnLocation = Vector3(-4,0,-7)
 
 func _ready():
 	ambient_lava.play()
