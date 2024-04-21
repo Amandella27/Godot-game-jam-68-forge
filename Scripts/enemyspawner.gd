@@ -23,7 +23,7 @@ const LAVA_HAND = preload("res://Scenes/lava_hand.tscn")
 @export var waveTime: int = 30
 @export var restTime: int = 10
 
-var spawnableEnemies: Array = [LAVASLUG,LAVASLUG,LAVASLUG,LAVA_BAT,LAVA_BAT,LAVA_BAT,LAVA_HAND]
+var spawnableEnemies: Array = [LAVASLUG,LAVASLUG,LAVASLUG,LAVASLUG,LAVA_BAT,LAVA_BAT,LAVA_BAT,LAVA_BAT,LAVA_HAND]
 
 var currentEnemies: Array
 var currentSpawn: Array
@@ -61,23 +61,23 @@ func spawn_enemies():
 func randomizePositions():
 
 	if waveNumber >= 5:
-		enemyRandomnessLevel = randi_range(0,6)
+		enemyRandomnessLevel = randi_range(0,8)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
-			if enemyRandomnessLevel == 6:
+			if enemyRandomnessLevel == 8:
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
 			
 	elif waveNumber >= 3:
-		enemyRandomnessLevel = randi_range(0,5)
+		enemyRandomnessLevel = randi_range(0,7)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
-			if enemyRandomnessLevel == 6:
+			if enemyRandomnessLevel == 8:
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
@@ -111,13 +111,11 @@ func startWave():
 	checkEmptySpawn()
 
 func _on_wave_timer_timeout():
-	waveNumber += 1
-	Globals.current_wave = waveNumber
 	if currentEnemies.is_empty():
 		rest_timer.start(restTime)
 		resting = true
-	if spawnTimeDifficultyMod >= .05:
-		spawnTimeDifficultyMod -= .05
+	if spawnTimeDifficultyMod >= .035:
+		spawnTimeDifficultyMod -= .035
 	spawnTimeMin = 7 * spawnTimeDifficultyMod
 	spawnTimeMax = 7 * spawnTimeDifficultyMod
 	spawnTimeMin = clamp(spawnTimeMin, 1, 7)
@@ -133,6 +131,8 @@ func _on_spawn_timer_timeout():
 	checkEmptySpawn()
 
 func _on_rest_timer_timeout():
+	waveNumber += 1
+	Globals.current_wave = waveNumber
 	currentSpawn.clear()
 	resting = false
 	rest_timer.stop()
