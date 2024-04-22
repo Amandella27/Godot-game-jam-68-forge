@@ -61,6 +61,12 @@ func _input(event):
 	elif event.is_action_pressed("remove_enemies") and paused == null and !OS.has_feature("web"):
 		enemy_spawner.remove_enemies()
 		enemy_spawner.clear_projectiles()
+		
+	elif event.is_action_pressed("hideui") and hud.visible:
+		hud.visible = false
+	
+	elif event.is_action_pressed("hideui") and !hud.visible:
+		hud.visible = true
 
 func _on_anvil_near_anvil():
 	playerNearAnvil = true
@@ -123,7 +129,7 @@ func clear_upgrade_warning():
 func update_bg_music(current_wave):
 	if current_wave >= 5 and background_music.stream == MINE:
 		background_music.stream = EPIC
-		background_music.volume_db = -11
+		background_music.volume_db = -15
 		background_music.play()
 	elif current_wave < 5 and background_music.stream == EPIC:
 		background_music.stream = MINE
