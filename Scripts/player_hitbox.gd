@@ -2,6 +2,7 @@ extends HitboxComponent
 
 class_name PlayerHitbox
 
+@onready var thorns_active_timer = $"../ThornsActiveTimer"
 @onready var thorns_cooldown_timer = $"../ThornsCooldownTimer"
 @onready var player_pain_sound = %PlayerPainSound
 @onready var pain_sound_cd = %PainSoundCD
@@ -22,7 +23,8 @@ var model_parts = {ARMOR:originArmorColor,HAIR:originHairColor,HELMET:originHelm
 
 var has_thorns: bool = false
 var thorns_available: bool = false
-var thorns_cooldown: int = 6
+var thorns_cooldown: int = 11
+var thorns_active: bool = false
 
 func take_damage(amount):
 	if armor_component != null and armor_component.current_armor > 0:
@@ -33,6 +35,7 @@ func take_damage(amount):
 	if get_parent() is Player:
 		damageIndicator()
 		if pain_sound_cd.time_left == 0:
+			player_pain_sound.stream = get_parent().pain_sounds[randi_range(0,3)]
 			player_pain_sound.play()
 			pain_sound_cd.start(2)
  
@@ -57,3 +60,8 @@ func damageIndicator():
 func _on_thorns_cooldown_timer_timeout():
 	thorns_available = true
 	thorns_cooldown_timer.stop()
+
+func _on_thorns_active_timer_timeout():
+	thorns_available = false
+	thorns_cooldown_timer.start(thorns_cooldown)
+	thorns_active = false

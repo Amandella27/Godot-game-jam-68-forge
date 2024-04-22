@@ -2,6 +2,11 @@ extends CharacterBody3D
 
 class_name Player
 
+const PAIN_1 = preload("res://Assets/Sounds/pain1.mp3")
+const PAIN_2 = preload("res://Assets/Sounds/pain2.mp3")
+const PAIN_3 = preload("res://Assets/Sounds/pain3.mp3")
+const PAIN_4 = preload("res://Assets/Sounds/pain4.mp3")
+
 signal player_health_changed(new_health)
 signal player_armor_changed(new_armor)
 signal player_armor_broken()
@@ -38,6 +43,8 @@ var SPEED = 5.0
 
 var attack_available:bool = true
 var jump_buffer: bool = false
+
+var pain_sounds:Array = [PAIN_1,PAIN_2,PAIN_3,PAIN_4]
 
 func _ready():
 

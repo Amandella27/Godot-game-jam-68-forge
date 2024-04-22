@@ -101,6 +101,7 @@ volume_db = -5.0
 [node name="PlayerManager" type="Node3D" parent="."]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_8sp4a")]
+waveNumber = 5
 waveTime = 25
 
 [node name="UIElements" type="Node" parent="."]
@@ -110,7 +111,7 @@ process_mode = 3
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_7sajj")
-volume_db = -6.0
+volume_db = -7.0
 
 [node name="GameOverAudio" type="AudioStreamPlayer" parent="."]
 process_mode = 3

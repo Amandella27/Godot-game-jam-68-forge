@@ -19,10 +19,10 @@ func _on_area_entered(area):
 		currentArea = area
 		damage_timer.start(1)
 	if area.thorns_available and !get_parent().is_projectile:
-
+		if !area.thorns_active:
+			area.thorns_active_timer.start(.5)
+			area.thorns_active = true
 		take_thorns_damage.emit(area.thornsDamage)
-		area.thorns_available = false
-		area.thorns_cooldown_timer.start(area.thorns_cooldown)
 		
 func _on_damage_timer_timeout():
 	currentArea.take_damage(damage)

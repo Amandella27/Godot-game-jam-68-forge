@@ -1,13 +1,33 @@
 extends Control
 
 const target_scene_path = "res://Scenes/main.tscn"
+const SWORD_SPARKS = preload("res://Scenes/sword_sparks.tscn")
+const HANDATTACK = preload("res://Scenes/handattack.tscn")
+const ARMORBROKEN = preload("res://Scenes/UI/armorbroken.tscn")
+const HEATINGUP = preload("res://Scenes/UI/heatingup.tscn")
+const SWELTERING = preload("res://Scenes/UI/sweltering.tscn")
+const TEMPRISING = preload("res://Scenes/UI/temprising.tscn")
+
+@onready var progress_bar : ProgressBar = $ProgressBar
 
 var loading_status : int
 var progress : Array[float]
 
-@onready var progress_bar : ProgressBar = $ProgressBar
+var particles = [
+	HANDATTACK,
+	SWORD_SPARKS,
+	ARMORBROKEN,
+	TEMPRISING,
+	HEATINGUP,
+	SWELTERING,
+]
 
 func _ready() -> void:
+	for particle in particles:
+		var particles_instance = particle.instantiate()
+		particles_instance.visible = false
+		self.add_child(particles_instance)
+
 	# Request to load the target scene:
 	ResourceLoader.load_threaded_request(target_scene_path)
 	

@@ -76,9 +76,11 @@ stream = ExtResource("5_w72mp")
 
 [node name="BatDeath" type="AudioStreamPlayer" parent="SoundEffects"]
 stream = ExtResource("6_rb11t")
+volume_db = -3.0
 
 [node name="HandDeath" type="AudioStreamPlayer" parent="SoundEffects"]
 stream = ExtResource("4_8qkfv")
+volume_db = -10.0
 
 [node name="EnemyProjectiles" type="Node3D" parent="."]
 

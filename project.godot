@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://Scripts/Globals.gd"
-ParticleLoader="*res://Scripts/ParticleLoader.gd"
 
 [display]
 

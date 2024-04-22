@@ -129,9 +129,9 @@ func clear_upgrade_warning():
 func update_bg_music(current_wave):
 	if current_wave >= 5 and background_music.stream == MINE:
 		background_music.stream = EPIC
-		background_music.volume_db = -15
+		background_music.volume_db = -16
 		background_music.play()
 	elif current_wave < 5 and background_music.stream == EPIC:
 		background_music.stream = MINE
-		background_music.volume_db = -6
+		background_music.volume_db = -7
 		background_music.play()
