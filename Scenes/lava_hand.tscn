@@ -8,9 +8,9 @@
 size = Vector3(1.48413, 1, 1.81348)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q7wla"]
-height = 4.0
+height = 3.11734
 
-[sub_resource type="Animation" id="Animation_f8d77"]
+[sub_resource type="Animation" id="Animation_2rl7j"]
 resource_name = "attackanimation"
 length = 0.708333
 tracks/0/type = "rotation_3d"
@@ -112,7 +112,7 @@ tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = PackedFloat32Array(0, 1, 5.38304e-07, 3.29129e-06, 4.37722e-07, 1, 0.0333333, 1, 0.0694146, -0.0417578, 0.0556386, 0.99516, 0.0666667, 1, 0.184438, -0.110958, 0.147834, 0.965306, 0.1, 1, 0.279925, -0.168406, 0.224371, 0.918117, 0.133333, 1, 0.323392, -0.194557, 0.259212, 0.88903, 0.166667, 1, 0.308878, -0.185825, 0.247578, 0.899316, 0.2, 1, 0.272376, -0.163864, 0.21832, 0.922657, 0.233333, 1, 0.227803, -0.137048, 0.182594, 0.946564, 0.266667, 1, 0.181219, -0.109022, 0.145254, 0.966527, 0.3, 1, 0.13739, -0.0826535, 0.110124, 0.9809, 0.333333, 1, 0.0994053, -0.0598009, 0.0796773, 0.990047, 0.366667, 1, 0.07272, -0.0437464, 0.058288, 0.994686, 0.4, 1, 0.0528241, -0.0317766, 0.0423406, 0.9972, 0.433333, 1, 0.0374441, -0.0225236, 0.0300129, 0.998594, 0.466667, 1, 0.0252552, -0.0151905, 0.0202431, 0.999361, 0.5, 1, 0.0159109, -0.00956872, 0.0127532, 0.999746, 0.533333, 1, 0.00968327, -0.00582202, 0.00776152, 0.999906, 0.566667, 1, 0.00530442, -0.00318762, 0.0042517, 0.999972, 0.6, 1, 0.00245942, -0.00147603, 0.00197133, 0.999994, 0.633333, 1, 0.000836473, -0.000499639, 0.000670486, 0.999999, 0.666667, 1, 0.000127165, -7.28946e-05, 0.000101923, 1, 0.708333, 1, 5.38304e-07, 3.29129e-06, 4.37722e-07, 1)
 
-[sub_resource type="Animation" id="Animation_c2t2j"]
+[sub_resource type="Animation" id="Animation_3ub7n"]
 resource_name = "idle-loop"
 length = 3.08333
 loop_mode = 1
@@ -215,10 +215,10 @@ tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = PackedFloat32Array(0, 1, -0.0153255, -0.000111479, -0.00194589, 0.999881)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vpb7s"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08uc3"]
 _data = {
-"attackanimation": SubResource("Animation_f8d77"),
-"idle": SubResource("Animation_c2t2j")
+"attackanimation": SubResource("Animation_2rl7j"),
+"idle": SubResource("Animation_3ub7n")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1hbp3"]
@@ -242,6 +242,8 @@ node_connections = [&"OneShot", 0, &"Animation", &"OneShot", 1, &"Animation 2", 
 
 [node name="LavaHand" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_1jhko")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+collision_layer = 4
+collision_mask = 1
 script = ExtResource("2_bdx08")
 SPEED = 0
 damage = -5
@@ -253,9 +255,10 @@ animation_player = NodePath("lavahand/AnimationPlayer")
 shape = SubResource("BoxShape3D_03661")
 
 [node name="HurtboxComponent" parent="." index="2"]
-collision_layer = 4
+collision_layer = 0
 
 [node name="CollisionShape3D" parent="HurtboxComponent" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85807, -0.0258331)
 shape = SubResource("CapsuleShape3D_q7wla")
 
 [node name="HitboxComponent" parent="." index="3" node_paths=PackedStringArray("health_component")]
@@ -264,7 +267,7 @@ collision_mask = 0
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" parent="HitboxComponent" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.84282, 0)
 shape = SubResource("CapsuleShape3D_q7wla")
 
 [node name="lavahand" parent="." index="4" instance=ExtResource("2_prlx2")]
@@ -272,24 +275,24 @@ shape = SubResource("CapsuleShape3D_q7wla")
 [node name="Skeleton3D" parent="lavahand/Armature" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 bones/0/scale = Vector3(1, 1, 1)
-bones/2/rotation = Quaternion(0.394998, -0.00663561, -0.0146925, 0.918541)
+bones/2/rotation = Quaternion(0.41554, -0.0024546, -0.0045306, 0.909561)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(0.242003, 0.00955243, -0.361198, 0.900488)
-bones/4/rotation = Quaternion(0.0871123, -0.0219083, 0.267973, 0.95923)
-bones/5/position = Vector3(0.00921136, 0.791719, -0.0598996)
-bones/5/rotation = Quaternion(0.380993, 0.0372298, 0.0488902, 0.922534)
-bones/6/rotation = Quaternion(0.0872158, 0.0554757, -0.126709, 0.98654)
+bones/3/rotation = Quaternion(0.25162, -0.00615447, -0.335897, 0.907647)
+bones/4/rotation = Quaternion(0.0572057, -0.00818677, 0.192892, 0.979517)
+bones/5/position = Vector3(0.0108256, 0.785929, -0.0557529)
+bones/5/rotation = Quaternion(0.319155, 0.00879616, 0.0403248, 0.946803)
+bones/6/rotation = Quaternion(0.0291812, 0.0297433, -0.127658, 0.990943)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/position = Vector3(-0.129517, 0.778079, -0.0399463)
-bones/7/rotation = Quaternion(0.405506, 0.087467, 0.0703213, 0.907177)
-bones/8/rotation = Quaternion(0.100069, 0.0424342, 0.0169302, 0.993931)
-bones/9/position = Vector3(-0.265802, 0.711106, -0.0393799)
-bones/9/rotation = Quaternion(0.309481, 0.254433, 0.341186, 0.85034)
+bones/7/position = Vector3(-0.129208, 0.778733, -0.0423067)
+bones/7/rotation = Quaternion(0.345527, 0.0594373, 0.0609727, 0.934538)
+bones/8/rotation = Quaternion(0.0373759, 0.0336018, 0.0132461, 0.998648)
+bones/9/position = Vector3(-0.26719, 0.716343, -0.0409984)
+bones/9/rotation = Quaternion(0.250394, 0.249286, 0.31251, 0.881758)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(0.0820861, 0.00163937, 0.0732134, 0.993931)
+bones/10/rotation = Quaternion(0.0306753, 0.00154795, 0.0273595, 0.999154)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="lavahand/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.963542, 0.209149, 0.166867, 0.192528, -0.108894, -0.975231, -0.185798, 0.971802, -0.145191, 0.0234661, 3.04363, 0.53158)
+transform = Transform3D(0.978729, 0.18731, 0.0836955, 0.0707057, 0.0749992, -0.994674, -0.192589, 0.979434, 0.0601601, 0.0102239, 3.03166, 0.556045)
 bone_name = "Bone.010"
 bone_idx = 6
 
@@ -299,7 +302,7 @@ transform = Transform3D(-0.93782, -0.255698, 0.234762, -0.182793, -0.211158, -0.
 [node name="AnimationTree" type="AnimationTree" parent="." index="5"]
 root_node = NodePath("../lavahand")
 libraries = {
-"": SubResource("AnimationLibrary_vpb7s")
+"": SubResource("AnimationLibrary_08uc3")
 }
 tree_root = SubResource("AnimationNodeBlendTree_wqejf")
 anim_player = NodePath("../lavahand/AnimationPlayer")

@@ -2,6 +2,7 @@ extends HitboxComponent
 
 class_name PlayerHitbox
 
+@onready var thorns_active_timer = $"../ThornsActiveTimer"
 @onready var thorns_cooldown_timer = $"../ThornsCooldownTimer"
 @onready var player_pain_sound = %PlayerPainSound
 @onready var pain_sound_cd = %PainSoundCD
@@ -22,7 +23,8 @@ var model_parts = {ARMOR:originArmorColor,HAIR:originHairColor,HELMET:originHelm
 
 var has_thorns: bool = false
 var thorns_available: bool = false
-var thorns_cooldown: int = 6
+var thorns_cooldown: int = 11
+var thorns_active: bool = false
 
 func take_damage(amount):
 	if armor_component != null and armor_component.current_armor > 0:
@@ -32,8 +34,8 @@ func take_damage(amount):
 	
 	if get_parent() is Player:
 		damageIndicator()
-		print(pain_sound_cd.time_left)
 		if pain_sound_cd.time_left == 0:
+			player_pain_sound.stream = get_parent().pain_sounds[randi_range(0,3)]
 			player_pain_sound.play()
 			pain_sound_cd.start(2)
  
@@ -55,12 +57,11 @@ func damageIndicator():
 		tween.tween_property(model, "albedo_color", flashColor, 0.1)
 		tween.tween_property(model, "albedo_color", originalColor, 0.1)
 
-func reset_colors():
-	model_parts[0].albedo_color = originArmorColor
-	model_parts[1].albedo_color = originHairColor
-	model_parts[2].albedo_color = originHelmColor
-	model_parts[3].albedo_color = originSkinColor
-
 func _on_thorns_cooldown_timer_timeout():
 	thorns_available = true
 	thorns_cooldown_timer.stop()
+
+func _on_thorns_active_timer_timeout():
+	thorns_available = false
+	thorns_cooldown_timer.start(thorns_cooldown)
+	thorns_active = false

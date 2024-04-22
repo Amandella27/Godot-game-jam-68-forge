@@ -2,13 +2,17 @@ extends CharacterBody3D
 
 class_name Player
 
+const PAIN_1 = preload("res://Assets/Sounds/pain1.mp3")
+const PAIN_2 = preload("res://Assets/Sounds/pain2.mp3")
+const PAIN_3 = preload("res://Assets/Sounds/pain3.mp3")
+const PAIN_4 = preload("res://Assets/Sounds/pain4.mp3")
+
 signal player_health_changed(new_health)
 signal player_armor_changed(new_armor)
 signal player_armor_broken()
 signal attacking
 signal player_gameover()
-
-@onready var pain_sound_cd = %PainSoundCD
+signal max_heat_kill
 
 @onready var camera_pivot = $CameraPivot
 @onready var camera_3d = $CameraPivot/Camera3D
@@ -22,7 +26,6 @@ signal player_gameover()
 @onready var interact_popup_y = %InteractPopupY
 
 @onready var weapon = $dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon
-@onready var regen_timer = $RegenTimer
 @onready var thorns_cooldown_timer = $ThornsCooldownTimer
 
 @onready var health_component:HealthComponent = $HealthComponent
@@ -41,6 +44,8 @@ var SPEED = 5.0
 var attack_available:bool = true
 var jump_buffer: bool = false
 
+var pain_sounds:Array = [PAIN_1,PAIN_2,PAIN_3,PAIN_4]
+
 func _ready():
 
 	Globals.currentPlayer = self
@@ -49,7 +54,6 @@ func _ready():
 	
 	player_health_changed.emit(health_component.get_health())
 	player_armor_changed.emit(armor_component.get_armor())
-	regen_timer.timeout.connect(heat_health_regen)
 	
 func _input(event):
 	
@@ -151,24 +155,18 @@ func checkHeatBuffs():
 	if Globals.current_heat >= 0 and Globals.current_heat < 50:
 		SPEED = 5
 		JUMP_VELOCITY = 4.5
-		Globals.regen_active = false
-		regen_timer.stop()
+
 	elif Globals.current_heat >= 50 and Globals.current_heat < 100:
 		SPEED = 7
 		JUMP_VELOCITY = 4.5
-		Globals.regen_active = false
-		regen_timer.stop()
+
 	elif Globals.current_heat >= 100 and Globals.current_heat < 150:
 		SPEED = 7
 		JUMP_VELOCITY = 6
-		Globals.regen_active = false
-		regen_timer.stop()
-	elif Globals.current_heat == 150:
-		if !Globals.regen_active:
-			regen_timer.start(2)
-		
-func heat_health_regen():
-	health_component.adjust_health(1)
 
-func _on_pain_sound_cd_timeout():
-	pain_sound_cd.stop()
+	elif Globals.current_heat == 150:
+		SPEED = 7
+		JUMP_VELOCITY = 6
+		emit_signal("max_heat_kill")
+		
+		

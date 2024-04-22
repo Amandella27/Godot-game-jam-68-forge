@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://32xjjxlrbwjx" path="res://Assets/Sounds/weapons-smithing-42563.mp3" id="13_tcoyn"]
 [ext_resource type="Animation" uid="uid://kh727tcc050a" path="res://Animations/jumpnimationdwarf.res" id="14_px8qb"]
 [ext_resource type="Texture2D" uid="uid://cgtu6pb0s0oow" path="res://Assets/Eo_circle_yellow_white_letter-y.svg.png" id="14_qtu7n"]
-[ext_resource type="AudioStream" uid="uid://1sw1ac0x725u" path="res://Assets/Sounds/dwarfpain.mp3" id="19_wv01y"]
+[ext_resource type="AudioStream" uid="uid://cq25eiid4qs2j" path="res://Assets/Sounds/pain1.mp3" id="19_ihby1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0h75s"]
 radius = 0.290192
@@ -26,7 +26,7 @@ height = 1.37845
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mes1y"]
 radius = 0.420581
-height = 1.44748
+height = 1.55491
 
 [sub_resource type="Animation" id="Animation_un154"]
 resource_name = "idleanimation-loop"
@@ -776,6 +776,7 @@ node_connections = [&"JumpOneShot", 0, &"runblend", &"JumpOneShot", 1, &"jumpAni
 collision_mask = 6
 script = ExtResource("1_3bkjk")
 swordSounds = [NodePath("dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon/StartingSword/SwordWoosh1"), NodePath("dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon/StartingSword/SwordWoosh2"), NodePath("dwarf/Armature/Skeleton3D/BoneAttachment3D/Weapon/StartingSword/SwordWoosh3")]
+metadata/_edit_pinned_properties_ = [&"swordSounds"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62652, 0)
@@ -802,7 +803,7 @@ health_component = NodePath("../HealthComponent")
 armor_component = NodePath("../ArmorComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.626263, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.755563, 0)
 shape = SubResource("CapsuleShape3D_mes1y")
 
 [node name="dwarf" parent="." instance=ExtResource("6_towm1")]
@@ -813,16 +814,16 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 bones/0/position = Vector3(0.00801672, -0.153321, 0.131178)
 bones/0/rotation = Quaternion(-0.248614, 0.0140236, 0.0294315, 0.968054)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/position = Vector3(0.0142778, 0.346979, -0.0048327)
+bones/1/position = Vector3(0.0139795, 0.341762, -0.00770854)
 bones/1/rotation = Quaternion(0.286625, -0.0153368, -0.0281841, 0.957505)
-bones/2/rotation = Quaternion(0.0710825, -8.58536e-05, -0.000685209, 0.99747)
+bones/2/rotation = Quaternion(0.0760873, -8.92911e-05, -0.000684769, 0.997101)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.068042, -0.188197, 0.956602, -0.211814)
+bones/3/rotation = Quaternion(-0.0697453, -0.187898, 0.956511, -0.211935)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.352607, 0.00704135, 0.0347643, 0.935099)
-bones/6/rotation = Quaternion(0.086017, -0.0987508, 0.965825, 0.223677)
+bones/4/rotation = Quaternion(0.351344, 0.00704496, 0.0346397, 0.935579)
+bones/6/rotation = Quaternion(0.0875842, -0.0983493, 0.965692, 0.223819)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.299498, -0.00718053, -0.0295287, 0.953613)
+bones/7/rotation = Quaternion(0.297977, -0.00718415, -0.0293788, 0.954094)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(-0.0589997, -0.194581, 0.977326, -0.0590795)
 bones/10/rotation = Quaternion(-0.204241, 0.00415017, -0.0750367, 0.976032)
@@ -833,18 +834,18 @@ bones/13/rotation = Quaternion(-0.136175, -0.00420675, 0.0500295, 0.989412)
 bones/14/rotation = Quaternion(0.731685, 0.00250492, -0.0255557, 0.681159)
 bones/15/rotation = Quaternion(-0.0168485, 0.563089, 0.825436, -0.0360752)
 bones/15/scale = Vector3(1, 1, 0.999999)
-bones/16/position = Vector3(0.793629, 0.0835471, -0.148919)
+bones/16/position = Vector3(0.793629, 0.0771059, -0.148919)
 bones/17/rotation = Quaternion(-0.143178, 0.692459, -0.692459, 0.143178)
 bones/18/rotation = Quaternion(-0.0617429, 0.704406, 0.704406, -0.0617429)
 bones/19/rotation = Quaternion(0.0434195, 0.621766, 0.78089, 0.041633)
 bones/19/scale = Vector3(1, 1, 1.00001)
-bones/20/position = Vector3(-0.802886, 0.0671275, -0.0350145)
+bones/20/position = Vector3(-0.802886, 0.0606864, -0.0350145)
 bones/20/rotation = Quaternion(0.167142, 0.687069, -0.687069, -0.167142)
 bones/21/rotation = Quaternion(0.143178, 0.692459, -0.692459, -0.143178)
 bones/22/rotation = Quaternion(0.0617429, 0.704406, 0.704406, 0.0617429)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="dwarf/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.973497, -0.149366, -0.173183, 0.0392741, -0.855194, 0.516818, -0.2253, 0.49632, 0.838395, -0.802887, 0.0671269, -0.0350142)
+transform = Transform3D(-0.973914, -0.148603, -0.17149, 0.0400959, -0.856542, 0.514517, -0.223347, 0.494219, 0.840157, -0.802886, 0.0606846, -0.0350141)
 bone_name = "Hand.r"
 bone_idx = 8
 
@@ -913,26 +914,29 @@ visible = false
 modulate = Color(1, 0.788235, 0.662745, 1)
 texture = ExtResource("14_qtu7n")
 
-[node name="RegenTimer" type="Timer" parent="."]
-wait_time = 2.0
-
 [node name="ThornsCooldownTimer" type="Timer" parent="."]
+
+[node name="ThornsActiveTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="PlayerPainSound" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("19_wv01y")
+stream = ExtResource("19_ihby1")
 attenuation_model = 3
 volume_db = -8.0
 
 [node name="PainSoundCD" type="Timer" parent="PlayerPainSound"]
 unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
 
+[connection signal="max_heat_kill" from="." to="HealthComponent" method="_on_player_max_heat_kill"]
 [connection signal="gameover" from="HealthComponent" to="." method="_on_health_component_gameover"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="armor_broken" from="ArmorComponent" to="." method="_on_armor_component_armor_broken"]
 [connection signal="armor_broken" from="ArmorComponent" to="HealthComponent" method="_on_armor_component_armor_broken"]
 [connection signal="armor_changed" from="ArmorComponent" to="." method="_on_armor_component_armor_changed"]
 [connection signal="timeout" from="ThornsCooldownTimer" to="HitboxComponent" method="_on_thorns_cooldown_timer_timeout"]
-[connection signal="timeout" from="PlayerPainSound/PainSoundCD" to="." method="_on_pain_sound_cd_timeout"]
+[connection signal="timeout" from="ThornsActiveTimer" to="HitboxComponent" method="_on_thorns_active_timer_timeout"]
 
 [editable path="dwarf"]

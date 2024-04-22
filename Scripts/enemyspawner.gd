@@ -1,6 +1,7 @@
 extends Node3D
 
 signal spawn_enemy_defeated(heatvalue)
+signal check_music(current_wave)
 
 const HANDATTACK = preload("res://Scenes/handattack.tscn")
 const LAVASLUG = preload("res://Scenes/lavaslug.tscn")
@@ -23,7 +24,7 @@ const LAVA_HAND = preload("res://Scenes/lava_hand.tscn")
 @export var waveTime: int = 30
 @export var restTime: int = 10
 
-var spawnableEnemies: Array = [LAVASLUG,LAVASLUG,LAVA_BAT,LAVA_BAT,LAVA_HAND]
+var spawnableEnemies: Array = [LAVASLUG,LAVASLUG,LAVASLUG,LAVASLUG,LAVASLUG,LAVA_BAT,LAVA_BAT,LAVA_BAT,LAVA_HAND]
 
 var currentEnemies: Array
 var currentSpawn: Array
@@ -35,14 +36,17 @@ var resting: bool = false
 var checking: bool = false
 
 var enemyRandomnessLevel
-var spawnRandomnessLevel: float = 5
+var spawnRandomnessLevel: float = 6
 var spawnTimeMin: float = 7
 var spawnTimeMax: float = 7
 var spawnTimeDifficultyMod: float = 1
 
 func _ready():
 	spawnPositions = positions.get_children()
+	if OS.has_feature("web"):
+		waveNumber = 1
 	Globals.current_wave = waveNumber
+	check_music.emit(waveNumber)
 	startWave()
 
 func spawn_enemies():
@@ -57,27 +61,28 @@ func spawn_enemies():
 				points.add_child(enemy)
 				currentEnemies.append(enemy)
 				currentSpawn.append(enemy)
+	
 
 func randomizePositions():
 
 	if waveNumber >= 5:
-		enemyRandomnessLevel = randi_range(0,4)
+		enemyRandomnessLevel = randi_range(0,8)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
-			if enemyRandomnessLevel == 4:
+			if enemyRandomnessLevel == 8:
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
 			
 	elif waveNumber >= 3:
-		enemyRandomnessLevel = randi_range(0,2)
+		enemyRandomnessLevel = randi_range(0,7)
 		var randomSpawns = randf_range(1,10)
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
-			if enemyRandomnessLevel == 4:
+			if enemyRandomnessLevel == 8:
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
@@ -88,7 +93,7 @@ func randomizePositions():
 		if randomSpawns >= spawnRandomnessLevel:
 			enemy = spawnableEnemies[enemyRandomnessLevel].instantiate()
 			enemy.enemy_defeated.connect(enemy_defeated)
-			if enemyRandomnessLevel == 4:
+			if enemyRandomnessLevel == 6:
 				enemy.hand_attack.connect(hand_attack)
 		else:
 			skipSpawn = true
@@ -104,6 +109,7 @@ func enemy_defeated(node,type,heatvalue):
 	currentEnemies.erase(node)
 
 func startWave():
+	check_music.emit(waveNumber)
 	print("Spawn Interval: ",spawnTimeMin)
 	wave_timer.start(waveTime)
 	spawn_timer.start(randf_range((spawnTimeMin*spawnTimeDifficultyMod),(spawnTimeMax*spawnTimeDifficultyMod)))
@@ -111,13 +117,11 @@ func startWave():
 	checkEmptySpawn()
 
 func _on_wave_timer_timeout():
-	waveNumber += 1
-	Globals.current_wave = waveNumber
 	if currentEnemies.is_empty():
 		rest_timer.start(restTime)
 		resting = true
-	if spawnTimeDifficultyMod >= .05:
-		spawnTimeDifficultyMod -= .05
+	if spawnTimeDifficultyMod >= .035:
+		spawnTimeDifficultyMod -= .035
 	spawnTimeMin = 7 * spawnTimeDifficultyMod
 	spawnTimeMax = 7 * spawnTimeDifficultyMod
 	spawnTimeMin = clamp(spawnTimeMin, 1, 7)
@@ -133,6 +137,8 @@ func _on_spawn_timer_timeout():
 	checkEmptySpawn()
 
 func _on_rest_timer_timeout():
+	waveNumber += 1
+	Globals.current_wave = waveNumber
 	currentSpawn.clear()
 	resting = false
 	rest_timer.stop()
@@ -179,12 +185,10 @@ func _on_check_timer_timeout():
 		checking = false
 		rest_timer.start(restTime)
 		resting = true
-		Globals.regen_active = true
-		Globals.currentPlayer.regen_timer.start(2)
 	else:
 		check_timer.start(1)
-		Globals.regen_active = false
-		Globals.currentPlayer.regen_timer.stop()
+
+
 		
 func clear_projectiles():
 	var currentProjectiles = enemy_projectiles.get_children()

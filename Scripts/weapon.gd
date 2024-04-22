@@ -8,9 +8,6 @@ const SWORD_SPARKS = preload("res://Scenes/sword_sparks.tscn")
 @onready var starting_sword: Sword = $StartingSword
 @onready var add_sword_audio = %AddSwordAudio
 
-
-
-
 var attachPoint: Vector3
 
 func _ready():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://yg5j5j3ftk42"]
+[gd_scene load_steps=16 format=3 uid="uid://yg5j5j3ftk42"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_kc5k5"]
 [ext_resource type="PackedScene" uid="uid://njfod8xarnho" path="res://Scenes/anvil.tscn" id="2_ywpje"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bpv254igwn1vd" path="res://Scenes/volcanopit.tscn" id="5_bqjfq"]
 [ext_resource type="PackedScene" uid="uid://docnyp7cxuxsc" path="res://Scenes/UI/hud.tscn" id="5_xun1b"]
 [ext_resource type="AudioStream" uid="uid://cbjvumglunsi3" path="res://Assets/Sounds/Mine.mp3" id="7_7sajj"]
+[ext_resource type="AudioStream" uid="uid://c8s0r2hj14wl4" path="res://Assets/Sounds/GameJamFunnyDeathSound.wav" id="8_qfvc6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ywx2g"]
 sky_top_color = Color(0.643137, 0.345098, 0.384314, 1)
@@ -52,14 +53,14 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="OuterRing" type="CSGCylinder3D" parent="World/Arena"]
-radius = 15.3754
+radius = 14.9828
 height = 1.36674
 sides = 32
 material = SubResource("StandardMaterial3D_rm8d5")
 
 [node name="OuterRing2" type="CSGCylinder3D" parent="World/Arena"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.24649, 0)
-radius = 14.3049
+radius = 14.4919
 height = 16.5262
 sides = 32
 material = SubResource("StandardMaterial3D_rm8d5")
@@ -67,7 +68,7 @@ material = SubResource("StandardMaterial3D_rm8d5")
 [node name="InnerCutout" type="CSGCylinder3D" parent="World/Arena"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.546996, 0)
 operation = 2
-radius = 12.8358
+radius = 13.3315
 height = 1.19135
 sides = 32
 material = SubResource("StandardMaterial3D_ka08m")
@@ -85,8 +86,7 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -8.28631, 0)
 
 [node name="Lava" type="Area3D" parent="World/volcanopit"]
 transform = Transform3D(0.166667, 0, 0, 0, 0.166667, 0, 0, 0, 0.166667, 0, 2.54602, 0)
-collision_layer = 2
-collision_mask = 5
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/volcanopit/Lava"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.826321, -19.563, -0.586971)
@@ -101,7 +101,6 @@ volume_db = -5.0
 [node name="PlayerManager" type="Node3D" parent="."]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_8sp4a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00443745, 0, -0.01438)
 waveTime = 25
 
 [node name="UIElements" type="Node" parent="."]
@@ -109,10 +108,14 @@ process_mode = 3
 
 [node name="HUD" parent="UIElements" instance=ExtResource("5_xun1b")]
 
-[node name="BackgroundMusic" type="AudioStreamPlayer3D" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_7sajj")
-attenuation_model = 3
-volume_db = -6.0
+volume_db = -7.0
+
+[node name="GameOverAudio" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("8_qfvc6")
+volume_db = 5.0
 
 [connection signal="leftAnvil" from="World/anvil" to="." method="_on_anvil_left_anvil"]
 [connection signal="nearAnvil" from="World/anvil" to="." method="_on_anvil_near_anvil"]

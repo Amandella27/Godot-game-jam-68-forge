@@ -1,5 +1,7 @@
 extends Control
 
+const LOADING_SCREEN = preload("res://Scenes/loading_screen.tscn")
+
 @onready var how_to_play = %"How to Play"
 @onready var play_button = %PlayButton
 
@@ -8,7 +10,7 @@ func _ready():
 	play_button.grab_focus()
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_packed(Globals.MAIN)
+	get_tree().change_scene_to_packed(LOADING_SCREEN)
 
 func _on_how_to_play_button_pressed():
 	how_to_play.visible = true

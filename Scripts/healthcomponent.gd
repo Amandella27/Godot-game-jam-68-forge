@@ -34,7 +34,7 @@ func get_health() -> int:
 func adjust_health(adjustment: int):
 	
 	if adjustment > 0:
-		current_health += adjustment
+		current_health = clamp(current_health + adjustment, 0, max_health)
 		emit_signal("health_changed", current_health)
 
 	elif !invincible:
@@ -42,7 +42,7 @@ func adjust_health(adjustment: int):
 		if actor.is_in_group("Player"):
 			invincible = true
 			#hurt_sound.play()
-			current_health += adjustment
+			current_health = clamp(current_health + adjustment, 0, max_health)
 			#damageIndicator()
 			emit_signal("health_changed", current_health)
 			if current_health <= 0:
@@ -58,6 +58,9 @@ func adjust_health(adjustment: int):
 			if current_health <= 0:
 				defeated.emit()
 				actor.queue_free()
+
+func _on_player_max_heat_kill():
+	adjust_health(2)
 
 #func damageIndicator():
 	#
@@ -81,3 +84,4 @@ func adjust_health(adjustment: int):
 		#model_parts[1].albedo_color = originHairColor
 		#model_parts[2].albedo_color = originHelmColor
 		#model_parts[3].albedo_color = originSkinColor
+

@@ -48,6 +48,9 @@ func _physics_process(delta):
 		playAnimation(animation_player)
 
 	move_and_slide()
+	print(global_transform.origin.distance_to(Vector3.ZERO))
+	if global_transform.origin.distance_to(Vector3.ZERO) > 20:
+		queue_free()
 
 func _on_health_component_defeated():
 	enemy_defeated.emit(self,self.name,heatvalue)
