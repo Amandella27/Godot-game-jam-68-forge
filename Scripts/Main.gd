@@ -113,8 +113,6 @@ func _on_hud_reset_game():
 func _on_lava_body_entered(body):
 	if body == Globals.currentPlayer:
 		gameover()
-	elif body is Enemy:
-		body.queue_free()
 
 func _on_ambient_lava_finished():
 	ambient_lava.play()
